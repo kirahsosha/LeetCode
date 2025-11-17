@@ -1,0 +1,5 @@
+/.vscode
+.gitattributes
+/LeetCodeTester/.vs
+/LeetCodeTester/LeetCodeTester/bin
+/LeetCodeTester/LeetCodeTester/obj
