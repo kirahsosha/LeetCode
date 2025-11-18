@@ -3083,5 +3083,31 @@ namespace LeetCodeTester
             }
             return true;
         }
+
+        /// <summary>
+        /// [717] 1 比特与 2 比特字符
+        /// </summary>
+        /// <param name="bits"></param>
+        /// <returns></returns>
+        public bool IsOneBitCharacter(int[] bits)
+        {
+            if (bits.Length == 1) return true;
+            var n = bits.Length;
+            var index = 0;
+            while (index < n)
+            {
+                if( bits[index] == 1)
+                {
+                    index += 2;
+                    if (index >= n) return false;
+                }
+                else
+                {
+                    index += 1;
+                    if (index == n) return true;
+                }
+            }
+            return true;
+        }
     }
 }
