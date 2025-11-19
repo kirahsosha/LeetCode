@@ -3109,5 +3109,22 @@ namespace LeetCodeTester
             }
             return true;
         }
+
+        /// <summary>
+        /// [2154] 将找到的值乘以 2
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="original"></param>
+        /// <returns></returns>
+        public int FindFinalValue(int[] nums, int original)
+        {
+            var map = new HashSet<int>(nums);
+            while (map.Contains(original))
+            {
+                original *= 2;
+            }
+            return original;
+        }
+
     }
 }

@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1437();
+            Test_2154();
         }
 
         static void Test_443()
@@ -562,6 +562,12 @@ namespace LeetCodeTester
         {
             var nums = new int[] { 0, 1, 0, 1 };
             var res = solution.KLengthApart(nums, 1);
+        }
+
+        static void Test_2154()
+        {
+            var nums = new int[] { 5, 3, 6, 1, 12 };
+            var res = solution.FindFinalValue(nums, 3);
         }
     }
 
