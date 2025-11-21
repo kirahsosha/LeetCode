@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_2154();
+            Test_1930();
         }
 
         static void Test_443()
@@ -568,6 +568,11 @@ namespace LeetCodeTester
         {
             var nums = new int[] { 5, 3, 6, 1, 12 };
             var res = solution.FindFinalValue(nums, 3);
+        }
+
+        static void Test_1930()
+        {
+            var res = solution.CountPalindromicSubsequence("bbcbaba");
         }
     }
 

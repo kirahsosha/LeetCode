@@ -1,6 +1,4 @@
-[5,3,6,1,12]
-3
-[2,7,9]
-4
-[5,3,6,1,12,12]
-3
+""aabca"
+"adc"
+"bbcbaba"
+"wetyupyrdsakljhcvmxnmnczbvnxndhgcbgshhnxhiskfenuviksenxhfgeroinfhxcwuonxpwrhghwjkcgnemrxgnwsey""
