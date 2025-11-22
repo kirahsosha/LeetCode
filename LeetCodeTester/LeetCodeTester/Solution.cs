@@ -16,6 +16,7 @@ namespace LeetCodeTester
         /// </summary>
         /// <param name="chars"></param>
         /// <returns></returns>
+        /// 
         public int Compress(char[] chars)
         {
             if (chars.Length == 1) return 1;
@@ -3207,5 +3208,23 @@ namespace LeetCodeTester
             return res.Count;
         }
 
+        /// <summary>
+        /// [3190] 使所有元素都可以被 3 整除的最少操作数
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int MinimumOperations(int[] nums)
+        {
+            int res = 0;
+            foreach(var n in nums)
+            {
+                if (n % 3 == 0) continue;
+                else
+                {
+                    res++;
+                }
+            }
+            return res;
+        }
     }
 }
