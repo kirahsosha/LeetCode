@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1930();
+            Test_1262();
         }
 
         static void Test_443()
@@ -573,6 +573,12 @@ namespace LeetCodeTester
         static void Test_1930()
         {
             var res = solution.CountPalindromicSubsequence("bbcbaba");
+        }
+
+        static void Test_1262()
+        {
+            var nums = new int[] { 1, 2, 3, 4, 4 };
+            var res = solution.MaxSumDivThree(nums);
         }
     }
 
