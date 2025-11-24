@@ -3296,5 +3296,46 @@ namespace LeetCodeTester
             }
             return res;
         }
+
+        public IList<bool> PrefixesDivBy5(int[] nums)
+        {
+            int num = 0;
+            var res = new List<bool>();
+            foreach (int i in nums)
+            {
+                num = num * 2 + i;
+                if (num % 5 == 0)
+                {
+                    res.Add(true);
+                }
+                else
+                {
+                    res.Add(false);
+                }
+                num = num % 10;
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// [509] 斐波那契数
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int Fib(int n)
+        {
+            //dp[n] = dp[n - 1] + dp[n - 2]
+            if (n == 0) return 0;
+            if (n == 1) return 1;
+
+            var dp = new int[n + 1];
+            dp[0] = 0;
+            dp[1] = 1;
+            for (int i = 2; i <= n; i++)
+            {
+                dp[i] = dp[i - 1] + dp[i - 2];
+            }
+            return dp[n];
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1262();
+            Test_1018();
         }
 
         static void Test_443()
@@ -579,6 +579,12 @@ namespace LeetCodeTester
         {
             var nums = new int[] { 1, 2, 3, 4, 4 };
             var res = solution.MaxSumDivThree(nums);
+        }
+
+        static void Test_1018()
+        {
+            var nums = new int[] { 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1 };
+            var res = solution.PrefixesDivBy5(nums);
         }
     }
 
