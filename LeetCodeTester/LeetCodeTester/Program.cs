@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1018();
+            Test_1015();
         }
 
         static void Test_443()
@@ -585,6 +585,11 @@ namespace LeetCodeTester
         {
             var nums = new int[] { 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0, 1 };
             var res = solution.PrefixesDivBy5(nums);
+        }
+
+        static void Test_1015()
+        {
+            var res = solution.SmallestRepunitDivByK(3);
         }
     }
 

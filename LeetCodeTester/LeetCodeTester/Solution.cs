@@ -3337,5 +3337,55 @@ namespace LeetCodeTester
             }
             return dp[n];
         }
+
+        /// <summary>
+        /// [1015] 可被 K 整除的最小整数
+        /// </summary>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int SmallestRepunitDivByK(int k)
+        {
+            var set = new HashSet<int>();
+            var n = 0;
+            for(int i = 1; i <= k; i++)
+            {
+                n = (n * 10 + 1) % k;
+                if(n == 0)
+                {
+                    return i;
+                }
+                else if (set.Contains(n))
+                {
+                    return -1;
+                }
+                else
+                {
+                    set.Add(n);
+                }
+            }
+            return -1;
+        }
+
+        /// <summary>
+        /// [1137] 第 N 个泰波那契数
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int Tribonacci(int n)
+        {
+            //dp[n] = dp[n-1] + dp[n-2] + dp[n-3]
+            if (n == 0) return 0;
+            if (n == 1) return 1;
+            if (n == 2) return 1;
+            var dp = new int[38];
+            dp[0] = 0;
+            dp[1] = 1;
+            dp[2] = 1;
+            for(int i = 3; i <= n; i++)
+            {
+                dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
+            }
+            return dp[n];
+        }
     }
 }
