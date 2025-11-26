@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1015();
+            Test_2435();
         }
 
         static void Test_443()
@@ -590,6 +590,13 @@ namespace LeetCodeTester
         static void Test_1015()
         {
             var res = solution.SmallestRepunitDivByK(3);
+        }
+
+
+        static void Test_2435()
+        {
+            var grid = new int[][] { new int[] { 5, 2, 4 }, new int[] { 3, 0, 5 }, new int[] { 0, 7, 2 } };
+            var res = solution.NumberOfPaths(grid, 3);
         }
     }
 

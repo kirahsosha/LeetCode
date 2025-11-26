@@ -3387,5 +3387,94 @@ namespace LeetCodeTester
             }
             return dp[n];
         }
+
+        /// <summary>
+        /// [2435] 矩阵中和能被 K 整除的路径
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int NumberOfPaths(int[][] grid, int k)
+        {
+            //optimize：dpNew[j][x] = dpOld[j][x+grid[i][j]] + dpNew[j-1][x+grid[i][j]]
+            var m = grid.Length;
+            var n = grid[0].Length;
+            var dpOld = new int[n][];
+            var dpNew = new int[n][];
+
+            for (int i = 0; i < m; i++)
+            {
+                if(i != 0)
+                {
+                    dpOld = dpNew;
+                }
+                dpNew = new int[n][];
+                for (int j = 0; j < n; j++)
+                {
+                    dpNew[j] = new int[k];
+                    if (i == 0 && j == 0)
+                    {
+                        var x = grid[0][0] % k;
+                        dpNew[0][x] = 1;
+                    }
+                    if (j != 0)
+                    {
+                        for (int x = 0; x < k; x++)
+                        {
+                            if (dpNew[j - 1][x] == 0) continue;
+                            int y = (x + grid[i][j]) % k;
+                            dpNew[j][y] = (dpNew[j][y] + dpNew[j - 1][x]) % MOD;
+                        }
+                    }
+                    if(i != 0)
+                    {
+                        for (int x = 0; x < k; x++)
+                        {
+                            if (dpOld[j][x] == 0) continue;
+                            int y = (x + grid[i][j]) % k;
+                            dpNew[j][y] = (dpNew[j][y] + dpOld[j][x]) % MOD;
+                        }
+                    }
+                }
+            }
+            return dpNew[n - 1][0];
+
+            //dp[i][j][x] = dp[i-1][j][x+grid[i][j]] + dp[i][j-1][x+grid[i][j]]
+            //var m = grid.Length;
+            //var n = grid[0].Length;
+            //var dp = new int[m][][];
+            //for(int i = 0; i < m; i++)
+            //{
+            //    dp[i] = new int[n][];
+            //    for(int j = 0; j < n; j++)
+            //    {
+            //        dp[i][j] = new int[k];
+            //        if(i == 0 && j == 0)
+            //        {
+            //            var x = grid[i][j] % k;
+            //            dp[i][j][x] = 1;
+            //        }
+            //        if(i != 0)
+            //        {
+            //            for(int x = 0; x < k; x++)
+            //            {
+            //                if (dp[i - 1][j][x] == 0) continue;
+            //                int y = (x + grid[i][j]) % k;
+            //                dp[i][j][y] = (dp[i][j][y] + dp[i - 1][j][x]) % MOD;
+            //            }
+            //        }
+            //        if (j != 0)
+            //        {
+            //            for (int x = 0; x < k; x++)
+            //            {
+            //                if (dp[i][j - 1][x] == 0) continue;
+            //                int y = (x + grid[i][j]) % k;
+            //                dp[i][j][y] = (dp[i][j][y] + dp[i][j - 1][x]) % MOD;
+            //            }
+            //        }
+            //    }
+            //}
+            //return dp[m - 1][n - 1][0];
+        }
     }
 }
