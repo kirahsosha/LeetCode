@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_2435();
+            Test_3381();
         }
 
         static void Test_443()
@@ -597,6 +597,12 @@ namespace LeetCodeTester
         {
             var grid = new int[][] { new int[] { 5, 2, 4 }, new int[] { 3, 0, 5 }, new int[] { 0, 7, 2 } };
             var res = solution.NumberOfPaths(grid, 3);
+        }
+
+        static void Test_3381()
+        {
+            var nums = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10 };
+            var res = solution.MaxSubarraySum(nums, 5);
         }
     }
 
