@@ -1,6 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace LeetCodeTester
@@ -10,7 +8,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_3381();
+            Test_2872();
         }
 
         static void Test_443()
@@ -603,6 +601,19 @@ namespace LeetCodeTester
         {
             var nums = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1, -2, -3, -4, -5, -6, -7, -8, -9, -10 };
             var res = solution.MaxSubarraySum(nums, 5);
+        }
+
+        static void Test_2872()
+        {
+            //var n = 5;
+            //var edges = new int[][] { new int[] { 0, 2 }, new int[] { 1, 2 }, new int[] { 1, 3 }, new int[] { 2, 4 } };
+            //var values = new int[] { 1, 8, 1, 4, 4 };
+            //var k = 6;
+            var n = 1;
+            var edges = new int[][] {};
+            var values = new int[] { 0 };
+            var k = 1;
+            var res = solution.MaxKDivisibleComponents(n, edges, values, k);
         }
     }
 
