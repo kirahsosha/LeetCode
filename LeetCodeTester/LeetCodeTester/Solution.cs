@@ -3548,5 +3548,21 @@ namespace LeetCodeTester
             }
             return sum;
         }
+
+        /// <summary>
+        /// [3512] 使数组和能被 K 整除的最少操作次数
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int MinOperations(int[] nums, int k)
+        {
+            var res = 0;
+            foreach(var n in nums)
+            {
+                res = (res + n) % k;
+            }
+            return res;
+        }
     }
 }
