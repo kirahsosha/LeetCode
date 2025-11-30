@@ -1,0 +1,43 @@
+/*
+ * @lc app=leetcode.cn id=1590 lang=csharp
+ *
+ * [1590] 使数组和能被 P 整除
+ */
+
+// @lc code=start
+public class Solution
+{
+    public int MinSubarray(int[] nums, int p)
+    {
+        int x = 0;
+        foreach (int num in nums)
+        {
+            x = (x + num) % p;
+        }
+        if (x == 0)
+        {
+            return 0;
+        }
+        IDictionary<int, int> index = new Dictionary<int, int>();
+        int y = 0, res = nums.Length;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (!index.ContainsKey(y))
+            {
+                index.Add(y, i);
+            }
+            else
+            {
+                index[y] = i;
+            }
+            y = (y + nums[i]) % p;
+            if (index.ContainsKey((y - x + p) % p))
+            {
+                res = Math.Min(res, i - index[(y - x + p) % p] + 1);
+            }
+        }
+        return res == nums.Length ? -1 : res;
+    }
+}
+// @lc code=end
+

@@ -8,7 +8,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_2872();
+            Test_1590();
         }
 
         static void Test_443()
@@ -614,6 +614,26 @@ namespace LeetCodeTester
             var values = new int[] { 0 };
             var k = 1;
             var res = solution.MaxKDivisibleComponents(n, edges, values, k);
+        }
+
+        static void Test_478Q3()
+        {
+            var nums = new int[] { 12, 21, 45, 33, 54 };
+            var res = solution.MinMirrorPairDistance(nums);
+        }
+
+        static void Test_478Q4()
+        {
+            var nums = new int[] { 1, 4, 7 };
+            var k = 3;
+            var queries = new int[][] { new int[] { 0, 1 }, new int[] { 0, 2 } };
+            var res = solution.MinOperations(nums, k, queries);
+        }
+
+        static void Test_1590()
+        {
+            var nums = new int[] { 6, 3, 5, 2 };
+            var res = solution.MinSubarray(nums, 9);
         }
     }
 

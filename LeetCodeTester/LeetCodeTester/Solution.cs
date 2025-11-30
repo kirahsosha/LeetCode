@@ -3564,5 +3564,287 @@ namespace LeetCodeTester
             }
             return res;
         }
+
+        /// <summary>
+        /// 478-Q1
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int CountElements(int[] nums, int k)
+        {
+            // 对数组进行排序（从小到大）
+            Array.Sort(nums);
+
+            int n = nums.Length;
+            int count = 0;
+
+            // 对于每个元素，使用二分查找找到第一个严格大于它的位置
+            for (int i = 0; i < n; i++)
+            {
+                // 使用二分查找找到第一个严格大于nums[i]的位置
+                int left = i + 1, right = n - 1;
+                int firstGreaterIndex = n; // 初始化为n，表示没找到
+
+                while (left <= right)
+                {
+                    int mid = left + (right - left) / 2;
+                    if (nums[mid] > nums[i])
+                    {
+                        firstGreaterIndex = mid;
+                        right = mid - 1; // 继续向左查找更早的位置
+                    }
+                    else
+                    {
+                        left = mid + 1;
+                    }
+                }
+
+                // 严格大于nums[i]的元素数量 = n - firstGreaterIndex
+                int strictGreater = n - firstGreaterIndex;
+
+                // 如果严格大于当前元素的个数 >= k，则该元素是合格的
+                if (strictGreater >= k)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        /// <summary>
+        /// 478-Q2
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public int MaxDistinct(string s)
+        {
+            var res = new HashSet<char>();
+            foreach(var c in s)
+            {
+                if (res.Contains(c)) continue;
+                res.Add(c);
+                if (res.Count == 26) break;
+            }
+            return res.Count;
+        }
+
+        /// <summary>
+        /// 478-Q3
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int MinMirrorPairDistance(int[] nums)
+        {
+            var res = -1;
+            var dic = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (dic.ContainsKey(nums[i]))
+                {
+                    res = res == -1 ? i - dic[nums[i]] : Math.Min(res, i - dic[nums[i]]);
+                    if (res == 1) break;
+                }
+                var rev = Reverse(nums[i]);
+                if (dic.ContainsKey(rev))
+                {
+                    dic[rev] = i;
+                }
+                else
+                {
+                    dic.Add(rev, i);
+                }
+            }
+            return res;
+        }
+
+        private int Reverse(int num)
+        {
+            int reversed = 0;
+            while (num > 0)
+            {
+                reversed = reversed * 10 + num % 10;
+                num /= 10;
+            }
+            return reversed;
+        }
+
+        /// <summary>
+        /// 478-Q4
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="k"></param>
+        /// <param name="queries"></param>
+        /// <returns></returns>
+        public long[] MinOperations(int[] nums, int k, int[][] queries)
+        {
+            var count = queries.Length;
+            var ans = new long[count];
+            var mods = Enumerable.Repeat(-1, nums.Length).ToArray();
+
+            for (int i = 0; i < count; i++)
+            {
+                var l = queries[i][0];
+                var r = queries[i][1];
+                int len = r - l + 1;
+
+                // 如果只有一个元素，操作次数为0
+                if (len == 1)
+                {
+                    ans[i] = 0;
+                    continue;
+                }
+
+                int GetMod(int index)
+                {
+                    if (mods[index] == -1)
+                    {
+                        mods[index] = nums[index] % k;
+                    }
+                    return mods[index];
+                }
+
+                // 检查所有元素模k是否相同
+                var firstMod = GetMod(l);
+                var canEqual = true;
+
+                for (int j = l + 1; j <= r; j++)
+                {
+                    var mod = GetMod(j);
+                    if (mod != firstMod)
+                    {
+                        canEqual = false;
+                        break;
+                    }
+                }
+
+                if (!canEqual)
+                {
+                    ans[i] = -1;
+                    continue;
+                }
+
+                long[] sub = new long[len];
+                for (int j = 0; j < len; j++)
+                {
+                    sub[j] = nums[l + j];
+                }
+
+                // 使用快速选择找到中位数
+                int index = len / 2;
+                long target = QuickSelect(sub, 0, len - 1, index);
+
+                // 计算操作次数
+                long operations = 0;
+                for (int j = 0; j < len; j++)
+                {
+                    long diff = Math.Abs(nums[l + j] - target);
+                    operations += diff / k;
+                }
+
+                ans[i] = operations;
+            }
+
+            return ans;
+        }
+
+        // 快速选择算法：找到第k小的元素，平均O(n)时间复杂度
+        private long QuickSelect(long[] arr, int left, int right, int k)
+        {
+            while (left < right)
+            {
+                // 使用三数取中值选择pivot，避免最坏情况
+                int index = MedianOfThree(arr, left, right);
+                index = Partition(arr, left, right, index);
+
+                if (k == index)
+                {
+                    return arr[k];
+                }
+                else if (k < index)
+                {
+                    right = index - 1;
+                }
+                else
+                {
+                    left = index + 1;
+                }
+            }
+            return arr[left];
+        }
+
+        // 三数取中值，选择更好的pivot以提高稳定性
+        private int MedianOfThree(long[] arr, int left, int right)
+        {
+            int mid = left + (right - left) / 2;
+            if (arr[right] < arr[left]) Swap(arr, left, right);
+            if (arr[mid] < arr[left]) Swap(arr, mid, left);
+            if (arr[right] < arr[mid]) Swap(arr, right, mid);
+            return mid;
+        }
+
+        private int Partition(long[] arr, int left, int right, int index)
+        {
+            long value = arr[index];
+            Swap(arr, index, right);
+
+            int storeIndex = left;
+            for (int i = left; i < right; i++)
+            {
+                if (arr[i] < value)
+                {
+                    Swap(arr, storeIndex, i);
+                    storeIndex++;
+                }
+            }
+            Swap(arr, right, storeIndex);
+            return storeIndex;
+        }
+
+        private void Swap(long[] arr, int i, int j)
+        {
+            long temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+
+        /// <summary>
+        /// [1590] 使数组和能被 P 整除
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public int MinSubarray(int[] nums, int p)
+        {
+            int x = 0;
+            foreach (int num in nums)
+            {
+                x = (x + num) % p;
+            }
+            if (x == 0)
+            {
+                return 0;
+            }
+            IDictionary<int, int> index = new Dictionary<int, int>();
+            int y = 0, res = nums.Length;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (!index.ContainsKey(y))
+                {
+                    index.Add(y, i);
+                }
+                else
+                {
+                    index[y] = i;
+                }
+                y = (y + nums[i]) % p;
+                if (index.ContainsKey((y - x + p) % p))
+                {
+                    res = Math.Min(res, i - index[(y - x + p) % p] + 1);
+                }
+            }
+            return res == nums.Length ? -1 : res;
+        }
     }
 }
