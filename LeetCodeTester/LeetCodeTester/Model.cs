@@ -41,4 +41,12 @@ namespace LeetCodeTester
             this.next = next;
         }
     }
+
+    public class DescendingComparer : Comparer<int>
+    {
+        public override int Compare(int x, int y)
+        {
+            return y - x;
+        }
+    }
 }

@@ -8,7 +8,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1590();
+            Test_2141();
         }
 
         static void Test_443()
@@ -634,6 +634,12 @@ namespace LeetCodeTester
         {
             var nums = new int[] { 6, 3, 5, 2 };
             var res = solution.MinSubarray(nums, 9);
+        }
+
+        static void Test_2141()
+        {
+            var nums = new int[] { 3, 3, 3 };
+            var res = solution.MaxRunTime(2, nums);
         }
     }
 
