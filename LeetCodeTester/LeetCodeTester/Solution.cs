@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Numerics;
 
 namespace LeetCodeTester
 {
@@ -3891,5 +3892,36 @@ namespace LeetCodeTester
             return l;
         }
 
+        /// <summary>
+        /// [3623] 统计梯形的数目 I
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        public int CountTrapezoids(int[][] points)
+        {
+            //key：纵坐标；value：线段数量
+            var dic = new Dictionary<int, long>();
+            foreach (var point in points)
+            {
+                int y = point[1];
+                if (dic.ContainsKey(y))
+                {
+                    dic[y]++;
+                }
+                else
+                {
+                    dic.Add(y, 1);
+                }
+            }
+            long res = 0;
+            long side = 0;
+            foreach(var point in dic.Values)
+            {
+                long edge = point * (point - 1) / 2;
+                res = (res + edge * side) % MOD;
+                side = (side + edge) % MOD;
+            }
+            return (int)res;
+        }
     }
 }

@@ -8,7 +8,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_2141();
+            Test_3623();
         }
 
         static void Test_443()
@@ -640,6 +640,12 @@ namespace LeetCodeTester
         {
             var nums = new int[] { 3, 3, 3 };
             var res = solution.MaxRunTime(2, nums);
+        }
+
+        static void Test_3623()
+        {
+            var points = new int[][] { new int[] { 1, 0 }, new int[] { 2, 0 }, new int[] { 3, 0 }, new int[] { 2, 2 }, new int[] { 3, 2 }, new int[] { 2, 3 }, new int[] { 3, 3 } };
+            var res = solution.CountTrapezoids(points);
         }
     }
 
