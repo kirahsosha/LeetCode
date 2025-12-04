@@ -3923,5 +3923,140 @@ namespace LeetCodeTester
             }
             return (int)res;
         }
+
+        /// <summary>
+        /// [2211] 统计道路上的碰撞次数
+        /// </summary>
+        /// <param name="directions"></param>
+        /// <returns></returns>
+        public int CountCollisions(string directions)
+        {
+            ////L：Peek栈顶，如果有值，记录碰撞，L->S；如果没有值，忽略
+            ////S：Peek栈顶，如果是S，忽略；如果是R，出栈R，记录碰撞，循环直到S或者没有值
+            ////R：入栈
+            //var stack = new Stack<char>();
+            //var res = 0;
+            //foreach(char c in directions)
+            //{
+            //    switch (c)
+            //    {
+            //        case 'L':
+            //            res += CountCollisionsL(stack);
+            //            break;
+            //        case 'S':
+            //            res += CountCollisionsS(stack);
+            //            break;
+            //        case 'R':
+            //            CountCollisionsR(stack);
+            //            break;
+            //        default:
+            //            continue;
+            //    }
+            //}
+            //return res;
+            //L：state < 0，忽略；state >= 0，更新res += state + 1，state = 0
+            //S：state < 0，更新state = 0；state >= 0，更新res += state，state = 0
+            //R：state <= 0，更新state = 1；state > 0，更新state += 1
+            var state = -1;
+            var res = 0;
+            foreach (char c in directions)
+            {
+                switch (c)
+                {
+                    case 'L':
+                        if (state >= 0)
+                        {
+                            res += state + 1;
+                            state = 0;
+                        }
+                        break;
+                    case 'S':
+                        if (state < 0)
+                        {
+                            state = 0;
+                        }
+                        else
+                        {
+                            res += state;
+                            state = 0;
+                        }
+                        break;
+                    case 'R':
+                        if (state <= 0)
+                        {
+                            state = 1;
+                        }
+                        else
+                        {
+                            state += 1;
+                        }
+                        break;
+                    default:
+                        continue;
+                }
+            }
+            return res;
+        }
+
+        //private int CountCollisionsL(Stack<char> stack)
+        //{
+        //    //L：Peek栈顶，如果有值，记录碰撞，L->S；如果没有值，忽略
+        //    if (stack.TryPeek(out var p))
+        //    {
+        //        if (p == 'S')
+        //        {
+        //            return 1;
+        //        }
+        //        else //R
+        //        {
+        //            stack.Pop();
+        //            return 2 + CountCollisionsS(stack);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        return 0;
+        //    }
+        //}
+
+        //private int CountCollisionsS(Stack<char> stack)
+        //{
+        //    //S：Peek栈顶，如果是S，忽略；如果是R，出栈R，记录碰撞，循环直到S或者没有值
+        //    if (stack.TryPeek(out var p))
+        //    {
+        //        if (p == 'S')
+        //        {
+        //            return 0;
+        //        }
+        //        else //R
+        //        {
+        //            stack.Pop();
+        //            return 1 + CountCollisionsS(stack);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        stack.Push('S');
+        //        return 0;
+        //    }
+        //}
+
+        //private void CountCollisionsR(Stack<char> stack)
+        //{
+        //    //R：入栈
+        //    stack.Push('R');
+        //}
+
+        /// <summary>
+        /// [179] 最大数
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public string LargestNumber(int[] nums)
+        {
+            Array.Sort(nums, new NumberConcatComparer());
+            var res = string.Join("", nums).TrimStart('0');
+            return string.IsNullOrEmpty(res) ? "0" : res;
+        }
     }
 }

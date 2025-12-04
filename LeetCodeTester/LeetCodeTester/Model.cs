@@ -49,4 +49,29 @@ namespace LeetCodeTester
             return y - x;
         }
     }
+
+    public class NumberConcatComparer : Comparer<int>
+    {
+        public override int Compare(int x, int y)
+        {
+            if (x == y) return 0;
+            if (x == 0) return 1;
+            if (y == 0) return -1;
+            if (Concat(x, y) > Concat(y, x))
+            {
+                return -1;
+            }
+            return 1;
+        }
+
+        private long Concat(int x, int y)
+        {
+            int i = 1;
+            while (i <= y)
+            {
+                i *= 10;
+            }
+            return (long)x * i + y;
+        }
+    }
 }
