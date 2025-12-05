@@ -4058,5 +4058,35 @@ namespace LeetCodeTester
             var res = string.Join("", nums).TrimStart('0');
             return string.IsNullOrEmpty(res) ? "0" : res;
         }
+
+        /// <summary>
+        /// [3432] 统计元素和差值为偶数的分区方案
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int CountPartitions(int[] nums)
+        {
+            var sum = 0;
+            foreach(var i in nums)
+            {
+                sum += i;
+            }
+            if(sum % 2 != 0)
+            {
+                return 0;
+            }
+            var res = 0;
+            var left = 0;
+            for(int i = 0; i < nums.Length - 1; i++)
+            {
+                left += nums[i];
+                sum -= nums[i];
+                if ((left - sum) % 2 == 0)
+                {
+                    res++;
+                }
+            }
+            return res;
+        }
     }
 }
