@@ -8,7 +8,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_179();
+            Test_3578();
         }
 
         static void Test_443()
@@ -659,6 +659,12 @@ namespace LeetCodeTester
             var res = solution.LargestNumber(nums);
         }
 
+        static void Test_3578()
+        {
+            var nums = new int[] { 9, 4, 1, 3, 7 };
+            var k = 4;
+            var res = solution.CountPartitions(nums, k);
+        }
     }
 
 }
