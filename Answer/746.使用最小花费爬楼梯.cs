@@ -5,19 +5,23 @@
  */
 
 // @lc code=start
-public class Solution {
-    //状态转移方程 dp[n] = min(dp[n-1], dp[n-2]) + cost[n]
-    public int MinCostClimbingStairs(int[] cost) {
-        int len = cost.Length;
-        if(len == 2) return Math.Min(cost[0], cost[1]);
-        int[] dp = new int[len];
+public class Solution
+{
+    public int MinCostClimbingStairs(int[] cost)
+    {
+        //dp[0] = cost[0]
+        //dp[1] = cost[1]
+        //dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
+        var n = cost.Length;
+        if (n == 2) return Math.Min(cost[0], cost[1]);
+        var dp = new int[n];
         dp[0] = cost[0];
         dp[1] = cost[1];
-        for(int i = 2; i < len; i++)
+        for (var i = 2; i < n; i++)
         {
             dp[i] = Math.Min(dp[i - 2], dp[i - 1]) + cost[i];
         }
-        return Math.Min(dp[len - 2], dp[len - 1]);
+        return Math.Min(dp[n - 2], dp[n - 1]);
     }
 }
 // @lc code=end
