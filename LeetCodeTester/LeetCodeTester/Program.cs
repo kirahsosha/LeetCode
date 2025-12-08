@@ -8,7 +8,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_3578();
+            Test_1925();
         }
 
         static void Test_443()
@@ -664,6 +664,12 @@ namespace LeetCodeTester
             var nums = new int[] { 9, 4, 1, 3, 7 };
             var k = 4;
             var res = solution.CountPartitions(nums, k);
+        }
+
+        static void Test_1925()
+        {
+            var k = 20;
+            var res = solution.CountTriples(k);
         }
     }
 
