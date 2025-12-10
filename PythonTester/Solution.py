@@ -19,3 +19,12 @@ def rob(self, nums: List[int]) -> int:
         dp2 = sum
     return max(dp1, dp2)
 
+# [3577] 统计计算机解锁顺序排列数
+def countPermutations(self, complexity: List[int]) -> int:
+    MOD = 1000000007
+    res = 1
+    for i in range(1, len(complexity)):
+        if complexity[i] <= complexity[0]:
+            return 0
+        res = res * i % MOD
+    return res
