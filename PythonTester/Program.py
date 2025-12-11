@@ -10,3 +10,9 @@ def Test_3577(self=None):
     nums = [38, 223, 100, 123, 406, 234, 256, 93, 222, 259, 233, 69, 139, 245, 45, 98, 214]
     res = Solution.countPermutations(self, nums)
     print(f', {res}')
+
+def Test_3531(self=None):
+    n = 3
+    buildings = [[1,2],[2,2],[3,2],[2,1],[2,3]]
+    res = Solution.countCoveredBuildings(self, n, buildings)
+    print(f', {res}')

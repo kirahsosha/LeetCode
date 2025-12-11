@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace LeetCodeTester
 {
@@ -8,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_3577();
+            Test_3531();
         }
 
         static void Test_443()
@@ -683,6 +685,14 @@ namespace LeetCodeTester
             var complexity = new int[] { 38, 223, 100, 123, 406, 234, 256, 93, 222, 259, 233, 69, 139, 245, 45, 98, 214 };
             var res = solution.CountPermutations(complexity);
         }
+
+        static void Test_3531()
+        {
+            var n = 3;
+            var buildings = JsonConvert.DeserializeObject<int[][]>("[[1,1],[1,2],[2,1],[2,2]]");
+            var res = solution.CountCoveredBuildings(n, buildings);
+        }
+
     }
 
 }
