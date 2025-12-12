@@ -16,3 +16,9 @@ def Test_3531(self=None):
     buildings = [[1,2],[2,2],[3,2],[2,1],[2,3]]
     res = Solution.countCoveredBuildings(self, n, buildings)
     print(f', {res}')
+
+def Test_3433(self=None):
+    numberOfUsers = 2
+    events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","71","HERE"]]
+    res = Solution.countMentions(self, numberOfUsers, events)
+    print(f', {res}')
