@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 
 namespace LeetCodeTester
 {
@@ -4431,6 +4432,48 @@ namespace LeetCodeTester
                 }
             }
             return res;
+        }
+
+        /// <summary>
+        /// [3606] 优惠券校验器
+        /// </summary>
+        /// <param name="code"></param>
+        /// <param name="businessLine"></param>
+        /// <param name="isActive"></param>
+        /// <returns></returns>
+        public IList<string> ValidateCoupons(string[] code, string[] businessLine, bool[] isActive)
+        {
+            var res = new Dictionary<string, List<string>>
+            {
+                { "electronics", new List<string>() },
+                { "grocery", new List<string>() },
+                { "pharmacy", new List<string>() },
+                { "restaurant", new List<string>() }
+            };
+            var n = code.Length;
+            for (int i = 0; i < n; i++)
+            {
+                if (!isActive[i])
+                {
+                    continue;
+                }
+                if (!res.ContainsKey(businessLine[i]))
+                {
+                    continue;
+                }
+                if(!Regex.IsMatch(code[i], "^[a-zA-Z0-9_]+$"))
+                {
+                    continue;
+                }
+                res[businessLine[i]].Add(code[i]);
+            }
+            var ans = new List<string>();
+            foreach(var r in res.Values)
+            {
+                r.Sort(StringComparer.Ordinal);
+                ans.AddRange(r);
+            }
+            return ans;
         }
     }
 }

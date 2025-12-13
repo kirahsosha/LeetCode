@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_3433();
+            Test_3606();
         }
 
         static void Test_443()
@@ -696,9 +696,18 @@ namespace LeetCodeTester
         static void Test_3433()
         {
             var numberOfUsers = 10;
-            var events = JsonConvert.DeserializeObject<List<IList<string>>>("[[\"OFFLINE\",\"44\",\"5\"],[\"MESSAGE\",\"98\",\"HERE\"],[\"OFFLINE\",\"78\",\"0\"],[\"OFFLINE\",\"88\",\"1\"],[\"OFFLINE\",\"44\",\"7\"],[\"MESSAGE\",\"94\",\"ALL\"],[\"MESSAGE\",\"66\",\"id7 id2 id1 id0 id5 id5\"],[\"MESSAGE\",\"10\",\"id9 id0 id7 id4\"],[\"OFFLINE\",\"61\",\"3\"],[\"MESSAGE\",\"37\",\"ALL\"],[\"MESSAGE\",\"40\",\"id5 id8 id9 id1 id4 id8 id7 id4 id8\"],[\"MESSAGE\",\"4\",\"ALL\"],[\"OFFLINE\",\"33\",\"8\"],[\"OFFLINE\",\"66\",\"6\"],[\"OFFLINE\",\"93\",\"8\"],[\"OFFLINE\",\"78\",\"4\"],[\"OFFLINE\",\"4\",\"1\"],[\"OFFLINE\",\"69\",\"2\"]]");
+            var events = JsonConvert.DeserializeObject<List<IList<string>>>("[[\"OFFLINE\",\"44\",\"5\"],[\"MESSAGE\",\"98\",\"HERE\"],[\"OFFLINE\",\"78\",\"0\"]]");
             var res = solution.CountMentions(numberOfUsers, events);
         }
+
+        static void Test_3606()
+        {
+            var code = new string[] { "P", "j", "x", "c", "j", "C", "G" };
+            var businessLine = new string[] { "pharmacy", "electronics", "invalid", "restaurant", "electronics", "pharmacy", "restaurant" };
+            var isActive = new bool[] { true, true, false, false, true, false, false };
+            var res = solution.ValidateCoupons(code, businessLine, isActive);
+        }
+
     }
 
 }

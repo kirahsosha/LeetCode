@@ -74,4 +74,35 @@ namespace LeetCodeTester
             return (long)x * i + y;
         }
     }
+
+    public class StringConcatComparer : IComparer<string>
+    {
+        public  int Compare(string x, string y)
+        {
+            int i = 0;
+            while(i < x.Length && i < y.Length)
+            {
+                if(x[i] == y[i])
+                {
+                    i++;
+                }
+                else
+                {
+                    return x[i] - y[i];
+                }
+            }
+            if(x.Length < y.Length)
+            {
+                return -1;
+            }
+            else if(x.Length > y.Length)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
 }

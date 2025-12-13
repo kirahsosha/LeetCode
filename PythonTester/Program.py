@@ -22,3 +22,10 @@ def Test_3433(self=None):
     events = [["MESSAGE","10","id1 id0"],["OFFLINE","11","0"],["MESSAGE","71","HERE"]]
     res = Solution.countMentions(self, numberOfUsers, events)
     print(f', {res}')
+
+def Test_3606(self=None):
+    code = ["P", "j", "x", "c", "j", "C", "G"]
+    businessLine = ["pharmacy", "electronics", "invalid", "restaurant", "electronics", "pharmacy", "restaurant"]
+    isActive = [True, True, False, False, True, False, False]
+    res = Solution.validateCoupons(self, code, businessLine, isActive)
+    print(f', {res}')
