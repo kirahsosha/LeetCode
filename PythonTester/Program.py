@@ -29,3 +29,8 @@ def Test_3606(self=None):
     isActive = [True, True, False, False, True, False, False]
     res = Solution.validateCoupons(self, code, businessLine, isActive)
     print(f', {res}')
+
+def Test_2147(self=None):
+    corridor = "PPPPPPPSPPPSPPPPSPPPSPPPPPSPPPSPPSPPSPPPPPSPSPPPPPSPPSPPPPPSPPSPPSPPPSPPPPSPPPPSPPPPPSPSPPPPSPSPPPSPPPPSPPPPPSPSPPSPPPPSPPSPPSPPSPPPSPPSPSPPSSSS"
+    res = Solution.numberOfWays(self, corridor)
+    print(f', {res}')

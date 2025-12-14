@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_3606();
+            Test_2147();
         }
 
         static void Test_443()
@@ -706,6 +706,12 @@ namespace LeetCodeTester
             var businessLine = new string[] { "pharmacy", "electronics", "invalid", "restaurant", "electronics", "pharmacy", "restaurant" };
             var isActive = new bool[] { true, true, false, false, true, false, false };
             var res = solution.ValidateCoupons(code, businessLine, isActive);
+        }
+
+        static void Test_2147()
+        {
+            var corridor = "PPPPPPPSPPPSPPPPSPPPSPPPPPSPPPSPPSPPSPPPPPSPSPPPPPSPPSPPPPPSPPSPPSPPPSPPPPSPPPPSPPPPPSPSPPPPSPSPPPSPPPPSPPPPPSPSPPSPPPPSPPSPPSPPSPPPSPPSPSPPSSSS";
+            var res = solution.NumberOfWays(corridor);
         }
 
     }
