@@ -34,3 +34,8 @@ def Test_2147(self=None):
     corridor = "PPPPPPPSPPPSPPPPSPPPSPPPPPSPPPSPPSPPSPPPPPSPSPPPPPSPPSPPPPPSPPSPPSPPPSPPPPSPPPPSPPPPPSPSPPPPSPSPPPSPPPPSPPPPPSPSPPSPPPPSPPSPPSPPSPPPSPPSPSPPSSSS"
     res = Solution.numberOfWays(self, corridor)
     print(f', {res}')
+
+def Test_2110(self=None):
+    prices = [3,2,1,4]
+    res = Solution.getDescentPeriods(self, prices)
+    print(f', {res}')

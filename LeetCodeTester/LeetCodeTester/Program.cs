@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -10,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_2147();
+            Test_2110();
         }
 
         static void Test_443()
@@ -712,6 +713,17 @@ namespace LeetCodeTester
         {
             var corridor = "PPPPPPPSPPPSPPPPSPPPSPPPPPSPPPSPPSPPSPPPPPSPSPPPPPSPPSPPPPPSPPSPPSPPPSPPPPSPPPPSPPPPPSPSPPPPSPSPPPSPPPPSPPPPPSPSPPSPPPPSPPSPPSPPSPPPSPPSPSPPSSSS";
             var res = solution.NumberOfWays(corridor);
+        }
+
+        static void Test_2110()
+        {
+            //var prices = new int[] { 3, 2, 1, 4 };
+            var prices = new int[100000];
+            for (int i = 0; i < prices.Length; i++)
+            {
+                prices[i] = 100000 - i;
+            }
+            var res = solution.GetDescentPeriods(prices);
         }
 
     }
