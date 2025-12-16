@@ -11,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_2110();
+            Test_3562();
         }
 
         static void Test_443()
@@ -724,6 +724,16 @@ namespace LeetCodeTester
                 prices[i] = 100000 - i;
             }
             var res = solution.GetDescentPeriods(prices);
+        }
+
+        static void Test_3562()
+        {
+            var n = 3;
+            var present = new int[] { 4, 6, 8 };
+            var future = new int[] { 7, 9, 11 };
+            var hierarchy = JsonConvert.DeserializeObject<int[][]>("[[1,2],[1,3]]");
+            var budget = 10;
+            var res = solution.MaxProfit(n, present, future, hierarchy, budget);
         }
 
     }
