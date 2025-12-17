@@ -1,8 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using LeetCodeTester.Solutions;
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text.Json.Serialization;
 
 namespace LeetCodeTester
 {
@@ -11,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_3562();
+            Test_3573();
         }
 
         static void Test_443()
@@ -736,6 +735,11 @@ namespace LeetCodeTester
             var res = solution.MaxProfit(n, present, future, hierarchy, budget);
         }
 
+        static void Test_3573()
+        {
+            var prices = new int[] { 1, 7, 9, 8, 2 };
+            var res = solution.MaximumProfit(prices, 2);
+        }
     }
 
 }

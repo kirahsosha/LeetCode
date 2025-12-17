@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.IO;
 using System.Linq;
-using System.Numerics;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
-namespace LeetCodeTester
+namespace LeetCodeTester.Solutions
 {
-    public class Solution
+    public partial class Solution
     {
         const int MOD = 1000000007;
 
@@ -1185,51 +1181,6 @@ namespace LeetCodeTester
         }
 
         /// <summary>
-        /// [32] 最长有效括号
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public int LongestValidParentheses(string s)
-        {
-            if (s.Length <= 1) return 0;
-            var stack = new Stack<int>();
-            var dp = new int[s.Length];
-            for (int i = 0; i < s.Length; i++)
-            {
-                dp[i] = 0;
-                if (s[i] == '(')
-                {
-                    stack.Push(i);
-                }
-                else if (stack.Count != 0)
-                {
-                    var start = stack.Pop();
-                    dp[start] = i;
-                }
-            }
-            int index = 0, cur = 0, max = 0;
-            while (index < s.Length)
-            {
-                if (dp[index] == 0 && cur == 0)
-                {
-                    index++;
-                }
-                else if (dp[index] == 0)
-                {
-                    max = Math.Max(max, cur);
-                    cur = 0;
-                    index++;
-                }
-                else
-                {
-                    cur += dp[index] - index + 1;
-                    index = dp[index] + 1;
-                }
-            }
-            return Math.Max(max, cur);
-        }
-
-        /// <summary>
         /// [2197] 替换数组中的非互质数
         /// </summary>
         /// <param name="nums"></param>
@@ -1266,26 +1217,6 @@ namespace LeetCodeTester
         private int GCD(int a, int b)
         {
             return b == 0 ? a : GCD(b, a % b);
-        }
-
-        /// <summary>
-        /// [279] 完全平方数
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
-        public int NumSquares(int n)
-        {
-            int[] dp = new int[n + 1];
-            dp[0] = 0;
-            for (int i = 1; i <= n; i++)
-            {
-                dp[i] = n;
-                for (int j = 1; j * j <= i; j++)
-                {
-                    dp[i] = Math.Min(dp[i], dp[i - j * j] + 1);
-                }
-            }
-            return dp[n];
         }
 
         /// <summary>
@@ -1654,41 +1585,6 @@ namespace LeetCodeTester
         }
 
         /// <summary>
-        /// [120] 三角形最小路径和
-        /// </summary>
-        /// <param name="triangle"></param>
-        /// <returns></returns>
-        public int MinimumTotal(IList<IList<int>> triangle)
-        {
-            if (triangle.Count == 1)
-            {
-                return triangle[0][0];
-            }
-            var n = triangle.Count;
-            int[] dp = new int[n];
-            dp[0] = triangle[0][0];
-            for (int i = 1; i < n; i++)
-            {
-                for (int j = i; j >= 0; j--)
-                {
-                    if (j == 0)
-                    {
-                        dp[j] = dp[j] + triangle[i][j];
-                    }
-                    else if (j == i)
-                    {
-                        dp[j] = dp[j - 1] + triangle[i][j];
-                    }
-                    else
-                    {
-                        dp[j] = Math.Min(dp[j], dp[j - 1]) + triangle[i][j];
-                    }
-                }
-            }
-            return dp.Min();
-        }
-
-        /// <summary>
         /// [611] 有效三角形的个数
         /// </summary>
         /// <param name="nums"></param>
@@ -1850,98 +1746,6 @@ namespace LeetCodeTester
                 }
             }
             ans = Math.Max(ans, index);
-            return ans;
-        }
-
-        /// <summary>
-        /// [1039] 多边形三角剖分的最低得分
-        /// </summary>
-        /// <param name="values"></param>
-        /// <returns></returns>
-        public int MinScoreTriangulation(int[] values)
-        {
-            int INFINITY = int.MaxValue / 2;
-            int n = values.Length;
-            int[][] dp = new int[n][];
-            for (int i = 0; i < n; i++)
-            {
-                dp[i] = new int[n];
-            }
-            for (int subLength = 3; subLength <= n; subLength++)
-            {
-                for (int i = 0, j = subLength - 1; j < n; i++, j++)
-                {
-                    int minScore = INFINITY;
-                    for (int k = i + 1; k < j; k++)
-                    {
-                        int score = dp[i][k] + dp[k][j] + values[i] * values[k] * values[j];
-                        minScore = Math.Min(minScore, score);
-                    }
-                    dp[i][j] = minScore;
-                }
-            }
-            return dp[0][n - 1];
-        }
-
-        /// <summary>
-        /// [300] 最长递增子序列
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
-        public int LengthOfLIS(int[] nums)
-        {
-            #region 双指针
-            //var upNums = new List<int>
-            //{
-            //    nums[0]
-            //};
-            //for (int i = 1; i < nums.Length; i++)
-            //{
-            //    if (nums[i] > upNums[upNums.Count - 1])
-            //    {
-            //        upNums.Add(nums[i]);
-            //    }
-            //    else
-            //    {
-            //        var left = 0;
-            //        var right = upNums.Count - 1;
-            //        while (left < right)
-            //        {
-            //            var half = (left + right) / 2;
-            //            if (upNums[half] < nums[i])
-            //            {
-            //                left = half + 1;
-            //            }
-            //            else
-            //            {
-            //                right = half;
-            //            }
-            //        }
-            //        upNums[left] = nums[i];
-            //    }
-            //}
-            //return upNums.Count();
-            #endregion
-            int n = nums.Length;
-            if (n == 1) return 1;
-            int[] dp = new int[n];
-            for (int i = 0; i < n; i++)
-            {
-                dp[i] = 1;
-            }
-            int ans = 0;
-            for (int i = 1; i < n; i++)
-            {
-                for (int j = 0; j < i; j++)
-                {
-                    // 如果当前位置前面的数中存在比当前的数小的，就进行状态转移
-                    if (nums[j] < nums[i])
-                    {
-                        dp[i] = Math.Max(dp[j] + 1, dp[i]);
-                    }
-                }
-                ans = Math.Max(ans, dp[i]);
-            }
             return ans;
         }
 
@@ -2216,33 +2020,6 @@ namespace LeetCodeTester
         }
 
         /// <summary>
-        /// [416] 分割等和子集
-        /// dp[j]=dp[j] ∣ dp[j−nums[i]]
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
-        public bool CanPartition(int[] nums)
-        {
-            int sum = nums.Sum(), maxNum = nums.Max();
-            if (sum % 2 != 0 || maxNum * 2 > sum)
-            {
-                return false;
-            }
-            int n = nums.Length;
-            int target = sum / 2;
-            bool[] dp = new bool[target + 1];
-            dp[0] = true;
-            for (int i = 1; i <= n; i++)
-            {
-                for (int j = target; j >= nums[i - 1]; j--)
-                {
-                    dp[j] |= dp[j - nums[i - 1]];
-                }
-            }
-            return dp[target];
-        }
-
-        /// <summary>
         /// [240] 搜索二维矩阵 II
         /// </summary>
         /// <param name="matrix"></param>
@@ -2357,114 +2134,6 @@ namespace LeetCodeTester
                 for (int j = 0; j < n; ++j)
                 {
                     res += water[i, j] - heightMap[i][j];
-                }
-            }
-            return res;
-        }
-
-        /// <summary>
-        /// [5] 最长回文子串
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public string LongestPalindrome(string s)
-        {
-            #region 中心扩展法
-            //if (s.Length <= 1) return s;
-            //int n = s.Length;
-            //int p = 0, len = 1;
-            //if (s[0] == s[1]) len = 2;
-            ////以i为中心点找到最长回文子串
-            //for (int i = 1; i < n - 1; i++)
-            //{
-            //    if (s[i] == s[i + 1])
-            //    {
-            //        if (len < 2)
-            //        {
-            //            len = 2;
-            //            p = i;
-            //        }
-            //    }
-            //    //允许的最大臂长
-            //    int max1 = Math.Min(i, n - i - 1);
-            //    int max2 = Math.Min(i, n - i - 2);
-            //    int t = 0;
-            //    if (len > max1 * 2 + 1) continue;
-            //    //奇数回文串
-            //    for (int j = 1; j <= max1; j++)
-            //    {
-            //        if (s[i - j] != s[i + j])
-            //        {
-            //            t = 2 * j - 1;
-            //            if (t > len)
-            //            {
-            //                p = i - j + 1;
-            //                len = t;
-            //            }
-            //            break;
-            //        }
-            //        if (j == max1)
-            //        {
-            //            t = 2 * j + 1;
-            //            if (t > len)
-            //            {
-            //                p = i - j;
-            //                len = t;
-            //            }
-            //        }
-            //    }
-            //    //偶数回文串
-            //    if (s[i] != s[i + 1]) continue;
-            //    for (int j = 1; j <= max2; j++)
-            //    {
-            //        if (s[i - j] != s[i + j + 1])
-            //        {
-            //            t = 2 * j;
-            //            if (t > len)
-            //            {
-            //                p = i - j + 1;
-            //                len = t;
-            //            }
-            //            break;
-            //        }
-            //        if (j == max2)
-            //        {
-            //            t = 2 * j + 2;
-            //            if (t > len)
-            //            {
-            //                p = i - j;
-            //                len = t;
-            //            }
-            //        }
-            //    }
-            //}
-            //return s.Substring(p, len);
-            #endregion
-            int n = s.Length;
-            if (n <= 1) return s;
-            bool[,] dp = new bool[n, n];
-            string res = "";
-            for (int len = 1; len <= n; len++)
-            {
-                for (int i = 0; i + len - 1 < n; i++)
-                {
-                    int j = i + len - 1;
-                    if (len == 1)
-                    {
-                        dp[i, j] = true;
-                    }
-                    else if (len == 2)
-                    {
-                        dp[i, j] = s[i] == s[j];
-                    }
-                    else
-                    {
-                        dp[i, j] = dp[i + 1, j - 1] && s[i] == s[j];
-                    }
-                    if (len > res.Length && dp[i, j])
-                    {
-                        res = s.Substring(i, len);
-                    }
                 }
             }
             return res;
@@ -3323,27 +2992,6 @@ namespace LeetCodeTester
         }
 
         /// <summary>
-        /// [509] 斐波那契数
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
-        public int Fib(int n)
-        {
-            //dp[n] = dp[n - 1] + dp[n - 2]
-            if (n == 0) return 0;
-            if (n == 1) return 1;
-
-            var dp = new int[n + 1];
-            dp[0] = 0;
-            dp[1] = 1;
-            for (int i = 2; i <= n; i++)
-            {
-                dp[i] = dp[i - 1] + dp[i - 2];
-            }
-            return dp[n];
-        }
-
-        /// <summary>
         /// [1015] 可被 K 整除的最小整数
         /// </summary>
         /// <param name="k"></param>
@@ -3369,117 +3017,6 @@ namespace LeetCodeTester
                 }
             }
             return -1;
-        }
-
-        /// <summary>
-        /// [1137] 第 N 个泰波那契数
-        /// </summary>
-        /// <param name="n"></param>
-        /// <returns></returns>
-        public int Tribonacci(int n)
-        {
-            //dp[n] = dp[n-1] + dp[n-2] + dp[n-3]
-            if (n == 0) return 0;
-            if (n == 1) return 1;
-            if (n == 2) return 1;
-            var dp = new int[38];
-            dp[0] = 0;
-            dp[1] = 1;
-            dp[2] = 1;
-            for(int i = 3; i <= n; i++)
-            {
-                dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3];
-            }
-            return dp[n];
-        }
-
-        /// <summary>
-        /// [2435] 矩阵中和能被 K 整除的路径
-        /// </summary>
-        /// <param name="grid"></param>
-        /// <param name="k"></param>
-        /// <returns></returns>
-        public int NumberOfPaths(int[][] grid, int k)
-        {
-            //optimize：dpNew[j][x] = dpOld[j][x+grid[i][j]] + dpNew[j-1][x+grid[i][j]]
-            var m = grid.Length;
-            var n = grid[0].Length;
-            var dpOld = new int[n][];
-            var dpNew = new int[n][];
-
-            for (int i = 0; i < m; i++)
-            {
-                if(i != 0)
-                {
-                    dpOld = dpNew;
-                }
-                dpNew = new int[n][];
-                for (int j = 0; j < n; j++)
-                {
-                    dpNew[j] = new int[k];
-                    if (i == 0 && j == 0)
-                    {
-                        var x = grid[0][0] % k;
-                        dpNew[0][x] = 1;
-                    }
-                    if (j != 0)
-                    {
-                        for (int x = 0; x < k; x++)
-                        {
-                            if (dpNew[j - 1][x] == 0) continue;
-                            int y = (x + grid[i][j]) % k;
-                            dpNew[j][y] = (dpNew[j][y] + dpNew[j - 1][x]) % MOD;
-                        }
-                    }
-                    if(i != 0)
-                    {
-                        for (int x = 0; x < k; x++)
-                        {
-                            if (dpOld[j][x] == 0) continue;
-                            int y = (x + grid[i][j]) % k;
-                            dpNew[j][y] = (dpNew[j][y] + dpOld[j][x]) % MOD;
-                        }
-                    }
-                }
-            }
-            return dpNew[n - 1][0];
-
-            //dp[i][j][x] = dp[i-1][j][x+grid[i][j]] + dp[i][j-1][x+grid[i][j]]
-            //var m = grid.Length;
-            //var n = grid[0].Length;
-            //var dp = new int[m][][];
-            //for(int i = 0; i < m; i++)
-            //{
-            //    dp[i] = new int[n][];
-            //    for(int j = 0; j < n; j++)
-            //    {
-            //        dp[i][j] = new int[k];
-            //        if(i == 0 && j == 0)
-            //        {
-            //            var x = grid[i][j] % k;
-            //            dp[i][j][x] = 1;
-            //        }
-            //        if(i != 0)
-            //        {
-            //            for(int x = 0; x < k; x++)
-            //            {
-            //                if (dp[i - 1][j][x] == 0) continue;
-            //                int y = (x + grid[i][j]) % k;
-            //                dp[i][j][y] = (dp[i][j][y] + dp[i - 1][j][x]) % MOD;
-            //            }
-            //        }
-            //        if (j != 0)
-            //        {
-            //            for (int x = 0; x < k; x++)
-            //            {
-            //                if (dp[i][j - 1][x] == 0) continue;
-            //                int y = (x + grid[i][j]) % k;
-            //                dp[i][j][y] = (dp[i][j][y] + dp[i][j - 1][x]) % MOD;
-            //            }
-            //        }
-            //    }
-            //}
-            //return dp[m - 1][n - 1][0];
         }
 
         /// <summary>
@@ -4093,59 +3630,6 @@ namespace LeetCodeTester
         }
 
         /// <summary>
-        /// [3578] 统计极差最大为 K 的分割方式数
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <param name="k"></param>
-        /// <returns></returns>
-        public int CountPartitions(int[] nums, int k)
-        {
-            int n = nums.Length;
-            long mod = 1000000007L;
-            long[] dp = new long[n + 1];
-            long[] prefix = new long[n + 1];
-            LinkedList<int> minQ = new LinkedList<int>();
-            LinkedList<int> maxQ = new LinkedList<int>();
-
-            dp[0] = 1;
-            prefix[0] = 1;
-            for (int i = 0, j = 0; i < n; i++)
-            {
-                // 维护最大值队列
-                while (maxQ.Count > 0 && nums[maxQ.Last.Value] <= nums[i])
-                {
-                    maxQ.RemoveLast();
-                }
-                maxQ.AddLast(i);
-                // 维护最小值队列
-                while (minQ.Count > 0 && nums[minQ.Last.Value] >= nums[i])
-                {
-                    minQ.RemoveLast();
-                }
-                minQ.AddLast(i);
-                // 调整窗口
-                while (maxQ.Count > 0 && minQ.Count > 0 &&
-                       nums[maxQ.First.Value] - nums[minQ.First.Value] > k)
-                {
-                    if (maxQ.First.Value == j)
-                    {
-                        maxQ.RemoveFirst();
-                    }
-                    if (minQ.First.Value == j)
-                    {
-                        minQ.RemoveFirst();
-                    }
-                    j++;
-                }
-
-                dp[i + 1] = (prefix[i] - (j > 0 ? prefix[j - 1] : 0) + mod) % mod;
-                prefix[i + 1] = (prefix[i] + dp[i + 1]) % mod;
-            }
-
-            return (int)dp[n];
-        }
-
-        /// <summary>
         /// [1523] 在区间范围内统计奇数数目
         /// </summary>
         /// <param name="low"></param>
@@ -4166,28 +3650,6 @@ namespace LeetCodeTester
             {
                 return interval / 2 + 1;
             }
-        }
-
-        /// <summary>
-        /// [746] 使用最小花费爬楼梯
-        /// </summary>
-        /// <param name="cost"></param>
-        /// <returns></returns>
-        public int MinCostClimbingStairs(int[] cost)
-        {
-            //dp[0] = cost[0]
-            //dp[1] = cost[1]
-            //dp[i] = min(dp[i-1], dp[i-2]) + cost[i]
-            var n = cost.Length;
-            if (n == 2) return Math.Min(cost[0], cost[1]);
-            var dp = new int[n];
-            dp[0] = cost[0];
-            dp[1] = cost[1];
-            for (var i = 2; i < n; i++)
-            {
-                dp[i] = Math.Min(dp[i - 2], dp[i - 1]) + cost[i];
-            }
-            return Math.Min(dp[n - 2], dp[n - 1]);
         }
 
         /// <summary>
@@ -4215,31 +3677,6 @@ namespace LeetCodeTester
                 }
             }
             return res;
-        }
-
-        /// <summary>
-        /// [198] 打家劫舍
-        /// </summary>
-        /// <param name="nums"></param>
-        /// <returns></returns>
-        public int Rob(int[] nums)
-        {
-            //dp[i] = max(dp[i-1], dp[i-2] + num[i])
-            //因为在计算dp[i]的时候只需要使用到dp[i - 1]和dp[i - 2], 所以将数组优化为两个int
-            int n = nums.Length;
-            if (n == 0) return 0;
-            if (n == 1) return nums[0];
-            if (n == 2) return Math.Max(nums[0], nums[1]);
-            int dp1, dp2;
-            dp1 = nums[0];
-            dp2 = Math.Max(nums[0], nums[1]);
-            for (int i = 2; i < n; i++)
-            {
-                int sum = Math.Max(dp1 + nums[i], dp2);
-                dp1 = dp2;
-                dp2 = sum;
-            }
-            return Math.Max(dp1, dp2);
         }
 
         /// <summary>
@@ -4545,77 +3982,5 @@ namespace LeetCodeTester
             return res;
         }
 
-        /// <summary>
-        /// [3562] 折扣价交易股票的最大利润
-        /// </summary>
-        /// <param name="n"></param>
-        /// <param name="present"></param>
-        /// <param name="future"></param>
-        /// <param name="hierarchy"></param>
-        /// <param name="budget"></param>
-        /// <returns></returns>
-        public int MaxProfit(int n, int[] present, int[] future, int[][] hierarchy, int budget)
-        {
-            List<int>[] g = new List<int>[n];
-            for (int i = 0; i < n; i++)
-            {
-                g[i] = new List<int>();
-            }
-            foreach (var e in hierarchy)
-            {
-                g[e[0] - 1].Add(e[1] - 1);
-            }
-
-            (int[] dp0, int[] dp1, int size) Dfs(int u)
-            {
-                int cost = present[u];
-                int dCost = present[u] / 2; // discounted cost
-
-                // dp[u][state][budget]
-                // state = 0: 不购买父节点, state = 1: 必须购买父节点
-                int[] dp0 = new int[budget + 1];
-                int[] dp1 = new int[budget + 1];
-                // subProfit[state][budget]
-                // state = 0: 优惠不可用, state = 1: 优惠可用
-                int[] subProfit0 = new int[budget + 1];
-                int[] subProfit1 = new int[budget + 1];
-                int uSize = cost;
-
-                foreach (int v in g[u])
-                {
-                    var (childDp0, childDp1, vSize) = Dfs(v);
-                    uSize += vSize;
-                    for (int i = budget; i >= 0; i--)
-                    {
-                        for (int sub = 0; sub <= Math.Min(vSize, i); sub++)
-                        {
-                            if (i - sub >= 0)
-                            {
-                                subProfit0[i] = Math.Max(subProfit0[i], subProfit0[i - sub] + childDp0[sub]);
-                                subProfit1[i] = Math.Max(subProfit1[i], subProfit1[i - sub] + childDp1[sub]);
-                            }
-                        }
-                    }
-                }
-
-                for (int i = 0; i <= budget; i++)
-                {
-                    dp0[i] = subProfit0[i];
-                    dp1[i] = subProfit0[i];
-                    if (i >= dCost)
-                    {
-                        dp1[i] = Math.Max(subProfit0[i], subProfit1[i - dCost] + future[u] - dCost);
-                    }
-                    if (i >= cost)
-                    {
-                        dp0[i] = Math.Max(subProfit0[i], subProfit1[i - cost] + future[u] - cost);
-                    }
-                }
-
-                return (dp0, dp1, uSize);
-            }
-
-            return Dfs(0).dp0[budget];
-        }
     }
 }

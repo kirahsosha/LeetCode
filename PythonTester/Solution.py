@@ -1,6 +1,8 @@
+from multiprocessing.managers import Array
 from re import match
 from typing import List
 from queue import PriorityQueue
+
 
 # [198] 打家劫舍
 def rob(self, nums: List[int]) -> int:
@@ -21,6 +23,7 @@ def rob(self, nums: List[int]) -> int:
         dp2 = sum
     return max(dp1, dp2)
 
+
 # [3577] 统计计算机解锁顺序排列数
 def countPermutations(self, complexity: List[int]) -> int:
     MOD = 1000000007
@@ -30,6 +33,7 @@ def countPermutations(self, complexity: List[int]) -> int:
             return 0
         res = res * i % MOD
     return res
+
 
 # [3531] 统计被覆盖的建筑
 def countCoveredBuildings(self, n: int, buildings: List[List[int]]) -> int:
@@ -57,6 +61,7 @@ def countCoveredBuildings(self, n: int, buildings: List[List[int]]) -> int:
         if ver[x][0] < y < ver[x][1] and hor[y][0] < x < hor[y][1]:
             res = res + 1
     return res
+
 
 # [3433] 统计用户被提及情况
 def countMentions(self, numberOfUsers: int, events: List[List[str]]) -> List[int]:
@@ -108,9 +113,10 @@ def countMentions(self, numberOfUsers: int, events: List[List[str]]) -> List[int
 
     return res
 
+
 # [3606] 优惠券校验器
 def validateCoupons(self, code: List[str], businessLine: List[str], isActive: List[bool]) -> List[str]:
-    res = { "electronics": [], "grocery": [], "pharmacy": [], "restaurant": [] }
+    res = {"electronics": [], "grocery": [], "pharmacy": [], "restaurant": []}
     n = len(code)
     for i in range(n):
         if not isActive[i]:
@@ -126,6 +132,7 @@ def validateCoupons(self, code: List[str], businessLine: List[str], isActive: Li
         for i in v:
             ans.append(i)
     return ans
+
 
 # [2147] 分隔长廊的方案数
 def numberOfWays(self, corridor: str) -> int:
@@ -146,6 +153,7 @@ def numberOfWays(self, corridor: str) -> int:
             index = 0
     return res
 
+
 # [2110] 股票平滑下跌阶段的数目
 def getDescentPeriods(self, prices: List[int]) -> int:
     res = 0
@@ -165,3 +173,38 @@ def getDescentPeriods(self, prices: List[int]) -> int:
     res += current * (current + 1) // 2
     return res
 
+
+# [3573] 买卖股票的最佳时机 V
+def maximumProfit(self, prices: List[int], k: int) -> int:
+    # dp[prices.Length][k + 1][3]
+    # i - 天数
+    # j - 完成进行交易数
+    # 0 - 当前不持有股票，如果有交易，完成交易
+    # 1 - 当前持有普通交易的股票
+    # 2 - 当前持有做空交易的股票
+    # 状态转移：
+    # dp[i][j][0] - 前一天没交易或卖出前一天的普通交易或买进前一天的做空交易: max(dp[i - 1][j][0], dp[i - 1][j][1] + prices[i], dp[i - 1][j][2] - prices[i])
+    # dp[i][j][1] - 保持前一天的普通交易或买进新的普通交易: max(dp[i - 1][j][1], dp[i - 1][j - 1][0] - prices[i])
+    # dp[i][j][2] - 保持前一天的做空交易或卖出新的做空交易: max(dp[i - 1][j][2], dp[i - 1][j - 1][0] + prices[i])
+    # 优化：只需要i - 1交易情况
+    # dp[k + 1][3]
+    # dp[j][0] = max(dp[j][0], dp[j][1] + prices[i], dp[j][2] - prices[i])
+    # dp[j][1] = max(dp[j][1], dp[j - 1][0] - prices[i])
+    # dp[j][2] = max(dp[j][2], dp[j - 1][0] + prices[i])
+    # 初始i == 0：
+    # dp[j][0] = 0
+    # dp[j][1] = -prices[0]
+    # dp[j][2] = prices[0]
+
+    n = len(prices)
+    dp = [[0] * 3 for _ in range(k + 1)]
+    for j in range(0, k + 1):
+        dp[j] = [0, -prices[0], prices[0]]
+
+    for i in range(1, n):
+        # 由于j的状态取决于[前一天]的j - 1的状态，所以倒序遍历j，保证在计算j的时候j - 1还是前一天的结果
+        for j in range(k, 0, -1):
+            dp[j][0] = max(dp[j][0], dp[j][1] + prices[i], dp[j][2] - prices[i])
+            dp[j][1] = max(dp[j][1], dp[j - 1][0] - prices[i])
+            dp[j][2] = max(dp[j][2], dp[j - 1][0] + prices[i])
+    return dp[k][0]
