@@ -142,7 +142,7 @@ def numberOfWays(self, corridor: str) -> int:
         if corridor[i] == 'S':
             lst.append(i)
     if len(lst) == 0 or len(lst) % 2 == 1:
-        return 0;
+        return 0
     index = 0
     res = 1
     for i in range(1, len(lst) - 1):
@@ -208,3 +208,24 @@ def maximumProfit(self, prices: List[int], k: int) -> int:
             dp[j][1] = max(dp[j][1], dp[j - 1][0] - prices[i])
             dp[j][2] = max(dp[j][2], dp[j - 1][0] + prices[i])
     return dp[k][0]
+
+
+# [3652] 按策略买卖股票的最佳时机
+def maxProfit(self, prices: List[int], strategy: List[int], k: int) -> int:
+    res = 0
+    n = len(prices)
+    for i in range(n):
+        res += prices[i] * strategy[i]
+    t = k // 2
+    max_p = res
+    for i in range(t):
+        res -= prices[i] * strategy[i]
+    for i in range(t, k):
+        res += prices[i] * (1 - strategy[i])
+    max_p = max(max_p, res)
+    for i in range(n - k):
+        res += prices[i] * strategy[i]
+        res -= prices[i + t]
+        res += prices[i + k] * (1 - strategy[i + k])
+        max_p = max(max_p, res)
+    return max_p

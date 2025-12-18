@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_3573();
+            Test_3652();
         }
 
         static void Test_443()
@@ -739,6 +739,12 @@ namespace LeetCodeTester
         {
             var prices = new int[] { 1, 7, 9, 8, 2 };
             var res = solution.MaximumProfit(prices, 2);
+        }
+        static void Test_3652()
+        {
+            var prices = new int[] { 4, 2, 8 };
+            var strategy = new int[] { -1, 0, 1 };
+            var res = solution.MaxProfit(prices, strategy,2);
         }
     }
 

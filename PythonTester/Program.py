@@ -51,3 +51,10 @@ def Test_3573(self=None):
     prices = [12, 16, 19, 19, 8, 1, 19, 13, 9]
     res = Solution.maximumProfit(self, prices, 3)
     print(f', {res}')
+
+
+def Test_3652(self=None):
+    prices = [4, 2, 8]
+    strategy = [-1, 0, 1]
+    res = Solution.maxProfit(self, prices, strategy, 2)
+    print(f', {res}')
