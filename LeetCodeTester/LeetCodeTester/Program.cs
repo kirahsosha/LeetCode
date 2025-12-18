@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_3652();
+            Test_2092();
         }
 
         static void Test_443()
@@ -740,12 +740,22 @@ namespace LeetCodeTester
             var prices = new int[] { 1, 7, 9, 8, 2 };
             var res = solution.MaximumProfit(prices, 2);
         }
+
         static void Test_3652()
         {
             var prices = new int[] { 4, 2, 8 };
             var strategy = new int[] { -1, 0, 1 };
             var res = solution.MaxProfit(prices, strategy,2);
         }
+
+        static void Test_2092()
+        {
+            var n = 6;
+            var meetings = JsonConvert.DeserializeObject<int[][]>("[[0,2,1],[1,3,1],[4,5,1]]");
+            var firstPerson = 1;
+            var res = solution.FindAllPeople(n, meetings, firstPerson);
+        }
+
     }
 
 }
