@@ -229,3 +229,14 @@ def maxProfit(self, prices: List[int], strategy: List[int], k: int) -> int:
         res += prices[i + k] * (1 - strategy[i + k])
         max_p = max(max_p, res)
     return max_p
+
+# [944] 删列造序
+def minDeletionSize(self, strs: List[str]) -> int:
+    n = len(strs[0])
+    res = 0
+    for i in range(n):
+        for j in range (1, len(strs)):
+            if strs[j][i] < strs[j - 1][i]:
+                res += 1
+                break
+    return res

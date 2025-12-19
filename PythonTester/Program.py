@@ -58,3 +58,8 @@ def Test_3652(self=None):
     strategy = [-1, 0, 1]
     res = Solution.maxProfit(self, prices, strategy, 2)
     print(f', {res}')
+
+def Test_944(self=None):
+    strs = ["cba","daf","ghi"]
+    res = Solution.minDeletionSize(self, strs)
+    print(f', {res}')

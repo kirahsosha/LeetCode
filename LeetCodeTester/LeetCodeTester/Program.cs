@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_2092();
+            Test_944();
         }
 
         static void Test_443()
@@ -754,6 +754,12 @@ namespace LeetCodeTester
             var meetings = JsonConvert.DeserializeObject<int[][]>("[[0,2,1],[1,3,1],[4,5,1]]");
             var firstPerson = 1;
             var res = solution.FindAllPeople(n, meetings, firstPerson);
+        }
+
+        static void Test_944()
+        {
+            var strs = JsonConvert.DeserializeObject<string[]>("[\"cba\",\"daf\",\"ghi\"]");
+            var res = solution.MinDeletionSize(strs);
         }
 
     }
