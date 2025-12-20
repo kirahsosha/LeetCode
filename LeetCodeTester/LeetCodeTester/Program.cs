@@ -10,7 +10,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_944();
+            Test_955();
         }
 
         static void Test_443()
@@ -760,6 +760,12 @@ namespace LeetCodeTester
         {
             var strs = JsonConvert.DeserializeObject<string[]>("[\"cba\",\"daf\",\"ghi\"]");
             var res = solution.MinDeletionSize(strs);
+        }
+
+        static void Test_955()
+        {
+            var strs = JsonConvert.DeserializeObject<string[]>("[\"xga\",\"xfb\",\"yfa\"]");
+            var res = solution.MinDeletionSize2(strs);
         }
 
     }

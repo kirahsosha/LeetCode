@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LeetCodeTester.Solutions
 {
@@ -4123,6 +4124,45 @@ namespace LeetCodeTester.Solutions
                 }
             }
             return res;
+        }
+
+        /// <summary>
+        /// [955] 删列造序 II
+        /// </summary>
+        /// <param name="strs"></param>
+        /// <returns></returns>
+        public int MinDeletionSize2(string[] strs)
+        {
+            int n = strs.Length;
+            int m = strs[0].Length;
+            var cuts = new bool[n - 1];
+
+            int ans = 0;
+            for (int j = 0; j < m; j++)
+            {
+                var check = true;
+                for (int i = 0; i < n - 1; i++)
+                {
+                    if (!cuts[i] && strs[i][j] > strs[i + 1][j])
+                    {
+                        ans++;
+                        check = false;
+                        break;
+                    }
+                }
+                if (check)
+                {
+                    for (int i = 0; i < n - 1; i++)
+                    {
+                        if (strs[i][j] < strs[i + 1][j])
+                        {
+                            cuts[i] = true;
+                        }
+                    }
+                }
+            }
+
+            return ans;
         }
     }
 }

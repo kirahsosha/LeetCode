@@ -63,3 +63,8 @@ def Test_944(self=None):
     strs = ["cba","daf","ghi"]
     res = Solution.minDeletionSize(self, strs)
     print(f', {res}')
+
+def Test_955(self=None):
+    strs = ["xga","xfb","yfa"]
+    res = Solution.minDeletionSize2(self, strs)
+    print(f', {res}')
