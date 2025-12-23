@@ -259,3 +259,18 @@ def minDeletionSize2(self, strs: List[str]) -> int:
                 if strs[i][j] < strs[i + 1][j]:
                     cuts[i] = True
     return ans
+
+# [3074] 重新分装苹果
+def minimumBoxes(self, apple: List[int], capacity: List[int]) -> int:
+    apples = 0
+    for appleCount in apple:
+        apples += appleCount
+    capacity.sort()
+    capacity.reverse()
+    res = 0
+    for cap in capacity:
+        apples -= cap
+        res += 1
+        if apples <= 0:
+            break
+    return res

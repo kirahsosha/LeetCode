@@ -59,12 +59,21 @@ def Test_3652(self=None):
     res = Solution.maxProfit(self, prices, strategy, 2)
     print(f', {res}')
 
+
 def Test_944(self=None):
-    strs = ["cba","daf","ghi"]
+    strs = ["cba", "daf", "ghi"]
     res = Solution.minDeletionSize(self, strs)
     print(f', {res}')
 
+
 def Test_955(self=None):
-    strs = ["xga","xfb","yfa"]
+    strs = ["xga", "xfb", "yfa"]
     res = Solution.minDeletionSize2(self, strs)
+    print(f', {res}')
+
+
+def Test_3074(self=None):
+    apple = [1, 8, 3, 3, 5]
+    capacity = [3, 9, 5, 1, 9]
+    res = Solution.minimumBoxes(self, apple, capacity)
     print(f', {res}')

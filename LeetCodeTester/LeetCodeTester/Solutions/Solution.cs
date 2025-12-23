@@ -4196,5 +4196,28 @@ namespace LeetCodeTester.Solutions
             }
             return ans;
         }
+
+        /// <summary>
+        /// [3074] 重新分装苹果
+        /// </summary>
+        /// <param name="apple"></param>
+        /// <param name="capacity"></param>
+        /// <returns></returns>
+        public int MinimumBoxes(int[] apple, int[] capacity)
+        {
+            var apples = apple.Sum();
+            Array.Sort(capacity, new DescendingComparer());
+            var res = 0;
+            foreach (var cap in capacity)
+            {
+                apples -= cap;
+                res++;
+                if (apples <= 0)
+                {
+                    break;
+                }
+            }
+            return res;
+        }
     }
 }
