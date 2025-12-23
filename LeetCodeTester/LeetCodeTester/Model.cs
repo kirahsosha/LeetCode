@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 
 namespace LeetCodeTester
 {
@@ -101,6 +104,47 @@ namespace LeetCodeTester
             {
                 return 0;
             }
+        }
+    }
+
+    public class ArrayComparer : IEqualityComparer<int[]>
+    {
+        public bool Equals(int[] x, int[] y)
+        {
+            if (x.Length != y.Length) return false;
+            for (int i = 0; i < x.Length; i++)
+            {
+                if (x[i] != y[i]) return false;
+            }
+            return true;
+        }
+
+        public int GetHashCode([DisallowNull] int[] obj)
+        {
+            return obj.Sum();
+        }
+    }
+
+    class Event : IComparable<Event>
+    {
+        public int Ts { get; set; }
+        public int Op { get; set; }
+        public int Val { get; set; }
+
+        public Event(int ts, int op, int val)
+        {
+            Ts = ts;
+            Op = op;
+            Val = val;
+        }
+
+        public int CompareTo(Event other)
+        {
+            if (Ts != other.Ts)
+            {
+                return Ts.CompareTo(other.Ts);
+            }
+            return Op.CompareTo(other.Op);
         }
     }
 }

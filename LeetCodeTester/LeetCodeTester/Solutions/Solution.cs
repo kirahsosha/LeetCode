@@ -2215,10 +2215,10 @@ namespace LeetCodeTester.Solutions
         {
             int index = s.Length;
             var chars = s.Select(c => c - '0').ToArray();
-            while(index > 2)
+            while (index > 2)
             {
                 int i = 0;
-                while(i < index - 1)
+                while (i < index - 1)
                 {
                     chars[i] = (chars[i] + chars[i + 1]) % 10;
                     i++;
@@ -2270,7 +2270,8 @@ namespace LeetCodeTester.Solutions
         /// <returns></returns>
         public ListNode ModifiedList(int[] nums, ListNode head)
         {
-            while (head != null && nums.Contains(head.val)){
+            while (head != null && nums.Contains(head.val))
+            {
                 head = head.next;
             }
             if (head == null) return head;
@@ -2319,7 +2320,7 @@ namespace LeetCodeTester.Solutions
                 //up
                 for (int i = x - 1; i >= 0; i--)
                 {
-                    if(wallSet.Contains(i * n + y))
+                    if (wallSet.Contains(i * n + y))
                     {
                         break;
                     }
@@ -2379,7 +2380,7 @@ namespace LeetCodeTester.Solutions
             if (neededTime.Length == 1) return 0;
             var index = 0;
             int res = 0;
-            for(int i = 1; i < neededTime.Length; i++)
+            for (int i = 1; i < neededTime.Length; i++)
             {
                 if (colors[index] == colors[i])
                 {
@@ -2474,13 +2475,13 @@ namespace LeetCodeTester.Solutions
                     }
                     else if (dic[conn[1]] != set)
                     {
-                        foreach(var d in dic[conn[1]])
+                        foreach (var d in dic[conn[1]])
                         {
                             if (!set.Contains(d))
                             {
                                 set.Add(d);
                             }
-                            if(d != conn[1] && dic[d] != set)
+                            if (d != conn[1] && dic[d] != set)
                             {
                                 dic[d] = set;
                             }
@@ -2527,7 +2528,7 @@ namespace LeetCodeTester.Solutions
                 }
             }
 
-            for(int i = 1; i <= c; i++)
+            for (int i = 1; i <= c; i++)
             {
                 if (!dic.ContainsKey(i))
                 {
@@ -2536,7 +2537,7 @@ namespace LeetCodeTester.Solutions
             }
 
             var res = new List<int>();
-            foreach(var query in queries)
+            foreach (var query in queries)
             {
                 switch (query[0])
                 {
@@ -2646,7 +2647,7 @@ namespace LeetCodeTester.Solutions
             int count = 0;
             int moves = 0;
             int index = 0;
-            while(index < s.Length)
+            while (index < s.Length)
             {
                 int cnt = 0;
                 while (index < s.Length && s[index] == '1')
@@ -2654,7 +2655,7 @@ namespace LeetCodeTester.Solutions
                     cnt++;
                     index++;
                 }
-                if(cnt > 0 && index != s.Length)
+                if (cnt > 0 && index != s.Length)
                 {
                     count += cnt;
                     moves += count;
@@ -2772,7 +2773,7 @@ namespace LeetCodeTester.Solutions
             var index = 0;
             while (index < n)
             {
-                if( bits[index] == 1)
+                if (bits[index] == 1)
                 {
                     index += 2;
                     if (index >= n) return false;
@@ -2812,7 +2813,8 @@ namespace LeetCodeTester.Solutions
             int n = intervals.Length;
             int res = 0;
             int m = 2;
-            Array.Sort(intervals, (a, b) => {
+            Array.Sort(intervals, (a, b) =>
+            {
                 if (a[0] == b[0])
                 {
                     return b[1] - a[1];
@@ -2856,7 +2858,7 @@ namespace LeetCodeTester.Solutions
         {
             var dic = new Dictionary<char, List<int>>();
             var res = new HashSet<string>();
-            for(int i = 0;i < s.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
                 if (dic.ContainsKey(s[i]))
                 {
@@ -2867,9 +2869,9 @@ namespace LeetCodeTester.Solutions
                     dic.Add(s[i], new List<int>() { i });
                 }
             }
-            foreach(var v in dic.Values)
+            foreach (var v in dic.Values)
             {
-                if(v.Count >= 2)
+                if (v.Count >= 2)
                 {
                     var l = v[0];
                     var r = v[v.Count - 1];
@@ -2891,7 +2893,7 @@ namespace LeetCodeTester.Solutions
         public int MinimumOperations(int[] nums)
         {
             int res = 0;
-            foreach(var n in nums)
+            foreach (var n in nums)
             {
                 if (n % 3 == 0) continue;
                 else
@@ -2916,12 +2918,12 @@ namespace LeetCodeTester.Solutions
                 res += num;
                 if (num % 3 == 1)
                 {
-                    if(min1 == 0 || num <= min1)
+                    if (min1 == 0 || num <= min1)
                     {
                         min12 = min1;
                         min1 = num;
                     }
-                    else if(min12 == 0 || num <= min12)
+                    else if (min12 == 0 || num <= min12)
                     {
                         min12 = num;
                     }
@@ -2941,11 +2943,11 @@ namespace LeetCodeTester.Solutions
             }
             if (res % 3 == 1)
             {
-                if(min1 == 0)
+                if (min1 == 0)
                 {
                     res = res - min2 - min22;
                 }
-                else if(min22 == 0)
+                else if (min22 == 0)
                 {
                     res = res - min1;
                 }
@@ -2954,13 +2956,13 @@ namespace LeetCodeTester.Solutions
                     res = Math.Max(res - min1, res - min2 - min22);
                 }
             }
-            else if(res % 3 == 2)
+            else if (res % 3 == 2)
             {
-                if(min2 == 0)
+                if (min2 == 0)
                 {
                     res = res - min1 - min12;
                 }
-                else if(min12 == 0)
+                else if (min12 == 0)
                 {
                     res = res - min2;
                 }
@@ -3001,10 +3003,10 @@ namespace LeetCodeTester.Solutions
         {
             var set = new HashSet<int>();
             var n = 0;
-            for(int i = 1; i <= k; i++)
+            for (int i = 1; i <= k; i++)
             {
                 n = (n * 10 + 1) % k;
-                if(n == 0)
+                if (n == 0)
                 {
                     return i;
                 }
@@ -3101,7 +3103,7 @@ namespace LeetCodeTester.Solutions
         public int MinOperations(int[] nums, int k)
         {
             var res = 0;
-            foreach(var n in nums)
+            foreach (var n in nums)
             {
                 res = (res + n) % k;
             }
@@ -3164,7 +3166,7 @@ namespace LeetCodeTester.Solutions
         public int MaxDistinct(string s)
         {
             var res = new HashSet<char>();
-            foreach(var c in s)
+            foreach (var c in s)
             {
                 if (res.Contains(c)) continue;
                 res.Add(c);
@@ -3410,16 +3412,16 @@ namespace LeetCodeTester.Solutions
             }
             long l = 0;
             long r = total / n + 1;
-            while(l + 1 < r)
+            while (l + 1 < r)
             {
                 //二分，假设能运行t分钟，b >= t的电池只能给一台电脑使用，b < t的电池可以组合使用
                 long t = l + (r - l) / 2;
                 long sum = 0;
-                foreach(var b in batteries)
+                foreach (var b in batteries)
                 {
                     sum += Math.Min(b, t);
                 }
-                if(n * t <= sum)
+                if (n * t <= sum)
                 {
                     //可以运行t分钟，下一轮查找范围[t,r)
                     l = t;
@@ -3456,7 +3458,7 @@ namespace LeetCodeTester.Solutions
             }
             long res = 0;
             long side = 0;
-            foreach(var point in dic.Values)
+            foreach (var point in dic.Values)
             {
                 long edge = point * (point - 1) / 2;
                 res = (res + edge * side) % MOD;
@@ -3608,17 +3610,17 @@ namespace LeetCodeTester.Solutions
         public int CountPartitions(int[] nums)
         {
             var sum = 0;
-            foreach(var i in nums)
+            foreach (var i in nums)
             {
                 sum += i;
             }
-            if(sum % 2 != 0)
+            if (sum % 2 != 0)
             {
                 return 0;
             }
             var res = 0;
             var left = 0;
-            for(int i = 0; i < nums.Length - 1; i++)
+            for (int i = 0; i < nums.Length - 1; i++)
             {
                 left += nums[i];
                 sum -= nums[i];
@@ -3668,7 +3670,7 @@ namespace LeetCodeTester.Solutions
             for (int a = 3; a <= maxa; a++)
             {
                 var maxb = Math.Floor(Math.Sqrt(n * n - a * a));
-                for(int b = a + 1; b <= maxb; b++)
+                for (int b = a + 1; b <= maxb; b++)
                 {
                     var sum = Math.Sqrt(a * a + b * b);
                     if (sum.Equals(Math.Floor(sum)))
@@ -3711,14 +3713,14 @@ namespace LeetCodeTester.Solutions
             {
                 var i = item.Key;
                 var value = item.Value;
-                if(i != 0)
+                if (i != 0)
                 {
                     var right = dic[nums[i] * 2] - value;
                     res = (value * right + res) % MOD;
                 }
             }
             //处理0
-            if(dic.ContainsKey(0) && dic[0] >= 3)
+            if (dic.ContainsKey(0) && dic[0] >= 3)
             {
                 long zero = (long)dic[0] * (dic[0] - 1) * (dic[0] - 2) / 6 % MOD;
                 res = (res + (int)zero) % MOD;
@@ -3805,18 +3807,18 @@ namespace LeetCodeTester.Solutions
             //Value: Event, Ids; Priority: timestamp
             var pq = new PriorityQueue<Tuple<int, string>, int>();
             var all = 0;
-            foreach(var ev in events)
+            foreach (var ev in events)
             {
                 var e = ev[0] == "MESSAGE" ? 0 : 1;
                 var t = int.Parse(ev[1]) * 3;
                 var ids = ev[2].Replace("id", "");
-                if(ids == "ALL")
+                if (ids == "ALL")
                 {
                     all++;
                     continue;
                 }
                 pq.Enqueue(new Tuple<int, string>(e, ids), t - e);
-                if(e == 1)
+                if (e == 1)
                 {
                     //Add online event
                     pq.Enqueue(new Tuple<int, string>(2, ids), t + 178);
@@ -3824,7 +3826,7 @@ namespace LeetCodeTester.Solutions
             }
             var status = new int[numberOfUsers];
             var res = new int[numberOfUsers];
-            if(all > 0)
+            if (all > 0)
             {
                 for (int i = 0; i < numberOfUsers; i++)
                 {
@@ -3834,12 +3836,12 @@ namespace LeetCodeTester.Solutions
             while (pq.TryDequeue(out var ev, out _))
             {
                 var e = ev.Item1;
-                if(e == 0)
+                if (e == 0)
                 {
                     //MESSAGE
                     if (ev.Item2 == "HERE")
                     {
-                        for(int i = 0;  i < numberOfUsers; i++)
+                        for (int i = 0; i < numberOfUsers; i++)
                         {
                             if (status[i] == 0)
                             {
@@ -3850,13 +3852,13 @@ namespace LeetCodeTester.Solutions
                     else
                     {
                         var ids = ev.Item2.Split(' ').Select(int.Parse);
-                        foreach(var id in ids)
+                        foreach (var id in ids)
                         {
                             res[id]++;
                         }
                     }
                 }
-                else if(e == 1)
+                else if (e == 1)
                 {
                     //OFFLINE
                     var id = int.Parse(ev.Item2);
@@ -3899,14 +3901,14 @@ namespace LeetCodeTester.Solutions
                 {
                     continue;
                 }
-                if(!Regex.IsMatch(code[i], "^[a-zA-Z0-9_]+$"))
+                if (!Regex.IsMatch(code[i], "^[a-zA-Z0-9_]+$"))
                 {
                     continue;
                 }
                 res[businessLine[i]].Add(code[i]);
             }
             var ans = new List<string>();
-            foreach(var r in res.Values)
+            foreach (var r in res.Values)
             {
                 r.Sort(StringComparer.Ordinal);
                 ans.AddRange(r);
@@ -3960,14 +3962,14 @@ namespace LeetCodeTester.Solutions
             long res = 0;
             int last = 0;
             long current = 0;
-            foreach(var price in prices)
+            foreach (var price in prices)
             {
-                if(current == 0)
+                if (current == 0)
                 {
                     current++;
                     last = price;
                 }
-                else if(price == last - 1)
+                else if (price == last - 1)
                 {
                     current++;
                     last = price;
@@ -3994,14 +3996,14 @@ namespace LeetCodeTester.Solutions
         {
             long res = 0;
             var n = prices.Length;
-            for(int i = 0; i < n; i++)
+            for (int i = 0; i < n; i++)
             {
                 res += prices[i] * strategy[i];
             }
 
             var t = k / 2;
             long max = res;
-            for (int i = 0;i < t; i++)
+            for (int i = 0; i < t; i++)
             {
                 res -= prices[i] * strategy[i];
             }
@@ -4162,6 +4164,36 @@ namespace LeetCodeTester.Solutions
                 }
             }
 
+            return ans;
+        }
+
+        /// <summary>
+        /// [2054] 两个最好的不重叠活动
+        /// </summary>
+        /// <param name="events"></param>
+        /// <returns></returns>
+        public int MaxTwoEvents(int[][] events)
+        {
+            List<Event> evs = new List<Event>();
+            foreach (var eventArr in events)
+            {
+                evs.Add(new Event(eventArr[0], 0, eventArr[2]));
+                evs.Add(new Event(eventArr[1], 1, eventArr[2]));
+            }
+            evs.Sort();
+
+            int ans = 0, bestFirst = 0;
+            foreach (var ev in evs)
+            {
+                if (ev.Op == 0)
+                {
+                    ans = Math.Max(ans, ev.Val + bestFirst);
+                }
+                else
+                {
+                    bestFirst = Math.Max(bestFirst, ev.Val);
+                }
+            }
             return ans;
         }
     }
