@@ -77,3 +77,9 @@ def Test_3074(self=None):
     capacity = [3, 9, 5, 1, 9]
     res = Solution.minimumBoxes(self, apple, capacity)
     print(f', {res}')
+
+
+def Test_3075(self=None):
+    happiness = [1, 2, 3]
+    res = Solution.maximumHappinessSum(self, happiness, 2)
+    print(f', {res}')

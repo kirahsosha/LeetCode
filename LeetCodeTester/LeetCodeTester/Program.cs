@@ -11,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_3074();
+            Test_3075();
         }
 
         static void Test_443()
@@ -780,6 +780,12 @@ namespace LeetCodeTester
             var apple = new int[] { 1, 3, 2 };
             var capacity = new int[] { 4, 3, 1, 5, 2 };
             var res = solution.MinimumBoxes(apple, capacity);
+        }
+
+        static void Test_3075()
+        {
+            var happiness = new int[] { 1, 2, 3 };
+            var res = solution.MaximumHappinessSum(happiness, 2);
         }
 
     }

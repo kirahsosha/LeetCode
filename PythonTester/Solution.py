@@ -274,3 +274,12 @@ def minimumBoxes(self, apple: List[int], capacity: List[int]) -> int:
         if apples <= 0:
             break
     return res
+
+# [3075] 幸福值最大化的选择方案
+def maximumHappinessSum(self, happiness: List[int], k: int) -> int:
+    happiness.sort()
+    happiness.reverse()
+    res = 0
+    for i in range(k):
+        res += max(0, happiness[i] - i);
+    return res

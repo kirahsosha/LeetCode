@@ -4219,5 +4219,22 @@ namespace LeetCodeTester.Solutions
             }
             return res;
         }
+
+        /// <summary>
+        /// [3075] 幸福值最大化的选择方案
+        /// </summary>
+        /// <param name="happiness"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public long MaximumHappinessSum(int[] happiness, int k)
+        {
+            Array.Sort(happiness, new DescendingComparer());
+            long res = 0;
+            for (int i = 0; i < k; i++)
+            {
+                res += Math.Max(0, happiness[i] - i);
+            }
+            return res;
+        }
     }
 }
