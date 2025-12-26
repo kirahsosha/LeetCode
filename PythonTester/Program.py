@@ -83,3 +83,8 @@ def Test_3075(self=None):
     happiness = [1, 2, 3]
     res = Solution.maximumHappinessSum(self, happiness, 2)
     print(f', {res}')
+
+def Test_2483(self=None):
+    customers = "YYNY"
+    res = Solution.bestClosingTime(self, customers)
+    print(f', {res}')

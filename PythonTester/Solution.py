@@ -230,16 +230,18 @@ def maxProfit(self, prices: List[int], strategy: List[int], k: int) -> int:
         max_p = max(max_p, res)
     return max_p
 
+
 # [944] 删列造序
 def minDeletionSize(self, strs: List[str]) -> int:
     n = len(strs[0])
     res = 0
     for i in range(n):
-        for j in range (1, len(strs)):
+        for j in range(1, len(strs)):
             if strs[j][i] < strs[j - 1][i]:
                 res += 1
                 break
     return res
+
 
 # [955] 删列造序 II
 def minDeletionSize2(self, strs: List[str]) -> int:
@@ -260,6 +262,7 @@ def minDeletionSize2(self, strs: List[str]) -> int:
                     cuts[i] = True
     return ans
 
+
 # [3074] 重新分装苹果
 def minimumBoxes(self, apple: List[int], capacity: List[int]) -> int:
     apples = 0
@@ -275,6 +278,7 @@ def minimumBoxes(self, apple: List[int], capacity: List[int]) -> int:
             break
     return res
 
+
 # [3075] 幸福值最大化的选择方案
 def maximumHappinessSum(self, happiness: List[int], k: int) -> int:
     happiness.sort()
@@ -282,4 +286,23 @@ def maximumHappinessSum(self, happiness: List[int], k: int) -> int:
     res = 0
     for i in range(k):
         res += max(0, happiness[i] - i);
+    return res
+
+
+# [2483] 商店的最少代价
+def bestClosingTime(self, customers: str) -> int:
+    cost = 0
+    for i in range(len(customers)):
+        if customers[i] == 'Y':
+            cost += 1
+    minCost = cost
+    res = 0
+    for i in range(len(customers)):
+        if customers[i] == 'Y':
+            cost -= 1
+        else:
+            cost += 1
+        if cost < minCost:
+            minCost = cost
+            res = i + 1
     return res

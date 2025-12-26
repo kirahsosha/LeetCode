@@ -11,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_3075();
+            Test_2483();
         }
 
         static void Test_443()
@@ -786,6 +786,12 @@ namespace LeetCodeTester
         {
             var happiness = new int[] { 1, 2, 3 };
             var res = solution.MaximumHappinessSum(happiness, 2);
+        }
+
+        static void Test_2483()
+        {
+            var customers = "YYNY";
+            var res = solution.BestClosingTime(customers);
         }
 
     }
