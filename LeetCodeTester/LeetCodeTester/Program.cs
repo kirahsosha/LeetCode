@@ -11,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_2483();
+            Test_2402();
         }
 
         static void Test_443()
@@ -792,6 +792,12 @@ namespace LeetCodeTester
         {
             var customers = "YYNY";
             var res = solution.BestClosingTime(customers);
+        }
+
+        static void Test_2402()
+        {
+            var meetings = JsonConvert.DeserializeObject<int[][]>("[[1,20],[2,10],[3,5],[4,9],[6,8]]");
+            var res = solution.MostBooked(4, meetings);
         }
 
     }

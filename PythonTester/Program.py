@@ -88,3 +88,8 @@ def Test_2483(self=None):
     customers = "YYNY"
     res = Solution.bestClosingTime(self, customers)
     print(f', {res}')
+
+def Test_2483(self=None):
+    meetings = [[38,44],[17,38],[6,29],[34,40],[7,14],[4,27]]
+    res = Solution.mostBooked(self, 4, meetings)
+    print(f', {res}')
