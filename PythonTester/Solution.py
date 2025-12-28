@@ -348,3 +348,18 @@ def mostBooked(self, n: int, meetings: List[List[int]]) -> int:
         if res[i] > res[ans]:
             ans = i
     return ans
+
+
+# [1351] 统计有序矩阵中的负数
+def countNegatives(self, grid: List[List[int]]) -> int:
+    m = len(grid)
+    n = len(grid[0])
+    ans = 0
+    j = 0
+    for i in range(m - 1, -1, -1):
+        while j < n:
+            if grid[i][j] < 0:
+                ans += n - j
+                break
+            j += 1
+    return ans

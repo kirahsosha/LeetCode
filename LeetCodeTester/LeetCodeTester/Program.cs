@@ -11,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_2402();
+            Test_1351();
         }
 
         static void Test_443()
@@ -798,6 +798,12 @@ namespace LeetCodeTester
         {
             var meetings = JsonConvert.DeserializeObject<int[][]>("[[1,20],[2,10],[3,5],[4,9],[6,8]]");
             var res = solution.MostBooked(4, meetings);
+        }
+
+        static void Test_1351()
+        {
+            var grid = JsonConvert.DeserializeObject<int[][]>("[[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]");
+            var res = solution.CountNegatives(grid);
         }
 
     }

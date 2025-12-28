@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LeetCodeTester.Solutions
 {
@@ -4330,6 +4327,32 @@ namespace LeetCodeTester.Solutions
                     free.Add(busy.Dequeue().roomIndex);
                 }
             }
+        }
+
+        /// <summary>
+        /// [1351] 统计有序矩阵中的负数
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
+        public int CountNegatives(int[][] grid)
+        {
+            var m = grid.Length;
+            var n = grid[0].Length;
+            var ans = 0;
+            var j = 0;
+            for (int i = m - 1; i >= 0; i--)
+            {
+                while (j < n)
+                {
+                    if (grid[i][j] < 0)
+                    {
+                        ans += n - j;
+                        break;
+                    }
+                    j++;
+                }
+            }
+            return ans;
         }
     }
 }
