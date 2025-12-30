@@ -101,3 +101,9 @@ def Test_1351(self=None):
     grid = [[4, 3, 2, -1], [3, 2, 1, -1], [1, 1, -1, -2], [-1, -1, -2, -3]]
     res = Solution.countNegatives(self, grid)
     print(f', {res}')
+
+
+def Test_840(self=None):
+    grid = [[4, 3, 8, 4], [9, 5, 1, 9], [2, 7, 6, 2]]
+    res = Solution.numMagicSquaresInside(self, grid)
+    print(f', {res}')
