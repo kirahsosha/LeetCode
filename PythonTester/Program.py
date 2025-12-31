@@ -107,3 +107,9 @@ def Test_840(self=None):
     grid = [[4, 3, 8, 4], [9, 5, 1, 9], [2, 7, 6, 2]]
     res = Solution.numMagicSquaresInside(self, grid)
     print(f', {res}')
+
+
+def Test_66(self=None):
+    digits = [9, 9, 9, 9]
+    res = Solution.plusOne(self, digits)
+    print(f', {res}')

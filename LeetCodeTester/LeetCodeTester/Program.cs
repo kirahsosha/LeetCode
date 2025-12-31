@@ -11,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_840();
+            Test_66();
         }
 
         static void Test_443()
@@ -817,6 +817,12 @@ namespace LeetCodeTester
         {
             var grid = JsonConvert.DeserializeObject<int[][]>("[[4,3,8,4],[9,5,1,9],[2,7,6,2]]");
             var res = solution.NumMagicSquaresInside(grid);
+        }
+
+        static void Test_66()
+        {
+            var digits = JsonConvert.DeserializeObject<int[]>("[2,0,2,5]");
+            var res = solution.PlusOne(digits);
         }
 
     }
