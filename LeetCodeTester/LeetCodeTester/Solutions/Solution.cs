@@ -4515,5 +4515,26 @@ namespace LeetCodeTester.Solutions
                 return digits;
             }
         }
+
+        /// <summary>
+        /// [961] 在长度 2N 的数组中找出重复 N 次的元素
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int RepeatedNTimes(int[] nums)
+        {
+            var res = 0;
+            var set = new HashSet<int>();
+            foreach (var n in nums)
+            {
+                if (set.Contains(n))
+                {
+                    res = n;
+                    break;
+                }
+                set.Add(n);
+            }
+            return res;
+        }
     }
 }

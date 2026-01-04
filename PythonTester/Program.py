@@ -113,3 +113,13 @@ def Test_66(self=None):
     digits = [9, 9, 9, 9]
     res = Solution.plusOne(self, digits)
     print(f', {res}')
+
+
+def Test_961(self=None):
+    nums = [5, 1, 5, 2, 5, 3, 5, 4]
+    res = Solution.repeatedNTimes(self, nums)
+    print(f', {res}')
+
+def Test_1411(self=None):
+    res = Solution.numOfWays(self, 3)
+    print(f', {res}')
