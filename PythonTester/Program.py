@@ -120,6 +120,13 @@ def Test_961(self=None):
     res = Solution.repeatedNTimes(self, nums)
     print(f', {res}')
 
+
 def Test_1411(self=None):
     res = Solution.numOfWays(self, 3)
+    print(f', {res}')
+
+
+def Test_1390(self=None):
+    nums = [21, 4, 7]
+    res = Solution.sumFourDivisors(self, nums)
     print(f', {res}')

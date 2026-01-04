@@ -1199,7 +1199,7 @@ namespace LeetCodeTester.Solutions
                 while (res.Count > 0)
                 {
                     int last = res[res.Count - 1];
-                    int gcd = GCD(last, num);
+                    int gcd = Common.GCD(last, num);
                     if (gcd > 1)
                     {
                         num = last / gcd * num;
@@ -1213,11 +1213,6 @@ namespace LeetCodeTester.Solutions
                 res.Add(num);
             }
             return res;
-        }
-
-        private int GCD(int a, int b)
-        {
-            return b == 0 ? a : GCD(b, a % b);
         }
 
         /// <summary>
@@ -2623,7 +2618,7 @@ namespace LeetCodeTester.Solutions
                 var gcd = 0;
                 for (int j = i; j < nums.Length; j++)
                 {
-                    gcd = GCD(gcd, nums[j]);
+                    gcd = Common.GCD(gcd, nums[j]);
                     if (gcd == 1)
                     {
                         min = Math.Min(min, j - i);
@@ -3278,7 +3273,7 @@ namespace LeetCodeTester.Solutions
 
                 // 使用快速选择找到中位数
                 int index = len / 2;
-                long target = QuickSelect(sub, 0, len - 1, index);
+                long target = Common.QuickSelect(sub, 0, len - 1, index);
 
                 // 计算操作次数
                 long operations = 0;
@@ -3292,66 +3287,6 @@ namespace LeetCodeTester.Solutions
             }
 
             return ans;
-        }
-
-        // 快速选择算法：找到第k小的元素，平均O(n)时间复杂度
-        private long QuickSelect(long[] arr, int left, int right, int k)
-        {
-            while (left < right)
-            {
-                // 使用三数取中值选择pivot，避免最坏情况
-                int index = MedianOfThree(arr, left, right);
-                index = Partition(arr, left, right, index);
-
-                if (k == index)
-                {
-                    return arr[k];
-                }
-                else if (k < index)
-                {
-                    right = index - 1;
-                }
-                else
-                {
-                    left = index + 1;
-                }
-            }
-            return arr[left];
-        }
-
-        // 三数取中值，选择更好的pivot以提高稳定性
-        private int MedianOfThree(long[] arr, int left, int right)
-        {
-            int mid = left + (right - left) / 2;
-            if (arr[right] < arr[left]) Swap(arr, left, right);
-            if (arr[mid] < arr[left]) Swap(arr, mid, left);
-            if (arr[right] < arr[mid]) Swap(arr, right, mid);
-            return mid;
-        }
-
-        private int Partition(long[] arr, int left, int right, int index)
-        {
-            long value = arr[index];
-            Swap(arr, index, right);
-
-            int storeIndex = left;
-            for (int i = left; i < right; i++)
-            {
-                if (arr[i] < value)
-                {
-                    Swap(arr, storeIndex, i);
-                    storeIndex++;
-                }
-            }
-            Swap(arr, right, storeIndex);
-            return storeIndex;
-        }
-
-        private void Swap(long[] arr, int i, int j)
-        {
-            long temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
         }
 
         /// <summary>
@@ -4533,6 +4468,25 @@ namespace LeetCodeTester.Solutions
                     break;
                 }
                 set.Add(n);
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// [1390] 四因数
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int SumFourDivisors(int[] nums)
+        {
+            var res = 0;
+            foreach (var n in nums)
+            {
+                var di = Common.AllDivisors(n);
+                if(di.Length == 4)
+                {
+                    res += di.Sum();
+                }
             }
             return res;
         }

@@ -1,4 +1,6 @@
 import heapq
+import math
+from math import floor
 from re import match
 from typing import List
 from queue import PriorityQueue
@@ -475,3 +477,23 @@ def numOfWays(self, n: int) -> int:
     for i in range(12):
         ans = (ans + res[i]) % MOD
     return ans
+
+
+# [1390] 四因数
+def sumFourDivisors(self, nums: List[int]) -> int:
+    res = 0
+    for n in nums:
+        di = AllDivisors(self, n)
+        if len(di) == 4:
+            for i in di:
+                res += i
+    return res
+
+
+def AllDivisors(self, n: int) -> List[int]:
+    res = set()
+    for i in range(1, floor(math.sqrt(n)) + 1):
+        if n % i == 0:
+            res.add(i)
+            res.add(n // i)
+    return res

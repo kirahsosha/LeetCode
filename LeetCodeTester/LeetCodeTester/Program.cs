@@ -11,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1411();
+            Test_1390();
         }
 
         static void Test_443()
@@ -834,6 +834,12 @@ namespace LeetCodeTester
         static void Test_1411()
         {
             var res = solution.NumOfWays(3);
+        }
+
+        static void Test_1390()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[21,4,7]");
+            var res = solution.SumFourDivisors(nums);
         }
 
     }
