@@ -1,9 +1,10 @@
 import heapq
 import math
 from math import floor
-from re import match
-from typing import List
 from queue import PriorityQueue
+from re import match
+from typing import List, Optional
+from Model import TreeNode
 
 
 # [198] 打家劫舍
@@ -525,3 +526,24 @@ def maxMatrixSum(self, matrix: List[List[int]]) -> int:
         return sumPos + sumNeg + 2 * maxNeg
     else:
         return max(sumPos + sumNeg + 2 * maxNeg, sumPos + sumNeg - 2 * minPos)
+
+
+# [1161] 最大层内元素和
+def maxLevelSum(self, root: Optional[TreeNode]) -> int:
+    max = 0
+    sum = []
+    dfs(self, root, 0, sum)
+    for i in range(len(sum)):
+        if sum[i] > sum[max]:
+            max = i
+    return max + 1
+
+
+def dfs(self, root: Optional[TreeNode], level: int, sum: List[int]) -> None:
+    if root is not None:
+        if len(sum) > level:
+            sum[level] += root.val
+        else:
+            sum.append(root.val)
+        dfs(self, root.left, level + 1, sum)
+        dfs(self, root.right, level + 1, sum)

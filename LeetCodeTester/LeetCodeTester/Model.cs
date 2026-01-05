@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -26,6 +27,42 @@ namespace LeetCodeTester
             this.val = val;
             this.left = left;
             this.right = right;
+        }
+
+        public static TreeNode CreateTreeNode(string s)
+        {
+            var nums = JsonConvert.DeserializeObject<int?[]>(s);
+            var nodes = new Queue<TreeNode>();
+            foreach (var n in nums)
+            {
+                if(n.HasValue)
+                {
+                    var node = new TreeNode(n.Value);
+                    nodes.Enqueue(node);
+                }
+                else
+                {
+                    nodes.Enqueue(null);
+                }
+            }
+            TreeNode root = nodes.Dequeue();
+            var q = new Queue<TreeNode>();
+            q.Enqueue(root);
+            while(nodes.Count > 0)
+            {
+                var node = q.Dequeue();
+                node.left = nodes.Dequeue();
+                node.right = nodes.Count > 0 ? nodes.Dequeue() : null;
+                if(node.left != null)
+                {
+                    q.Enqueue(node.left);
+                }
+                if(node.right != null)
+                {
+                    q.Enqueue(node.right);
+                }
+            }
+            return root;
         }
     }
 

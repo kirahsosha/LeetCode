@@ -4537,5 +4537,42 @@ namespace LeetCodeTester.Solutions
                 return Math.Max(sumPos + sumNeg + 2 * maxNeg, sumPos + sumNeg - 2 * minPos);
             }
         }
+
+        /// <summary>
+        /// [1161] 最大层内元素和
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public int MaxLevelSum(TreeNode root)
+        {
+            var max = 0;
+            var sum = new List<int>();
+            Dfs(root, 0);
+            for(int i = 0; i < sum.Count; i++)
+            {
+                if (sum[i] > sum[max])
+                {
+                    max = i;
+                }
+            }
+            return max + 1;
+
+            void Dfs(TreeNode root, int level)
+            {
+                if(root != null)
+                {
+                    if(sum.Count > level)
+                    {
+                        sum[level] += root.val;
+                    }
+                    else
+                    {
+                        sum.Add(root.val);
+                    }
+                    Dfs(root.left, level + 1);
+                    Dfs(root.right, level + 1);
+                }
+            }
+        }
     }
 }

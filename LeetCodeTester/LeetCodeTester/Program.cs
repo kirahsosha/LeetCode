@@ -11,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1975();
+            Test_1161();
         }
 
         static void Test_443()
@@ -846,6 +846,12 @@ namespace LeetCodeTester
         {
             var matrix = JsonConvert.DeserializeObject<int[][]>("[[-10000,-10000,-10000],[-10000,-10000,-10000],[-10000,-10000,-10000]]");
             var res = solution.MaxMatrixSum(matrix);
+        }
+
+        static void Test_1161()
+        {
+            var root = TreeNode.CreateTreeNode("[989,null,10250,98693,-89388,null,null,null,-32127]");
+            var res = solution.MaxLevelSum(root);
         }
 
     }

@@ -1,4 +1,5 @@
 import Solution
+from Model import TreeNode
 
 
 def Test_198(self=None):
@@ -135,4 +136,10 @@ def Test_1390(self=None):
 def Test_1975(self=None):
     matrix = [[1, 2, 3], [-1, -2, -3], [1, 2, 3]]
     res = Solution.maxMatrixSum(self, matrix)
+    print(f', {res}')
+
+
+def Test_1161(self=None):
+    root = TreeNode.create_tree_node("[989,null,10250,98693,-89388,null,null,null,-32127]")
+    res = Solution.maxLevelSum(self, root)
     print(f', {res}')
