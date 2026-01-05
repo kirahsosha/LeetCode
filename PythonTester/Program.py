@@ -130,3 +130,9 @@ def Test_1390(self=None):
     nums = [21, 4, 7]
     res = Solution.sumFourDivisors(self, nums)
     print(f', {res}')
+
+
+def Test_1975(self=None):
+    matrix = [[1, 2, 3], [-1, -2, -3], [1, 2, 3]]
+    res = Solution.maxMatrixSum(self, matrix)
+    print(f', {res}')

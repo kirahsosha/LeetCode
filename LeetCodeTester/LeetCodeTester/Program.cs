@@ -11,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1390();
+            Test_1975();
         }
 
         static void Test_443()
@@ -840,6 +840,12 @@ namespace LeetCodeTester
         {
             var nums = JsonConvert.DeserializeObject<int[]>("[21,4,7]");
             var res = solution.SumFourDivisors(nums);
+        }
+
+        static void Test_1975()
+        {
+            var matrix = JsonConvert.DeserializeObject<int[][]>("[[-10000,-10000,-10000],[-10000,-10000,-10000],[-10000,-10000,-10000]]");
+            var res = solution.MaxMatrixSum(matrix);
         }
 
     }
