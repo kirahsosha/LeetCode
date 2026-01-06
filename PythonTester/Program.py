@@ -143,3 +143,8 @@ def Test_1161(self=None):
     root = TreeNode.create_tree_node("[989,null,10250,98693,-89388,null,null,null,-32127]")
     res = Solution.maxLevelSum(self, root)
     print(f', {res}')
+
+def Test_1339(self=None):
+    root = TreeNode.create_tree_node("[2,3,9,10,7,8,6,5,4,11,1]")
+    res = Solution.maxProduct(self, root)
+    print(f', {res}')

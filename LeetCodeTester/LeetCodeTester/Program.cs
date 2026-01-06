@@ -11,7 +11,7 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1161();
+            Test_1339();
         }
 
         static void Test_443()
@@ -854,6 +854,10 @@ namespace LeetCodeTester
             var res = solution.MaxLevelSum(root);
         }
 
+        static void Test_1339()
+        {
+            var root = TreeNode.CreateTreeNode("[989,null,10250,98693,-89388,null,null,null,-32127]");
+            var res = solution.MaxProduct(root);
+        }
     }
-
 }

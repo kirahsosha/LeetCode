@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -4572,6 +4573,45 @@ namespace LeetCodeTester.Solutions
                     Dfs(root.left, level + 1);
                     Dfs(root.right, level + 1);
                 }
+            }
+        }
+
+        /// <summary>
+        /// [1339] 分裂二叉树的最大乘积
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public int MaxProduct(TreeNode root)
+        {
+            var sums = new HashSet<int>();
+            var total = Dfs(root);
+            var mi = total;
+            long res = 0;
+            foreach (var item in sums)
+            {
+                if(Math.Abs(total - item - item) < mi)
+                {
+                    res = item;
+                    mi = Math.Abs(total - item - item);
+                }
+            }
+            return (int)(res * (total - res) % MOD);
+
+            int Dfs(TreeNode node)
+            {
+                var left = 0;
+                var right = 0;
+                if (node.left != null)
+                {
+                    left = Dfs(node.left);
+                    sums.Add(left);
+                }
+                if (node.right != null)
+                {
+                    right = Dfs(node.right);
+                    sums.Add(right);
+                }
+                return node.val + left + right;
             }
         }
     }

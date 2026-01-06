@@ -547,3 +547,27 @@ def dfs(self, root: Optional[TreeNode], level: int, sum: List[int]) -> None:
             sum.append(root.val)
         dfs(self, root.left, level + 1, sum)
         dfs(self, root.right, level + 1, sum)
+
+# [1339] 分裂二叉树的最大乘积
+def maxProduct(self, root: Optional[TreeNode]) -> int:
+    MOD = 1000000007
+    sums = set()
+    total = Dfs(self, root, sums)
+    mi = total
+    res = 0
+    for item in sums:
+        if abs(total - item - item) < mi:
+            res = item
+            mi = abs(total - item - item)
+    return res * (total - res) % MOD
+
+def Dfs(self, node: Optional[TreeNode], sums: set()) -> int:
+    left = 0
+    right = 0
+    if node.left is not None:
+        left = Dfs(self, node.left, sums)
+        sums.add(left)
+    if node.right is not None:
+        right = Dfs(self, node.right,sums)
+        sums.add(right)
+    return node.val + left + right
