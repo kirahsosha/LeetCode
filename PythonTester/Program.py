@@ -144,7 +144,15 @@ def Test_1161(self=None):
     res = Solution.maxLevelSum(self, root)
     print(f', {res}')
 
+
 def Test_1339(self=None):
     root = TreeNode.create_tree_node("[2,3,9,10,7,8,6,5,4,11,1]")
     res = Solution.maxProduct(self, root)
+    print(f', {res}')
+
+
+def Test_1458(self=None):
+    nums1 = [-3, -8, 3, -10, 1, 3, 9]
+    nums2 = [9, 2, 3, 7, -9, 1, -8, 5, -1, -1]
+    res = Solution.maxDotProduct(self, nums1, nums2)
     print(f', {res}')

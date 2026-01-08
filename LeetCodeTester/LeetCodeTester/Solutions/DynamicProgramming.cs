@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeetCodeTester.Solutions
 {
@@ -472,6 +470,52 @@ namespace LeetCodeTester.Solutions
                 ans = (ans + res[i]) % MOD;
             }
             return ans;
+        }
+
+        /// <summary>
+        /// [1458] 两个子序列的最大点积
+        /// </summary>
+        /// <param name="nums1"></param>
+        /// <param name="nums2"></param>
+        /// <returns></returns>
+        public int MaxDotProduct(int[] nums1, int[] nums2)
+        {
+            //i - nums1 index
+            //j - nums2 index
+            //dp[i][j] = max(dp[i-1][j-1], dp[i-1][j-1] + nums1[i] * nums2[j])
+            //[-3,-8,3,-10,1,3,9]
+            //[9,2,3,7,-9,1,-8,5,-1,-1]
+            var n1 = nums1.Length;
+            var n2 = nums2.Length;
+            var dp = new int[n1, n2];
+            var max = -1000000;
+            for (int i = 0; i < n1; i++)
+            {
+                for (int j = 0; j < n2; j++)
+                {
+                    if (i == 0 && j == 0)
+                    {
+                        dp[0, 0] = Math.Max(-1000000, nums1[i] * nums2[j]);
+                        max = Math.Max(max, dp[i, j]);
+                    }
+                    else if (i == 0)
+                    {
+                        dp[0, j] = Math.Max(dp[0, j - 1], nums1[i] * nums2[j]);
+                        max = Math.Max(max, dp[i, j]);
+                    }
+                    else if (j == 0)
+                    {
+                        dp[i, 0] = Math.Max(dp[i - 1, 0], nums1[i] * nums2[j]);
+                        max = Math.Max(max, dp[i, j]);
+                    }
+                    else
+                    {
+                        dp[i, j] = Math.Max(Math.Max(dp[i, j - 1], dp[i - 1, j]), Math.Max(dp[i - 1, j - 1], Math.Max(dp[i - 1, j - 1] + nums1[i] * nums2[j], nums1[i] * nums2[j])));
+                        max = Math.Max(max, dp[i, j]);
+                    }
+                }
+            }
+            return max;
         }
 
         /// <summary>

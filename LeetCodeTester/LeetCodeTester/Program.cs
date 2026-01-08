@@ -11,7 +11,14 @@ namespace LeetCodeTester
         private static Solution solution = new Solution();
         static void Main(string[] args)
         {
-            Test_1339();
+            try
+            {
+                Test_1458();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         static void Test_443()
@@ -859,5 +866,13 @@ namespace LeetCodeTester
             var root = TreeNode.CreateTreeNode("[989,null,10250,98693,-89388,null,null,null,-32127]");
             var res = solution.MaxProduct(root);
         }
+
+        static void Test_1458()
+        {
+            var nums1 = JsonConvert.DeserializeObject<int[]>("[-3,-8,3,-10,1,3,9]");
+            var nums2 = JsonConvert.DeserializeObject<int[]>("[9,2,3,7,-9,1,-8,5,-1,-1]");
+            var res = solution.MaxDotProduct(nums1, nums2);
+        }
+
     }
 }
