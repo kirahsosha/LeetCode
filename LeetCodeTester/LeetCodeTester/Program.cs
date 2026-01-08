@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1458();
+                Test_865();
             }
             catch(Exception ex)
             {
@@ -872,6 +872,12 @@ namespace LeetCodeTester
             var nums1 = JsonConvert.DeserializeObject<int[]>("[-3,-8,3,-10,1,3,9]");
             var nums2 = JsonConvert.DeserializeObject<int[]>("[9,2,3,7,-9,1,-8,5,-1,-1]");
             var res = solution.MaxDotProduct(nums1, nums2);
+        }
+
+        static void Test_865()
+        {
+            var root = TreeNode.CreateTreeNode("[3,5,1,6,2,0,8,null,null,7,4]");
+            var res = solution.SubtreeWithAllDeepest(root);
         }
 
     }

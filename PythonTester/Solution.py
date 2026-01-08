@@ -553,7 +553,7 @@ def dfs(self, root: Optional[TreeNode], level: int, sum: List[int]) -> None:
 def maxProduct(self, root: Optional[TreeNode]) -> int:
     MOD = 1000000007
     sums = set()
-    total = Dfs(self, root, sums)
+    total = dfs(self, root, sums)
     mi = total
     res = 0
     for item in sums:
@@ -563,14 +563,14 @@ def maxProduct(self, root: Optional[TreeNode]) -> int:
     return res * (total - res) % MOD
 
 
-def Dfs(self, node: Optional[TreeNode], sums: set()) -> int:
+def dfs(self, node: Optional[TreeNode], sums: set()) -> int:
     left = 0
     right = 0
     if node.left is not None:
-        left = Dfs(self, node.left, sums)
+        left = dfs(self, node.left, sums)
         sums.add(left)
     if node.right is not None:
-        right = Dfs(self, node.right, sums)
+        right = dfs(self, node.right, sums)
         sums.add(right)
     return node.val + left + right
 
@@ -600,3 +600,29 @@ def maxDotProduct(self, nums1: List[int], nums2: List[int]) -> int:
                 dp[i][j] = max(dp[i][j], dp[i - 1][j - 1] + nums1[i] * nums2[j], nums1[i] * nums2[j])
                 res = max(res, dp[i][j])
     return res
+
+
+# [865] 具有所有最深节点的最小子树
+def subtreeWithAllDeepest(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    node = dfs(self, root, 0)
+    return node[0]
+
+
+def dfs(self, node: Optional[TreeNode], depth: int) -> [Optional[TreeNode], int]:
+    if node is None:
+        return [node, depth]
+    left = dfs(self, node.left, depth + 1)
+    right = dfs(self, node.right, depth + 1)
+    if left[0] is not None and right[0] is not None:
+        if left[1] > right[1]:
+            return left
+        elif left[1] < right[1]:
+            return right
+        else:
+            return [node, left[1]]
+    elif left[0] is not None:
+        return left
+    elif right[0] is not None:
+        return right
+    else:
+        return [node, depth]

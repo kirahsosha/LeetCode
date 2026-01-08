@@ -156,3 +156,8 @@ def Test_1458(self=None):
     nums2 = [9, 2, 3, 7, -9, 1, -8, 5, -1, -1]
     res = Solution.maxDotProduct(self, nums1, nums2)
     print(f', {res}')
+
+def Test_865(self=None):
+    root = TreeNode.create_tree_node("[3,5,1,6,2,0,8,null,null,7,4]")
+    res = Solution.subtreeWithAllDeepest(self, root)
+    print(f', {res}')

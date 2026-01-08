@@ -4613,5 +4613,53 @@ namespace LeetCodeTester.Solutions
                 return node.val + left + right;
             }
         }
+
+        /// <summary>
+        /// [865] 具有所有最深节点的最小子树
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public TreeNode SubtreeWithAllDeepest(TreeNode root)
+        {
+            var node = Dfs(root, 0);
+            return node.Item1;
+
+            (TreeNode, int) Dfs(TreeNode node, int depth)
+            {
+                if(node == null)
+                {
+                    return (null, depth);
+                }
+                var left = Dfs(node.left, depth + 1);
+                var right = Dfs(node.right, depth + 1);
+                if(left.Item1 != null && right.Item1 != null)
+                {
+                    if(left.Item2 > right.Item2)
+                    {
+                        return left;
+                    }
+                    else if(left.Item2 < right.Item2)
+                    {
+                        return right;
+                    }
+                    else
+                    {
+                        return (node, left.Item2);
+                    }
+                }
+                else if(left.Item1 != null)
+                {
+                    return left;
+                }
+                else if (right.Item1 != null)
+                {
+                    return right;
+                }
+                else
+                {
+                    return (node, depth);
+                }
+            }
+        }
     }
 }
