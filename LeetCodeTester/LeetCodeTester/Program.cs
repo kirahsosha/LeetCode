@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_865();
+                Test_712();
             }
             catch(Exception ex)
             {
@@ -878,6 +878,14 @@ namespace LeetCodeTester
         {
             var root = TreeNode.CreateTreeNode("[3,5,1,6,2,0,8,null,null,7,4]");
             var res = solution.SubtreeWithAllDeepest(root);
+        }
+
+
+        static void Test_712()
+        {
+            var s1 = "delete";
+            var s2 = "leet";
+            var res = solution.MinimumDeleteSum(s1, s2);
         }
 
     }
