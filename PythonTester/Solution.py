@@ -626,3 +626,20 @@ def dfs(self, node: Optional[TreeNode], depth: int) -> [Optional[TreeNode], int]
         return right
     else:
         return [node, depth]
+
+
+# [1266] 访问所有点的最小时间
+def minTimeToVisitAllPoints(self, points: List[List[int]]) -> int:
+    n = len(points)
+    if n == 1:
+        return 0
+    res = 0
+    x1 = points[0][0]
+    y1 = points[0][1]
+    for i in range(1, n):
+        x = points[i][0]
+        y = points[i][1]
+        res += max(abs(x - x1), abs(y - y1))
+        x1 = x
+        y1 = y
+    return res

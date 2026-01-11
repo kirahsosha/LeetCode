@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_712();
+                Test_1266();
             }
             catch(Exception ex)
             {
@@ -880,12 +880,23 @@ namespace LeetCodeTester
             var res = solution.SubtreeWithAllDeepest(root);
         }
 
-
         static void Test_712()
         {
             var s1 = "delete";
             var s2 = "leet";
             var res = solution.MinimumDeleteSum(s1, s2);
+        }
+
+        static void Test_85()
+        {
+            var matrix = JsonConvert.DeserializeObject<char[][]>("[[\"1\",\"0\",\"1\",\"0\",\"0\"],[\"1\",\"0\",\"1\",\"1\",\"1\"],[\"1\",\"1\",\"1\",\"1\",\"1\"],[\"1\",\"0\",\"0\",\"1\",\"0\"]]");
+            var res = solution.MaximalRectangle(matrix);
+        }
+
+        static void Test_1266()
+        {
+            var points = JsonConvert.DeserializeObject<int[][]>("[[1,1],[3,4],[-1,0]]");
+            var res = solution.MinTimeToVisitAllPoints(points);
         }
 
     }

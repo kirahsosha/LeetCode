@@ -157,7 +157,14 @@ def Test_1458(self=None):
     res = Solution.maxDotProduct(self, nums1, nums2)
     print(f', {res}')
 
+
 def Test_865(self=None):
     root = TreeNode.create_tree_node("[3,5,1,6,2,0,8,null,null,7,4]")
     res = Solution.subtreeWithAllDeepest(self, root)
+    print(f', {res}')
+
+
+def Test_1266(self=None):
+    points = [[1, 1], [3, 4], [-1, 0]]
+    res = Solution.minTimeToVisitAllPoints(self, points)
     print(f', {res}')

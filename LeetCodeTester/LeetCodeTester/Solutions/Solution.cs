@@ -4661,5 +4661,80 @@ namespace LeetCodeTester.Solutions
                 }
             }
         }
+
+        /// <summary>
+        /// [85] 最大矩形
+        /// </summary>
+        /// <param name="matrix"></param>
+        /// <returns></returns>
+        public int MaximalRectangle(char[][] matrix)
+        {
+            var rows = matrix.Length;
+            var cols = matrix[0].Length;
+            var maxRow = new int[rows, cols];
+            for (int i = 0; i < rows; i++)
+            {
+                maxRow[i, 0] = matrix[i][0] - '0';
+                for (int j = 1; j < cols; j++)
+                {
+                    maxRow[i, j] = matrix[i][j] == '0' ? 0 : maxRow[i, j - 1] + 1;
+                }
+            }
+
+            var res = 0;
+            for (int j = 0; j < cols; j++)
+            {
+                int[] up = new int[rows];
+                int[] down = new int[rows];
+                Stack<int> stk = new Stack<int>();
+
+                for (int i = 0; i < rows; i++)
+                {
+                    while (stk.Count > 0 && maxRow[stk.Peek(), j] >= maxRow[i, j])
+                        stk.Pop();
+                    up[i] = stk.Count == 0 ? -1 : stk.Peek();
+                    stk.Push(i);
+                }
+
+                stk.Clear();
+                for (int i = rows - 1; i >= 0; i--)
+                {
+                    while (stk.Count > 0 && maxRow[stk.Peek(), j] >= maxRow[i, j])
+                        stk.Pop();
+                    down[i] = stk.Count == 0 ? rows : stk.Peek();
+                    stk.Push(i);
+                }
+
+                for (int i = 0; i < rows; i++)
+                {
+                    int height = down[i] - up[i] - 1;
+                    res = Math.Max(res, height * maxRow[i, j]);
+                }
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// [1266] 访问所有点的最小时间
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns></returns>
+        public int MinTimeToVisitAllPoints(int[][] points)
+        {
+            var n = points.Length;
+            if (n == 1) return 0;
+            var res = 0;
+            var x1 = points[0][0];
+            var y1 = points[0][1];
+            for(int i = 1; i < n; i++)
+            {
+                var x = points[i][0];
+                var y = points[i][1];
+                res += Math.Max(Math.Abs(x - x1), Math.Abs(y - y1));
+                x1 = x;
+                y1 = y;
+            }
+            return res;
+        }
     }
 }
