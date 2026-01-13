@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1266();
+                Test_3453();
             }
             catch(Exception ex)
             {
@@ -897,6 +897,12 @@ namespace LeetCodeTester
         {
             var points = JsonConvert.DeserializeObject<int[][]>("[[1,1],[3,4],[-1,0]]");
             var res = solution.MinTimeToVisitAllPoints(points);
+        }
+
+        static void Test_3453()
+        {
+            var squares = JsonConvert.DeserializeObject<int[][]>("[[522261215,954313664,225462],[628661372,718610752,10667],[619734768,941310679,44788],[352367502,656774918,289036],[860247066,905800565,100123],[817623994,962847576,71460],[691552058,782740602,36271],[911356,152015365,513881],[462847044,859151855,233567],[672324240,954509294,685569]]");
+            var res = solution.SeparateSquares(squares);
         }
 
     }
