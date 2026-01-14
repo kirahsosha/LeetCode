@@ -4742,7 +4742,7 @@ namespace LeetCodeTester.Solutions
         /// </summary>
         /// <param name="squares"></param>
         /// <returns></returns>
-        public double SeparateSquares(int[][] squares)
+        public double SeparateSquares1(int[][] squares)
         {
             long totalArea = 0;
             List<int[]> events = new List<int[]>();
@@ -4783,6 +4783,121 @@ namespace LeetCodeTester.Solutions
             }
 
             return 0.0;
+        }
+
+        /// <summary>
+        /// [3454] 分割正方形 II
+        /// </summary>
+        /// <param name="squares"></param>
+        /// <returns></returns>
+        public double SeparateSquares(int[][] squares)
+        {
+            var set = new HashSet<int>();
+            foreach (int[] square in squares)
+            {
+                set.Add(square[0]);
+                set.Add(square[0] + square[2]);
+            }
+            var xValues = new List<int>(set);
+            xValues.Sort((a, b) => a - b);
+            var st = new SegmentTree(xValues);
+            var yValues = new List<int[]>();
+            int n = squares.Length;
+            for (int i = 0; i < n; i++)
+            {
+                yValues.Add([squares[i][1], i, 1]);
+                yValues.Add([squares[i][1] + squares[i][2], i, -1]);
+            }
+            yValues.Sort((a, b) =>
+            {
+                if (a[0] != b[0])
+                {
+                    return a[0] - b[0];
+                }
+                else if (a[1] != b[1])
+                {
+                    return a[1] - b[1];
+                }
+                else
+                {
+                    return a[2] - b[2];
+                }
+            });
+            long totalArea = 0;
+            var areas = new List<long>();
+            var intervals = new List<int[]>();
+            areas.Add(0);
+            intervals.Add([-1, -1]);
+            var yValuesCount = yValues.Count;
+            var yValuesIndex = 0;
+            while (yValuesIndex < yValuesCount)
+            {
+                var prev = yValuesIndex;
+                while (yValuesIndex < yValuesCount - 1 && yValues[yValuesIndex][0] == yValues[yValuesIndex + 1][0])
+                {
+                    yValuesIndex++;
+                }
+                if (yValuesIndex < yValuesCount - 1)
+                {
+                    for (var i = prev; i <= yValuesIndex; i++)
+                    {
+                        var arr = yValues[i];
+                        var index = arr[1];
+                        var delta = arr[2];
+                        var start = BinarySearchXValue(xValues, squares[index][0]) + 1;
+                        var end = BinarySearchXValue(xValues, squares[index][0] + squares[index][2]);
+                        st.Update(0, delta, start, end);
+                    }
+                    var interval = new int[] { yValues[yValuesIndex][0], yValues[yValuesIndex + 1][0] };
+                    long currArea = (long)st.GetLength() * (interval[1] - interval[0]);
+                    totalArea += currArea;
+                    areas.Add(totalArea);
+                    intervals.Add(interval);
+                }
+                yValuesIndex++;
+            }
+            double halfArea = totalArea / 2.0;
+            var areaIndex = BinarySearchArea(areas, halfArea);
+            double areaDiff = areas[areaIndex] - halfArea;
+            double ratio = areaDiff / (areas[areaIndex] - areas[areaIndex - 1]);
+            var targetInterval = intervals[areaIndex];
+            return targetInterval[1] - (targetInterval[1] - targetInterval[0]) * ratio;
+
+            int BinarySearchXValue(List<int> xValues, int target)
+            {
+                int low = 0, high = xValues.Count;
+                while (low < high)
+                {
+                    int mid = low + (high - low) / 2;
+                    if (xValues[mid] >= target)
+                    {
+                        high = mid;
+                    }
+                    else
+                    {
+                        low = mid + 1;
+                    }
+                }
+                return low;
+            }
+
+            int BinarySearchArea(List<long> areas, double target)
+            {
+                int low = 0, high = areas.Count;
+                while (low < high)
+                {
+                    int mid = low + (high - low) / 2;
+                    if (areas[mid] >= target)
+                    {
+                        high = mid;
+                    }
+                    else
+                    {
+                        low = mid + 1;
+                    }
+                }
+                return low;
+            }
         }
     }
 }

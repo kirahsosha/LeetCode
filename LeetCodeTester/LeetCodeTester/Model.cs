@@ -184,4 +184,78 @@ namespace LeetCodeTester
             return Op.CompareTo(other.Op);
         }
     }
+
+    public class SegmentTree
+    {
+        private int n;
+        private int[] cover;
+        private int[] length;
+        private int[] maxLength;
+
+        public SegmentTree(IList<int> nums)
+        {
+            this.n = nums.Count;
+            this.cover = new int[n * 4 + 1];
+            this.length = new int[n * 4 + 1];
+            this.maxLength = new int[n * 4 + 1];
+            Build(0, n - 2, 0, nums);
+        }
+
+        public int GetLength()
+        {
+            return length[0];
+        }
+
+        public void Update(int index, int delta, int start, int end)
+        {
+            Update(index, delta, start, end, 1, n - 1);
+        }
+
+        private void Build(int start, int end, int treeIndex, IList<int> nums)
+        {
+            if (start == end)
+            {
+                maxLength[treeIndex] = nums[start + 1] - nums[start];
+                return;
+            }
+            int mid = start + (end - start) / 2;
+            Build(start, mid, treeIndex * 2 + 1, nums);
+            Build(mid + 1, end, treeIndex * 2 + 2, nums);
+            maxLength[treeIndex] = maxLength[treeIndex * 2 + 1] + maxLength[treeIndex * 2 + 2];
+        }
+
+        private void Update(int index, int delta, int rangeStart, int rangeEnd, int treeStart, int treeEnd)
+        {
+            if (treeStart > rangeEnd || treeEnd < rangeStart)
+            {
+                return;
+            }
+            if (treeStart >= rangeStart && treeEnd <= rangeEnd)
+            {
+                cover[index] += delta;
+                UpdateLength(index, treeStart, treeEnd);
+                return;
+            }
+            int mid = treeStart + (treeEnd - treeStart) / 2;
+            Update(index * 2 + 1, delta, rangeStart, rangeEnd, treeStart, mid);
+            Update(index * 2 + 2, delta, rangeStart, rangeEnd, mid + 1, treeEnd);
+            UpdateLength(index, treeStart, treeEnd);
+        }
+
+        private void UpdateLength(int index, int treeStart, int treeEnd)
+        {
+            if (cover[index] > 0)
+            {
+                length[index] = maxLength[index];
+            }
+            else if (treeStart == treeEnd)
+            {
+                length[index] = 0;
+            }
+            else
+            {
+                length[index] = length[index * 2 + 1] + length[index * 2 + 2];
+            }
+        }
+    }
 }
