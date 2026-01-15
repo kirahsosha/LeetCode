@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2943();
+                Test_2975();
             }
             catch(Exception ex)
             {
@@ -918,6 +918,15 @@ namespace LeetCodeTester
             int[] hBars = [13];
             int[] vBars = [3, 4, 5, 2];
             var res = solution.MaximizeSquareHoleArea(n, m, hBars, vBars);
+        }
+
+        static void Test_2975()
+        {
+            int n = 6;
+            int m = 7;
+            int[] hFences = [2];
+            int[] vFences = [4];
+            var res = solution.MaximizeSquareArea(n, m, hFences, vFences);
         }
 
     }

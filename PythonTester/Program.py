@@ -177,3 +177,12 @@ def Test_2943(self=None):
     vBars = [3, 4, 5, 2]
     res = Solution.maximizeSquareHoleArea(self, n, m, hBars, vBars)
     print(f', {res}')
+
+
+def Test_2975(self=None):
+    n = 4
+    m = 5
+    hFences = [2]
+    vFences = [4]
+    res = Solution.maximizeSquareArea(self, n, m, hFences, vFences)
+    print(f', {res}')
