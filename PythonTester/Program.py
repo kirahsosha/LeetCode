@@ -168,3 +168,12 @@ def Test_1266(self=None):
     points = [[1, 1], [3, 4], [-1, 0]]
     res = Solution.minTimeToVisitAllPoints(self, points)
     print(f', {res}')
+
+
+def Test_2943(self=None):
+    n = 14
+    m = 4
+    hBars = [13]
+    vBars = [3, 4, 5, 2]
+    res = Solution.maximizeSquareHoleArea(self, n, m, hBars, vBars)
+    print(f', {res}')
