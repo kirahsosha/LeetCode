@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2975();
+                Test_1292();
             }
             catch(Exception ex)
             {
@@ -929,5 +929,11 @@ namespace LeetCodeTester
             var res = solution.MaximizeSquareArea(n, m, hFences, vFences);
         }
 
+        static void Test_1292()
+        {
+            var mat = JsonConvert.DeserializeObject<int[][]>("[[1,1,3,2,4,3,2],[1,1,3,2,4,3,2],[1,1,3,2,4,3,2]]");
+            var threshold = 4;
+            var res = solution.MaxSideLength(mat, threshold);
+        }
     }
 }

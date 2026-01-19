@@ -186,3 +186,10 @@ def Test_2975(self=None):
     vFences = [4]
     res = Solution.maximizeSquareArea(self, n, m, hFences, vFences)
     print(f', {res}')
+
+
+def Test_1292(self=None):
+    mat = [[1, 1, 1, 1], [1, 0, 0, 0], [1, 0, 0, 0], [1, 0, 0, 0]]
+    threshold = 6
+    res = Solution.maxSideLength(self, mat, threshold)
+    print(f', {res}')
