@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1292();
+                Test_3314();
             }
             catch(Exception ex)
             {
@@ -934,6 +934,12 @@ namespace LeetCodeTester
             var mat = JsonConvert.DeserializeObject<int[][]>("[[1,1,3,2,4,3,2],[1,1,3,2,4,3,2],[1,1,3,2,4,3,2]]");
             var threshold = 4;
             var res = solution.MaxSideLength(mat, threshold);
+        }
+
+        static void Test_3314()
+        {
+            var nums = JsonConvert.DeserializeObject<List<int>>("[2,3,5,7]");
+            var res = solution.MinBitwiseArray(nums);
         }
     }
 }

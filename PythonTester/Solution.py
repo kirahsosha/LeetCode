@@ -734,3 +734,17 @@ def Check(self, mid: int, threshold: int, pre: List[List[int]], m: int, n: int) 
             if total <= threshold:
                 return True
     return False
+
+
+# [3314] 构造最小位运算数组 I
+def minBitwiseArray(self, nums: List[int]) -> List[int]:
+    n = len(nums)
+    ans = []
+    for i in range(0, n):
+        minNum = nums[i] // 2
+        ans.append(-1)
+        for j in range(minNum, nums[i]):
+            if (j | (j + 1)) == nums[i]:
+                ans[i] = j
+                break
+    return ans

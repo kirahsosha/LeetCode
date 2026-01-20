@@ -193,3 +193,9 @@ def Test_1292(self=None):
     threshold = 6
     res = Solution.maxSideLength(self, mat, threshold)
     print(f', {res}')
+
+
+def Test_3314(self=None):
+    nums = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+    res = Solution.minBitwiseArray(self, nums)
+    print(f', {res}')
