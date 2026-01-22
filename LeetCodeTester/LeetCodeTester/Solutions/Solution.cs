@@ -5061,7 +5061,7 @@ namespace LeetCodeTester.Solutions
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
-        public int[] MinBitwiseArray(IList<int> nums)
+        public int[] MinBitwiseArray1(IList<int> nums)
         {
             var n = nums.Count;
             var ans = new int[n];
@@ -5079,6 +5079,96 @@ namespace LeetCodeTester.Solutions
                 }
             }
             return ans;
+        }
+
+        /// <summary>
+        /// [3315] 构造最小位运算数组 II
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int[] MinBitwiseArray(IList<int> nums)
+        {
+            var n = nums.Count;
+            var ans = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                var value = nums[i];
+                if(value == 2)
+                {
+                    ans[i] = -1;
+                }
+                else
+                {
+                    int t = ~value;
+                    int lowbit = t & -t;
+                    ans[i] = value ^ (lowbit >> 1);
+                }
+            }
+            return ans;
+        }
+
+        /// <summary>
+        /// [3507] 移除最小数对使数组有序 I
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int MinimumPairRemoval(int[] nums)
+        {
+            var times = 0;
+            while(!Check())
+            {
+                var index = GetMin();
+                nums = Replace(index);
+                times++;
+            }
+            return times;
+
+            int GetMin()
+            {
+                var res = nums[0] + nums[1];
+                var index = 0;
+                for(int i = 1; i < nums.Length - 1; i++)
+                {
+                    if(nums[i] + nums[i+1] < res)
+                    {
+                        res = nums[i] + nums[i + 1];
+                        index = i;
+                    }
+                }
+                return index;
+            }
+
+            int[] Replace(int index)
+            {
+                var newNums = new int[nums.Length - 1];
+                for(int i = 0; i < index; i++)
+                {
+                    newNums[i] = nums[i];
+                }
+                newNums[index] = nums[index] + nums[index + 1];
+                for (int i = index + 2; i < nums.Length; i++)
+                {
+                    newNums[i - 1] = nums[i];
+                }
+                return newNums;
+            }
+
+            bool Check()
+            {
+                if(nums.Length <= 1)
+                {
+                    return true;
+                }
+
+                for(int i = 0; i < nums.Length - 1; i++)
+                {
+                    if(nums[i] > nums[i + 1])
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3314();
+                Test_3507();
             }
             catch(Exception ex)
             {
@@ -939,7 +939,19 @@ namespace LeetCodeTester
         static void Test_3314()
         {
             var nums = JsonConvert.DeserializeObject<List<int>>("[2,3,5,7]");
+            var res = solution.MinBitwiseArray1(nums);
+        }
+
+        static void Test_3315()
+        {
+            var nums = JsonConvert.DeserializeObject<List<int>>("[2,3,5,7]");
             var res = solution.MinBitwiseArray(nums);
+        }
+
+        static void Test_3507()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[5,2,3,1]");
+            var res = solution.MinimumPairRemoval(nums);
         }
     }
 }

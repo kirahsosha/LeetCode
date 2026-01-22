@@ -197,5 +197,17 @@ def Test_1292(self=None):
 
 def Test_3314(self=None):
     nums = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+    res = Solution.minBitwiseArray1(self, nums)
+    print(f', {res}')
+
+
+def Test_3315(self=None):
+    nums = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
     res = Solution.minBitwiseArray(self, nums)
+    print(f', {res}')
+
+
+def Test_3507(self=None):
+    nums = [5,2,3,1]
+    res = Solution.minimumPairRemoval(self, nums)
     print(f', {res}')
