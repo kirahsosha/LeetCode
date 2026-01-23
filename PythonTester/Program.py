@@ -211,3 +211,8 @@ def Test_3507(self=None):
     nums = [5,2,3,1]
     res = Solution.minimumPairRemoval(self, nums)
     print(f', {res}')
+
+def Test_1877(self=None):
+    nums = [3,5,4,2,4,6]
+    res = Solution.minPairSum(self, nums)
+    print(f', {res}')

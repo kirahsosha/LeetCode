@@ -802,3 +802,12 @@ def Check(self, nums: List[int]) -> bool:
         if nums[i] > nums[i + 1]:
             return False
     return True
+
+
+# [1877] 数组中最大数对和的最小值
+def minPairSum(self, nums: List[int]) -> int:
+    nums.sort()
+    ans = 0
+    for i in range(0, len(nums) // 2):
+        ans = max(ans, nums[i] + nums[len(nums) - i - 1])
+    return ans

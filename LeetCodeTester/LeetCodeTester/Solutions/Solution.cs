@@ -5170,5 +5170,21 @@ namespace LeetCodeTester.Solutions
                 return true;
             }
         }
+
+        /// <summary>
+        /// [1877] 数组中最大数对和的最小值
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int MinPairSum(int[] nums)
+        {
+            Array.Sort(nums);
+            var ans = 0;
+            for (int i = 0; i < nums.Length / 2; i++)
+            {
+                ans = Math.Max(ans, nums[i] + nums[nums.Length - i - 1]);
+            }
+            return ans;
+        }
     }
 }
