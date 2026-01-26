@@ -224,3 +224,8 @@ def Test_1984(self=None):
     k = 2
     res = Solution.minimumDifference(self, nums, k)
     print(f', {res}')
+
+def Test_1200(self=None):
+    nums = [3,8,-10,23,19,-4,-14,27]
+    res = Solution.minimumAbsDifference(self, nums)
+    print(f', {res}')

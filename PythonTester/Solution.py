@@ -822,3 +822,20 @@ def minimumDifference(self, nums: List[int], k: int) -> int:
     for i in range(1, len(nums) - k + 1):
         ans = min(ans, nums[i + k - 1] - nums[i])
     return ans
+
+
+# [1200] 最小绝对差
+def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
+    ans = []
+    minAbs = 1000000
+    n = len(arr)
+    arr.sort()
+    for i in range(0, n - 1):
+        currAbs = arr[i + 1] - arr[i]
+        if currAbs < minAbs:
+            minAbs = currAbs
+            ans.clear()
+            ans.append([arr[i], arr[i + 1]])
+        elif currAbs == minAbs:
+            ans.append([arr[i], arr[i + 1]])
+    return ans

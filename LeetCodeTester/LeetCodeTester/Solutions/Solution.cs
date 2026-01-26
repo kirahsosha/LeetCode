@@ -5204,5 +5204,33 @@ namespace LeetCodeTester.Solutions
             }
             return ans;
         }
+
+        /// <summary>
+        /// [1200] 最小绝对差
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public IList<IList<int>> MinimumAbsDifference(int[] arr)
+        {
+            var ans = new List<IList<int>>();
+            var minAbs = int.MaxValue;
+            var n = arr.Length;
+            Array.Sort(arr);
+            for (int i = 0; i < n - 1; i++)
+            {
+                var abs = arr[i + 1] - arr[i];
+                if (abs < minAbs)
+                {
+                    minAbs = abs;
+                    ans.Clear();
+                    ans.Add(new List<int>() { arr[i], arr[i + 1] });
+                }
+                else if (abs == minAbs)
+                {
+                    ans.Add(new List<int>() { arr[i], arr[i + 1] });
+                }
+            }
+            return ans;
+        }
     }
 }
