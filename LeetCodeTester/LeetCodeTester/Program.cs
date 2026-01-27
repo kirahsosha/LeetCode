@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1200();
+                Test_3650();
             }
             catch(Exception ex)
             {
@@ -971,6 +971,13 @@ namespace LeetCodeTester
         {
             var nums = JsonConvert.DeserializeObject<int[]>("[3,8,-10,23,19,-4,-14,27]");
             var res = solution.MinimumAbsDifference(nums);
+        }
+
+        static void Test_3650()
+        {
+            var n = 4;
+            var edges = JsonConvert.DeserializeObject<int[][]>("[[0,1,3],[3,1,1],[2,3,4],[0,2,2]]");
+            var res = solution.MinCost(n, edges);
         }
     }
 }
