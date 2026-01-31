@@ -839,3 +839,13 @@ def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
         elif currAbs == minAbs:
             ans.append([arr[i], arr[i + 1]])
     return ans
+
+
+# [744] 寻找比目标字母大的最小字母
+def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+    index = 0
+    for i in range(0, len(letters)):
+        if letters[i] > target:
+            index = i
+            break
+    return letters[index]

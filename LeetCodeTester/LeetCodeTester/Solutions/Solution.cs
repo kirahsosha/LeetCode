@@ -5297,5 +5297,25 @@ namespace LeetCodeTester.Solutions
 
             return -1;
         }
+
+        /// <summary>
+        /// [744] 寻找比目标字母大的最小字母
+        /// </summary>
+        /// <param name="letters"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public char NextGreatestLetter(char[] letters, char target)
+        {
+            var index = 0;
+            for(int i = 0; i < letters.Length; i++)
+            {
+                if(letters[i] > target)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            return letters[index];
+        }
     }
 }
