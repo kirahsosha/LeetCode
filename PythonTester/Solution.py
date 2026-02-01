@@ -849,3 +849,11 @@ def nextGreatestLetter(self, letters: List[str], target: str) -> str:
             index = i
             break
     return letters[index]
+
+
+# [3010] 将数组分成最小总代价的子数组 I
+def minimumCost(self, nums: List[int]) -> int:
+    n1 = nums[0]
+    nums.pop(0)
+    nums.sort()
+    return n1 + nums[0] + nums[1];

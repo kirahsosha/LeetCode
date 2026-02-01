@@ -237,3 +237,8 @@ def Test_744(self=None):
     target = 'a'
     res = Solution.nextGreatestLetter(self, letters, target)
     print(f', {res}')
+
+def Test_3010(self=None):
+    nums = [10,3,1,1]
+    res = Solution.minimumCost(self, nums)
+    print(f', {res}')

@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_744();
+                Test_3010();
             }
             catch(Exception ex)
             {
@@ -985,6 +985,12 @@ namespace LeetCodeTester
             var letters = JsonConvert.DeserializeObject<char[]>("['c', 'f', 'j']");
             var target = 'a';
             var res = solution.NextGreatestLetter(letters, target);
+        }
+
+        static void Test_3010()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[10,3,1,1]");
+            var res = solution.MinimumCost(nums);
         }
     }
 }

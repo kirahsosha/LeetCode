@@ -5317,5 +5317,17 @@ namespace LeetCodeTester.Solutions
             }
             return letters[index];
         }
+
+        /// <summary>
+        /// [3010] 将数组分成最小总代价的子数组 I
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int MinimumCost(int[] nums)
+        {
+            var n1 = nums[0];
+            nums = nums.Skip(1).OrderBy(x => x).ToArray();
+            return n1 + nums[0] + nums[1];
+        }
     }
 }
