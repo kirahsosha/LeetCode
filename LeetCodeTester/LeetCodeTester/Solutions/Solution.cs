@@ -5329,5 +5329,29 @@ namespace LeetCodeTester.Solutions
             nums = nums.Skip(1).OrderBy(x => x).ToArray();
             return n1 + nums[0] + nums[1];
         }
+
+        /// <summary>
+        /// [3634] 使数组平衡的最少移除数目
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int MinRemoval(int[] nums, int k)
+        {
+            Array.Sort(nums);
+            int n = nums.Length;
+            int length = n;
+            int right = 0;
+
+            for (int left = 0; left < n; left++)
+            {
+                while (right < n && nums[right] <= (long)nums[left] * k)
+                {
+                    right++;
+                }
+                length = Math.Min(length, n - (right - left));
+            }
+            return length;
+        }
     }
 }
