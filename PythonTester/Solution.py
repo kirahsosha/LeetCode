@@ -370,6 +370,29 @@ def countNegatives(self, grid: List[List[int]]) -> int:
 
 # [840] 矩阵中的幻方
 def numMagicSquaresInside(self, grid: List[List[int]]) -> int:
+    def isMagicSquare(self, grid: List[List[int]], x: int, y: int) -> bool:
+        target = 15
+        seen = set()
+        for i in range(3):
+            for j in range(3):
+                val = grid[x + i][y + j];
+                if val < 1 or val > 9 or val in seen:
+                    return False
+                seen.add(val)
+        for i in range(3):
+            rowSum = 0
+            colSum = 0
+            for j in range(3):
+                rowSum += grid[x + i][y + j]
+                colSum += grid[x + j][y + i]
+            if rowSum != target or colSum != target:
+                return False
+            diag1 = grid[x][y] + grid[x + 1][y + 1] + grid[x + 2][y + 2]
+            diag2 = grid[x][y + 2] + grid[x + 1][y + 1] + grid[x + 2][y]
+            if diag1 != target or diag2 != target:
+                return False
+        return True
+
     n = len(grid)
     m = len(grid[0])
     res = 0
@@ -378,30 +401,6 @@ def numMagicSquaresInside(self, grid: List[List[int]]) -> int:
             if isMagicSquare(self, grid, i, j):
                 res += 1
     return res
-
-
-def isMagicSquare(self, grid: List[List[int]], x: int, y: int) -> bool:
-    target = 15
-    seen = set()
-    for i in range(3):
-        for j in range(3):
-            val = grid[x + i][y + j];
-            if val < 1 or val > 9 or val in seen:
-                return False
-            seen.add(val)
-    for i in range(3):
-        rowSum = 0
-        colSum = 0
-        for j in range(3):
-            rowSum += grid[x + i][y + j]
-            colSum += grid[x + j][y + i]
-        if rowSum != target or colSum != target:
-            return False
-        diag1 = grid[x][y] + grid[x + 1][y + 1] + grid[x + 2][y + 2]
-        diag2 = grid[x][y + 2] + grid[x + 1][y + 1] + grid[x + 2][y]
-        if diag1 != target or diag2 != target:
-            return False
-    return True
 
 
 # [66] 加一
@@ -482,21 +481,20 @@ def numOfWays(self, n: int) -> int:
 
 # [1390] 四因数
 def sumFourDivisors(self, nums: List[int]) -> int:
+    def AllDivisors(self, n: int) -> List[int]:
+        res = set()
+        for i in range(1, floor(math.sqrt(n)) + 1):
+            if n % i == 0:
+                res.add(i)
+                res.add(n // i)
+        return res
+
     res = 0
     for n in nums:
         di = AllDivisors(self, n)
         if len(di) == 4:
             for i in di:
                 res += i
-    return res
-
-
-def AllDivisors(self, n: int) -> List[int]:
-    res = set()
-    for i in range(1, floor(math.sqrt(n)) + 1):
-        if n % i == 0:
-            res.add(i)
-            res.add(n // i)
     return res
 
 
@@ -530,6 +528,15 @@ def maxMatrixSum(self, matrix: List[List[int]]) -> int:
 
 # [1161] 最大层内元素和
 def maxLevelSum(self, root: Optional[TreeNode]) -> int:
+    def dfs(self, root: Optional[TreeNode], level: int, sum: List[int]) -> None:
+        if root is not None:
+            if len(sum) > level:
+                sum[level] += root.val
+            else:
+                sum.append(root.val)
+            dfs(self, root.left, level + 1, sum)
+            dfs(self, root.right, level + 1, sum)
+
     max = 0
     sum = []
     dfs(self, root, 0, sum)
@@ -539,18 +546,19 @@ def maxLevelSum(self, root: Optional[TreeNode]) -> int:
     return max + 1
 
 
-def dfs(self, root: Optional[TreeNode], level: int, sum: List[int]) -> None:
-    if root is not None:
-        if len(sum) > level:
-            sum[level] += root.val
-        else:
-            sum.append(root.val)
-        dfs(self, root.left, level + 1, sum)
-        dfs(self, root.right, level + 1, sum)
-
-
 # [1339] 分裂二叉树的最大乘积
 def maxProduct(self, root: Optional[TreeNode]) -> int:
+    def dfs(self, node: Optional[TreeNode], sums: set()) -> int:
+        left = 0
+        right = 0
+        if node.left is not None:
+            left = dfs(self, node.left, sums)
+            sums.add(left)
+        if node.right is not None:
+            right = dfs(self, node.right, sums)
+            sums.add(right)
+        return node.val + left + right
+
     MOD = 1000000007
     sums = set()
     total = dfs(self, root, sums)
@@ -561,18 +569,6 @@ def maxProduct(self, root: Optional[TreeNode]) -> int:
             res = item
             mi = abs(total - item - item)
     return res * (total - res) % MOD
-
-
-def dfs(self, node: Optional[TreeNode], sums: set()) -> int:
-    left = 0
-    right = 0
-    if node.left is not None:
-        left = dfs(self, node.left, sums)
-        sums.add(left)
-    if node.right is not None:
-        right = dfs(self, node.right, sums)
-        sums.add(right)
-    return node.val + left + right
 
 
 # [1458] 两个子序列的最大点积
@@ -604,28 +600,27 @@ def maxDotProduct(self, nums1: List[int], nums2: List[int]) -> int:
 
 # [865] 具有所有最深节点的最小子树
 def subtreeWithAllDeepest(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-    node = dfs(self, root, 0)
-    return node[0]
-
-
-def dfs(self, node: Optional[TreeNode], depth: int) -> [Optional[TreeNode], int]:
-    if node is None:
-        return [node, depth]
-    left = dfs(self, node.left, depth + 1)
-    right = dfs(self, node.right, depth + 1)
-    if left[0] is not None and right[0] is not None:
-        if left[1] > right[1]:
+    def dfs(self, node: Optional[TreeNode], depth: int) -> [Optional[TreeNode], int]:
+        if node is None:
+            return [node, depth]
+        left = dfs(self, node.left, depth + 1)
+        right = dfs(self, node.right, depth + 1)
+        if left[0] is not None and right[0] is not None:
+            if left[1] > right[1]:
+                return left
+            elif left[1] < right[1]:
+                return right
+            else:
+                return [node, left[1]]
+        elif left[0] is not None:
             return left
-        elif left[1] < right[1]:
+        elif right[0] is not None:
             return right
         else:
-            return [node, left[1]]
-    elif left[0] is not None:
-        return left
-    elif right[0] is not None:
-        return right
-    else:
-        return [node, depth]
+            return [node, depth]
+
+    node = dfs(self, root, 0)
+    return node[0]
 
 
 # [1266] 访问所有点的最小时间
@@ -708,6 +703,16 @@ def maximizeSquareArea(self, m: int, n: int, hFences: List[int], vFences: List[i
 
 # [1292] 元素和小于等于阈值的正方形的最大边长
 def maxSideLength(self, mat: List[List[int]], threshold: int) -> int:
+    def Check(self, mid: int, threshold: int, pre: List[List[int]], m: int, n: int) -> bool:
+        for i in range(0, m - mid + 1):
+            for j in range(0, n - mid + 1):
+                total = 0
+                for k in range(0, mid):
+                    total += pre[i + k][j + mid] - pre[i + k][j]
+                if total <= threshold:
+                    return True
+        return False
+
     m = len(mat)
     n = len(mat[0])
     pre = [[0] * (n + 1) for _ in range(m)]
@@ -723,17 +728,6 @@ def maxSideLength(self, mat: List[List[int]], threshold: int) -> int:
         else:
             right = mid - 1
     return left
-
-
-def Check(self, mid: int, threshold: int, pre: List[List[int]], m: int, n: int) -> bool:
-    for i in range(0, m - mid + 1):
-        for j in range(0, n - mid + 1):
-            total = 0
-            for k in range(0, mid):
-                total += pre[i + k][j + mid] - pre[i + k][j]
-            if total <= threshold:
-                return True
-    return False
 
 
 # [3314] 构造最小位运算数组 I
@@ -767,41 +761,38 @@ def minBitwiseArray(self, nums: List[int]) -> List[int]:
 
 # [3507] 移除最小数对使数组有序 I
 def minimumPairRemoval(self, nums: List[int]) -> int:
+    def GetMin(self, nums: List[int]) -> int:
+        res = nums[0] + nums[1]
+        index = 0
+        for i in range(0, len(nums) - 1):
+            if nums[i] + nums[i + 1] < res:
+                res = nums[i] + nums[i + 1]
+                index = i
+        return index
+
+    def Replace(self, nums: List[int], index: int) -> List[int]:
+        newNums = []
+        for i in range(0, index):
+            newNums.append(nums[i])
+        newNums.append(nums[index] + nums[index + 1])
+        for i in range(index + 2, len(nums)):
+            newNums.append(nums[i])
+        return newNums
+
+    def Check(self, nums: List[int]) -> bool:
+        if len(nums) <= 1:
+            return True
+        for i in range(0, len(nums) - 1):
+            if nums[i] > nums[i + 1]:
+                return False
+        return True
+
     times = 0
     while not Check(self, nums):
         index = GetMin(self, nums)
         nums = Replace(self, nums, index)
         times += 1
     return times
-
-
-def GetMin(self, nums: List[int]) -> int:
-    res = nums[0] + nums[1]
-    index = 0
-    for i in range(0, len(nums) - 1):
-        if nums[i] + nums[i + 1] < res:
-            res = nums[i] + nums[i + 1]
-            index = i
-    return index
-
-
-def Replace(self, nums: List[int], index: int) -> List[int]:
-    newNums = []
-    for i in range(0, index):
-        newNums.append(nums[i])
-    newNums.append(nums[index] + nums[index + 1])
-    for i in range(index + 2, len(nums)):
-        newNums.append(nums[i])
-    return newNums
-
-
-def Check(self, nums: List[int]) -> bool:
-    if len(nums) <= 1:
-        return True
-    for i in range(0, len(nums) - 1):
-        if nums[i] > nums[i + 1]:
-            return False
-    return True
 
 
 # [1877] 数组中最大数对和的最小值
@@ -857,3 +848,20 @@ def minimumCost(self, nums: List[int]) -> int:
     nums.pop(0)
     nums.sort()
     return n1 + nums[0] + nums[1];
+
+# [110] 平衡二叉树
+def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    def getDepth(self, node: Optional[TreeNode]) -> int:
+        depth = 0
+        if node is None:
+            depth = 0
+            return depth
+        depth = 1
+        left = getDepth(self, node.left)
+        right = getDepth(self, node.right)
+        if left >= 0 and right >= 0:
+            depth = max(left, right) + 1
+            return depth if abs(left - right) <= 1 else -1
+        return -1
+
+    return getDepth(self, root) >= 0

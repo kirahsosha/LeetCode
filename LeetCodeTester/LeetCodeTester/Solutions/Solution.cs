@@ -5353,5 +5353,31 @@ namespace LeetCodeTester.Solutions
             }
             return length;
         }
+
+        /// <summary>
+        /// [110] 平衡二叉树
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public bool IsBalanced(TreeNode root)
+        {
+            return GetDepth(root, out _);
+
+            bool GetDepth(TreeNode node, out int depth)
+            {
+                if (node == null)
+                {
+                    depth = 0;
+                    return true;
+                }
+                depth = 1;
+                if (GetDepth(node.left, out var left) && GetDepth(node.right, out var right))
+                {
+                    depth = Math.Max(left, right) + 1;
+                    return Math.Abs(left - right) <= 1;
+                }
+                return false;
+            }
+        }
     }
 }

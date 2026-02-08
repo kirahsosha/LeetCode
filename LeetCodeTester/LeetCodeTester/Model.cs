@@ -32,10 +32,14 @@ namespace LeetCodeTester
         public static TreeNode CreateTreeNode(string s)
         {
             var nums = JsonConvert.DeserializeObject<int?[]>(s);
+            if (nums.Length == 0)
+            {
+                return null;
+            }
             var nodes = new Queue<TreeNode>();
             foreach (var n in nums)
             {
-                if(n.HasValue)
+                if (n.HasValue)
                 {
                     var node = new TreeNode(n.Value);
                     nodes.Enqueue(node);
@@ -48,16 +52,16 @@ namespace LeetCodeTester
             TreeNode root = nodes.Dequeue();
             var q = new Queue<TreeNode>();
             q.Enqueue(root);
-            while(nodes.Count > 0)
+            while (nodes.Count > 0)
             {
                 var node = q.Dequeue();
                 node.left = nodes.Dequeue();
                 node.right = nodes.Count > 0 ? nodes.Dequeue() : null;
-                if(node.left != null)
+                if (node.left != null)
                 {
                     q.Enqueue(node.left);
                 }
-                if(node.right != null)
+                if (node.right != null)
                 {
                     q.Enqueue(node.right);
                 }

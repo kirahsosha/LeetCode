@@ -242,3 +242,8 @@ def Test_3010(self=None):
     nums = [10,3,1,1]
     res = Solution.minimumCost(self, nums)
     print(f', {res}')
+
+def Test_110(self=None):
+    root = TreeNode.create_tree_node("[3,9,20,null,null,15,7]")
+    res = Solution.isBalanced(self, root)
+    print(f', {res}')
