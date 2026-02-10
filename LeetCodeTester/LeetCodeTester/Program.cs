@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_110();
+                Test_3719();
             }
             catch(Exception ex)
             {
@@ -1009,6 +1009,13 @@ namespace LeetCodeTester
         {
             var root = TreeNode.CreateTreeNode("[1,2,2,3,3,null,null,4,4]");
             var res = solution.IsBalanced(root);
+        }
+
+
+        static void Test_3719()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[1,2,3,2]");
+            var res = solution.LongestBalanced(nums);
         }
     }
 }
