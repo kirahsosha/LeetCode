@@ -247,3 +247,10 @@ def Test_110(self=None):
     root = TreeNode.create_tree_node("[3,9,20,null,null,15,7]")
     res = Solution.isBalanced(self, root)
     print(f', {res}')
+
+def Test_799(self=None):
+    poured = 999999999
+    query_row = 99
+    query_glass = 99
+    res = Solution.champagneTower(self, poured, query_row, query_glass)
+    print(f', {res}')

@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3719();
+                Test_799();
             }
             catch(Exception ex)
             {
@@ -1011,11 +1011,17 @@ namespace LeetCodeTester
             var res = solution.IsBalanced(root);
         }
 
-
         static void Test_3719()
         {
             var nums = JsonConvert.DeserializeObject<int[]>("[1,2,3,2]");
             var res = solution.LongestBalanced(nums);
+        }
+        static void Test_799()
+        {
+            int poured = 999999999;
+            int query_row = 99;
+            int query_glass = 99;
+            var res = solution.ChampagneTower(poured, query_row, query_glass);
         }
     }
 }
