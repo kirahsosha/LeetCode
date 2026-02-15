@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_799();
+                Test_B176_Q3();
             }
             catch(Exception ex)
             {
@@ -1023,5 +1023,27 @@ namespace LeetCodeTester
             int query_glass = 99;
             var res = solution.ChampagneTower(poured, query_row, query_glass);
         }
+
+        static void Test_B176_Q1()
+        {
+            var words = JsonConvert.DeserializeObject<string[]>("[\"abcd\",\"def\",\"xyz\"]");
+            var weights = JsonConvert.DeserializeObject<int[]>("[5,3,12,14,1,2,3,2,10,6,6,9,7,8,7,10,8,9,6,9,9,8,3,7,7,2]");
+            var res = solution.MapWordWeights(words, weights);
+        }
+
+        static void Test_B176_Q2()
+        {
+            var words = JsonConvert.DeserializeObject<string[]>("[\"bat\",\"dog\",\"dog\",\"doggy\",\"bat\"]");
+            var k = 3;
+            var res = solution.PrefixConnected(words, k);
+        }
+
+        static void Test_B176_Q3()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[1,4,3,5]");
+            var colors = JsonConvert.DeserializeObject<int[]>("[1,1,2,2]");
+            var res = solution.Rob5(nums, colors);
+        }
+
     }
 }

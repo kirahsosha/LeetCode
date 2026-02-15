@@ -262,4 +262,34 @@ namespace LeetCodeTester
             }
         }
     }
+
+    public class FenwickTree
+    {
+        private int[] tree;
+        private int n;
+        
+        public FenwickTree(int size)
+        {
+            n = size;
+            tree = new int[n + 1];
+        }
+
+        public void Update(int index, int delta)
+        {
+            for (int i = index; i <= n; i += i & -i)
+            {
+                tree[i] ^= delta;
+            }
+        }
+
+        public int Query(int index)
+        {
+            int res = 0;
+            for (int i = index; i > 0; i -= i & -i)
+            {
+                res ^= tree[i];
+            }
+            return res;
+        }
+    }
 }

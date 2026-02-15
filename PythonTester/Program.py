@@ -254,3 +254,7 @@ def Test_799(self=None):
     query_glass = 99
     res = Solution.champagneTower(self, poured, query_row, query_glass)
     print(f', {res}')
+
+def Test_67(self=None):
+    res = Solution.addBinary(self, "1010", "1011")
+    print(f', {res}')
