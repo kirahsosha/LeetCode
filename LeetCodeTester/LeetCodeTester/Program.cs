@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_190();
+                Test_401();
             }
             catch(Exception ex)
             {
@@ -1049,6 +1049,12 @@ namespace LeetCodeTester
         {
             var n = 0;
             var res = solution.ReverseBits(n);
+        }
+
+        static void Test_401()
+        {
+            var n = 2;
+            var res = solution.ReadBinaryWatch(n);
         }
 
     }

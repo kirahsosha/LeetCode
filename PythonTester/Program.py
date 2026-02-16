@@ -258,3 +258,7 @@ def Test_799(self=None):
 def Test_67(self=None):
     res = Solution.addBinary(self, "1010", "1011")
     print(f', {res}')
+
+def Test_401(self=None):
+    res = Solution.readBinaryWatch(self, 2)
+    print(f', {res}')
