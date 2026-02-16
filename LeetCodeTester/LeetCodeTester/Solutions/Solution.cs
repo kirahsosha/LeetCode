@@ -5171,5 +5171,35 @@ namespace LeetCodeTester.Solutions
             }
             return s;
         }
+
+        /// <summary>
+        /// [190] 颠倒二进制位
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int ReverseBits(int n)
+        {
+            //var a = new byte[32];
+            //for (var i = 0; i < 32; i++)
+            //{
+            //    a[i] = (byte)(n & 1);
+            //    n >>= 1;
+            //}
+            //var res = 0;
+            //for (var i = 0; i < 32; i++)
+            //{
+            //    res <<= 1;
+            //    res |= a[i];
+            //}
+            //return res;
+
+            uint res = (uint)n;
+            res = ((res >> 1) & 0x55555555) | ((res & 0x55555555) << 1); // 01010101010101010101010101010101
+            res = ((res >> 2) & 0x33333333) | ((res & 0x33333333) << 2); // 00110011001100110011001100110011
+            res = ((res >> 4) & 0x0f0f0f0f) | ((res & 0x0f0f0f0f) << 4); // 00001111000011110000111100001111
+            res = ((res >> 8) & 0x00ff00ff) | ((res & 0x00ff00ff) << 8); // 00000000111111110000000011111111
+            res = (res >> 16) | (res << 16);
+            return (int)res;
+        }
     }
 }

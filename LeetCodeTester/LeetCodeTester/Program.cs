@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_B176_Q3();
+                Test_190();
             }
             catch(Exception ex)
             {
@@ -1043,6 +1043,12 @@ namespace LeetCodeTester
             var nums = JsonConvert.DeserializeObject<int[]>("[1,4,3,5]");
             var colors = JsonConvert.DeserializeObject<int[]>("[1,1,2,2]");
             var res = solution.Rob5(nums, colors);
+        }
+
+        static void Test_190()
+        {
+            var n = 0;
+            var res = solution.ReverseBits(n);
         }
 
     }
