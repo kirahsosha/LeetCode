@@ -262,3 +262,7 @@ def Test_67(self=None):
 def Test_401(self=None):
     res = Solution.readBinaryWatch(self, 2)
     print(f', {res}')
+
+def Test_693(self=None):
+    res = Solution.hasAlternatingBits(self, 5)
+    print(f', {res}')

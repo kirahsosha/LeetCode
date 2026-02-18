@@ -5243,5 +5243,18 @@ namespace LeetCodeTester.Solutions
             }
             return res;
         }
+
+        /// <summary>
+        /// [693] 交替位二进制数
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public bool HasAlternatingBits(int n)
+        {
+            uint un = (uint)n;
+            var a = un ^ (un >> 1);
+            var b = a + 1;
+            return (a & b) == 0;
+        }
     }
 }
