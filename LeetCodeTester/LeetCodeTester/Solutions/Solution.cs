@@ -5256,5 +5256,34 @@ namespace LeetCodeTester.Solutions
             var b = a + 1;
             return (a & b) == 0;
         }
+
+        /// <summary>
+        /// [696] 计数二进制子串
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public int CountBinarySubstrings(string s)
+        {
+            var a = '0';
+            var count = 0;
+            var old = 0;
+            var res = 0;
+            foreach(var c in s)
+            {
+                if(c == a)
+                {
+                    count++;
+                }
+                else
+                {
+                    res += Math.Min(old, count);
+                    old = count;
+                    a = c;
+                    count = 1;
+                }
+            }
+            res += Math.Min(old, count);
+            return res;
+        }
     }
 }

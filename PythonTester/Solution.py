@@ -959,3 +959,20 @@ def hasAlternatingBits(self, n: int) -> bool:
     a = n ^ (n >> 1)
     b = a + 1
     return (a & b) == 0
+
+# [696] 计数二进制子串
+def countBinarySubstrings(self, s: str) -> int:
+    a = '0'
+    count = 0
+    old = 0
+    res = 0
+    for c in s:
+        if c == a:
+            count += 1
+        else:
+            res += min(old, count)
+            old = count
+            a = c
+            count = 1
+    res += min(old, count)
+    return res

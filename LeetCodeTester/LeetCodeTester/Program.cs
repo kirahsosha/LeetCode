@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_693();
+                Test_696();
             }
             catch(Exception ex)
             {
@@ -1061,6 +1061,12 @@ namespace LeetCodeTester
         {
             var n = 5;
             var res = solution.HasAlternatingBits(n);
+        }
+
+        static void Test_696()
+        {
+            var n = "0000111001111";
+            var res = solution.CountBinarySubstrings(n);
         }
 
     }

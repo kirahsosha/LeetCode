@@ -266,3 +266,7 @@ def Test_401(self=None):
 def Test_693(self=None):
     res = Solution.hasAlternatingBits(self, 5)
     print(f', {res}')
+
+def Test_696(self=None):
+    res = Solution.countBinarySubstrings(self, "00110011")
+    print(f', {res}')
