@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_696();
+                Test_761();
             }
             catch(Exception ex)
             {
@@ -1067,6 +1067,12 @@ namespace LeetCodeTester
         {
             var n = "0000111001111";
             var res = solution.CountBinarySubstrings(n);
+        }
+
+        static void Test_761()
+        {
+            var n = "11011000";
+            var res = solution.MakeLargestSpecial(n);
         }
 
     }
