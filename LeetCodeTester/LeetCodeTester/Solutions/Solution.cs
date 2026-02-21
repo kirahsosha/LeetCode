@@ -5353,5 +5353,35 @@ namespace LeetCodeTester.Solutions
             }
             return ans;
         }
+
+        /// <summary>
+        /// [868] 二进制间距
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int BinaryGap(int n)
+        {
+            var ans = 0;
+            var left = 0;
+            var right = 0;
+            while (n > 0)
+            {
+                right++;
+                if (n % 2 == 1)
+                {
+                    if(left == 0)
+                    {
+                        left = right;
+                    }
+                    else
+                    {
+                        ans = Math.Max(ans, right - left);
+                        left = right;
+                    }
+                }
+                n /= 2;
+            }
+            return ans;
+        }
     }
 }

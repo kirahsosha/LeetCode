@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_762();
+                Test_868();
             }
             catch(Exception ex)
             {
@@ -1078,6 +1078,11 @@ namespace LeetCodeTester
         static void Test_762()
         {
             var res = solution.CountPrimeSetBits(6, 10);
+        }
+
+        static void Test_868()
+        {
+            var res = solution.BinaryGap(5);
         }
 
     }
