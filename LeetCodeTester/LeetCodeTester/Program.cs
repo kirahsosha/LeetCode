@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_761();
+                Test_762();
             }
             catch(Exception ex)
             {
@@ -1073,6 +1073,11 @@ namespace LeetCodeTester
         {
             var n = "11011000";
             var res = solution.MakeLargestSpecial(n);
+        }
+
+        static void Test_762()
+        {
+            var res = solution.CountPrimeSetBits(6, 10);
         }
 
     }
