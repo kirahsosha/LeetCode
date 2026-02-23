@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_868();
+                Test_1461();
             }
             catch(Exception ex)
             {
@@ -1083,6 +1083,11 @@ namespace LeetCodeTester
         static void Test_868()
         {
             var res = solution.BinaryGap(5);
+        }
+
+        static void Test_1461()
+        {
+            var res = solution.HasAllCodes("00110110", 2);
         }
 
     }
