@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1461();
+                Test_1022();
             }
             catch(Exception ex)
             {
@@ -1088,6 +1088,12 @@ namespace LeetCodeTester
         static void Test_1461()
         {
             var res = solution.HasAllCodes("00110110", 2);
+        }
+
+        static void Test_1022()
+        {
+            var root = TreeNode.CreateTreeNode("[1,0,1,0,1,0,1]");
+            var res = solution.SumRootToLeaf(root);
         }
 
     }

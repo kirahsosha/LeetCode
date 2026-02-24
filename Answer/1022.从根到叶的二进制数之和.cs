@@ -14,31 +14,33 @@
  *     public TreeNode(int x) { val = x; }
  * }
  */
-public class Solution {
-    public static int MAX_SUM = 1000000007;
+public class Solution
+{
+    public static int MOD = 1000000007;
 
-    public int search(TreeNode t, int n)
+    public int SumRootToLeaf(TreeNode root)
     {
-        n = (2 * n + t.val) % MAX_SUM;
-        int sum = 0;
-        if(t.left != null)
+        int search(TreeNode t, int n)
         {
-            sum += search(t.left, n);
+            n = (2 * n + t.val) % MOD;
+            int sum = 0;
+            if (t.left != null)
+            {
+                sum += search(t.left, n);
+            }
+            if (t.right != null)
+            {
+                sum += search(t.right, n);
+            }
+            if (t.left == null && t.right == null)
+            {
+                sum = n;
+            }
+            return sum % MOD;
         }
-        if(t.right != null)
-        {
-            sum += search(t.right, n);
-        }
-        if(t.left == null && t.right == null)
-        {
-            sum = n;
-        }
-        return sum % MAX_SUM;
-    }
 
-    public int SumRootToLeaf(TreeNode root) {
-        if(root == null) return 0;
-        if(root.left == null && root.right == null) return root.val;
+        if (root == null) return 0;
+        if (root.left == null && root.right == null) return root.val;
         return search(root, 0);
     }
 }

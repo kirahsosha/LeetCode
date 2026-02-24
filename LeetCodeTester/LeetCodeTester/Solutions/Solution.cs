@@ -5411,5 +5411,36 @@ namespace LeetCodeTester.Solutions
             }
             return set.Count == (int)Math.Pow(2, k);
         }
+
+        /// <summary>
+        /// [1022] 从根到叶的二进制数之和
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        public int SumRootToLeaf(TreeNode root)
+        {
+            int search(TreeNode t, int n)
+            {
+                n = (2 * n + t.val) % MOD;
+                int sum = 0;
+                if (t.left != null)
+                {
+                    sum += search(t.left, n);
+                }
+                if (t.right != null)
+                {
+                    sum += search(t.right, n);
+                }
+                if (t.left == null && t.right == null)
+                {
+                    sum = n;
+                }
+                return sum % MOD;
+            }
+
+            if (root == null) return 0;
+            if (root.left == null && root.right == null) return root.val;
+            return search(root, 0);
+        }
     }
 }
