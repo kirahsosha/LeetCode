@@ -849,6 +849,7 @@ def minimumCost(self, nums: List[int]) -> int:
     nums.sort()
     return n1 + nums[0] + nums[1];
 
+
 # [110] 平衡二叉树
 def isBalanced(self, root: Optional[TreeNode]) -> bool:
     def getDepth(self, node: Optional[TreeNode]) -> int:
@@ -866,9 +867,9 @@ def isBalanced(self, root: Optional[TreeNode]) -> bool:
 
     return getDepth(self, root) >= 0
 
+
 # [799] 香槟塔
 def champagneTower(self, poured: int, query_row: int, query_glass: int) -> float:
-
     def getHalf(self, num: float) -> float:
         if num <= 1:
             return 0
@@ -876,16 +877,17 @@ def champagneTower(self, poured: int, query_row: int, query_glass: int) -> float
 
     # dp[i][j] = (dp[i - 1][j - 1] - 1) / 2 + (dp[i - 1][j] - 1) / 2
     dp = []
-    for i in range (0, query_row+1):
+    for i in range(0, query_row + 1):
         dp.append([])
         if i == 0:
             dp[i].append(poured)
         else:
-            dp[i].append(getHalf(self,dp[i - 1][0]))
-            for j in range (1, i):
-                dp[i].append(getHalf(self,dp[i - 1][j - 1]) + getHalf(self,dp[i - 1][j]))
-            dp[i].append(getHalf(self,dp[i - 1][i - 1]))
+            dp[i].append(getHalf(self, dp[i - 1][0]))
+            for j in range(1, i):
+                dp[i].append(getHalf(self, dp[i - 1][j - 1]) + getHalf(self, dp[i - 1][j]))
+            dp[i].append(getHalf(self, dp[i - 1][i - 1]))
     return 1 if dp[query_row][query_glass] >= 1 else dp[query_row][query_glass]
+
 
 # [67] 二进制求和
 def addBinary(self, a: str, b: str) -> str:
@@ -928,6 +930,7 @@ def addBinary(self, a: str, b: str) -> str:
         s = "1" + s
     return s
 
+
 # [401] 二进制手表
 def readBinaryWatch(self, turnedOn: int) -> List[str]:
     def combineNumber(self, number, digit, last) -> List[int]:
@@ -954,11 +957,13 @@ def readBinaryWatch(self, turnedOn: int) -> List[str]:
             res.append(f"{hour}:{minute:02d}")
     return res
 
+
 # [693] 交替位二进制数
 def hasAlternatingBits(self, n: int) -> bool:
     a = n ^ (n >> 1)
     b = a + 1
     return (a & b) == 0
+
 
 # [696] 计数二进制子串
 def countBinarySubstrings(self, s: str) -> int:
@@ -976,3 +981,15 @@ def countBinarySubstrings(self, s: str) -> int:
             count = 1
     res += min(old, count)
     return res
+
+
+# [1404] 将二进制表示减到 1 的步骤数
+def numSteps(self, s: str) -> int:
+    step = 0
+    carry = 0
+    for i in range(len(s) - 1, 0, -1):
+        step += 1
+        if int(s[i]) + carry == 1:
+            carry = 1
+            step += 1
+    return step + carry

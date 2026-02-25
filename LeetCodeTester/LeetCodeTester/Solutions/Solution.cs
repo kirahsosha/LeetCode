@@ -5468,5 +5468,26 @@ namespace LeetCodeTester.Solutions
             }
             return dic.OrderBy(x => x.Key).SelectMany(x => x.Value.OrderBy(y => y)).ToArray();
         }
+
+        /// <summary>
+        /// [1404] 将二进制表示减到 1 的步骤数
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public int NumSteps(string s)
+        {
+            var step = 0;
+            var carry = 0;
+            for (int i = s.Length - 1; i > 0; i--)
+            {
+                step++;
+                if (s[i] - '0' + carry == 1)
+                {
+                    carry = 1;
+                    step++;
+                }
+            }
+            return step + carry;
+        }
     }
 }

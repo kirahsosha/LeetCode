@@ -238,15 +238,18 @@ def Test_744(self=None):
     res = Solution.nextGreatestLetter(self, letters, target)
     print(f', {res}')
 
+
 def Test_3010(self=None):
-    nums = [10,3,1,1]
+    nums = [10, 3, 1, 1]
     res = Solution.minimumCost(self, nums)
     print(f', {res}')
+
 
 def Test_110(self=None):
     root = TreeNode.create_tree_node("[3,9,20,null,null,15,7]")
     res = Solution.isBalanced(self, root)
     print(f', {res}')
+
 
 def Test_799(self=None):
     poured = 999999999
@@ -255,18 +258,27 @@ def Test_799(self=None):
     res = Solution.champagneTower(self, poured, query_row, query_glass)
     print(f', {res}')
 
+
 def Test_67(self=None):
     res = Solution.addBinary(self, "1010", "1011")
     print(f', {res}')
+
 
 def Test_401(self=None):
     res = Solution.readBinaryWatch(self, 2)
     print(f', {res}')
 
+
 def Test_693(self=None):
     res = Solution.hasAlternatingBits(self, 5)
     print(f', {res}')
 
+
 def Test_696(self=None):
     res = Solution.countBinarySubstrings(self, "00110011")
+    print(f', {res}')
+
+
+def Test_1404(self=None):
+    res = Solution.numSteps(self, "100110110")
     print(f', {res}')
