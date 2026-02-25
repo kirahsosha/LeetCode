@@ -13,7 +13,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1022();
+                Test_1356();
             }
             catch(Exception ex)
             {
@@ -1094,6 +1094,12 @@ namespace LeetCodeTester
         {
             var root = TreeNode.CreateTreeNode("[1,0,1,0,1,0,1]");
             var res = solution.SumRootToLeaf(root);
+        }
+
+        static void Test_1356()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[0,1,2,3,4,5,6,7,8]");
+            var res = solution.SortByBits(nums);
         }
 
     }

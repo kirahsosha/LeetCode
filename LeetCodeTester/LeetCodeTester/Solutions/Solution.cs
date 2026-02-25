@@ -5442,5 +5442,31 @@ namespace LeetCodeTester.Solutions
             if (root.left == null && root.right == null) return root.val;
             return search(root, 0);
         }
+
+        /// <summary>
+        /// [1356] 根据数字二进制下 1 的数目排序
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public int[] SortByBits(int[] arr)
+        {
+            var dic = new Dictionary<int, List<int>>();
+            foreach (var num in arr)
+            {
+                var count = 0;
+                var t = num;
+                while (t > 0)
+                {
+                    count += t & 1;
+                    t >>= 1;
+                }
+                if (!dic.ContainsKey(count))
+                {
+                    dic[count] = new List<int>();
+                }
+                dic[count].Add(num);
+            }
+            return dic.OrderBy(x => x.Key).SelectMany(x => x.Value.OrderBy(y => y)).ToArray();
+        }
     }
 }
