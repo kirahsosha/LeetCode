@@ -3,17 +3,32 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+using Autofac;
 
 namespace LeetCodeTester
 {
     class Program
     {
         private static Solution solution = new Solution();
+
+        //public void ConfigureServices(IServiceCollection services)
+        //{
+        //    // 注册 Solution 类
+        //    services.AddSingleton<Solution>();
+        //}
+
+        //public void ConfigureContainer(ContainerBuilder builder)
+        //{
+        //    // 注册 Solution 类
+        //    builder.RegisterType<Solution>().AsSelf().SingleInstance();
+        //}
+
         static void Main(string[] args)
         {
             try
             {
-                Test_1404();
+                Test_3666();
             }
             catch(Exception ex)
             {
@@ -1105,6 +1120,11 @@ namespace LeetCodeTester
         static void Test_1404()
         {
             var res = solution.NumSteps("100110110");
+        }
+
+        static void Test_3666()
+        {
+            var res = solution.MinOperations("0000", 3);
         }
 
     }
