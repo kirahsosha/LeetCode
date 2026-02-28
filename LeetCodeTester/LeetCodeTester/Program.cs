@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3666();
+                Test_1680();
             }
             catch(Exception ex)
             {
@@ -1125,6 +1125,11 @@ namespace LeetCodeTester
         static void Test_3666()
         {
             var res = solution.MinOperations("0000", 3);
+        }
+
+        static void Test_1680()
+        {
+            var res = solution.ConcatenatedBinary(12);
         }
 
     }

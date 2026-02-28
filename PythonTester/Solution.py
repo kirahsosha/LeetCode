@@ -993,3 +993,16 @@ def numSteps(self, s: str) -> int:
             carry = 1
             step += 1
     return step + carry
+
+
+# [1680] 连接连续二进制数字
+def concatenatedBinary(self, n: int) -> int:
+    MOD = 1000000007
+    res = 0
+    for i in range(1, n + 1):
+        t = i
+        while t > 0:
+            t = t >> 1
+            res = (res << 1) % MOD
+        res = (res + i) % MOD
+    return res
