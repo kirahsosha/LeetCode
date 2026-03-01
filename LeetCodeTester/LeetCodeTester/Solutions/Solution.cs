@@ -5545,5 +5545,20 @@ namespace LeetCodeTester.Solutions
             }
             return (int)res;
         }
+
+        /// <summary>
+        /// [1689] 十-二进制数的最少数目
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int MinPartitions(string n)
+        {
+            var res = 0;
+            foreach(var c in n)
+            {
+                res = Math.Max(res, c - '0');
+            }
+            return res;
+        }
     }
 }

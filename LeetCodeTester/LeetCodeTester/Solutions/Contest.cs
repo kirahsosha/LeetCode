@@ -542,5 +542,149 @@ namespace LeetCodeTester.Solutions
             }
             return res;
         }
+
+        /// <summary>
+        /// 491-Q1. 移除尾部元音字母
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public string TrimTrailingVowels(string s)
+        {
+            for (int i = s.Length - 1; i >= 0; i--)
+            {
+                if (IsVowel(s[i]))
+                {
+                    s = s.Substring(0, i);
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return s;
+        }
+
+        /// <summary>
+        /// 491-Q2. 拆分到 1 的最小总代价
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int MinCost(int n)
+        {
+            var res = 0;
+            if(n == 1)
+            {
+                return res;
+            }
+            var left = n / 2;
+            var right = n - left;
+            res += left * right;
+            return res + MinCost(left) + MinCost(right);
+        }
+
+        /// <summary>
+        /// 491-Q3. 按位或的最小值
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
+        public int MinimumOR(int[][] grid)
+        {
+            int res = 0;
+            for (int k = 20; k >= 0; k--)
+            {
+                int high_mask = (1 << (k + 1)) - 1; // 低位掩码 (0 to k)
+                int current_high = res & ~high_mask; // 高位部分在 res 中的值
+                bool requires_high_zero = (current_high == 0);
+
+                bool canSetZero = true;
+                for (int i = 0; i < grid.Length; i++)
+                {
+                    bool found = false;
+                    for (int j = 0; j < grid[i].Length; j++)
+                    {
+                        int num = grid[i][j];
+                        if (requires_high_zero)
+                        {
+                            // 要求高位（k+1 to 20）为0
+                            if ((num & ~high_mask) == 0 && (num & (1 << k)) == 0)
+                                found = true;
+                        }
+                        else
+                        {
+                            // 不要求高位，只需当前位为0
+                            if ((num & (1 << k)) == 0)
+                                found = true;
+                        }
+                        if (found) break;
+                    }
+                    if (!found)
+                    {
+                        canSetZero = false;
+                        break;
+                    }
+                }
+                if (!canSetZero)
+                {
+                    res |= (1 << k);
+                }
+            }
+            return res;
+        }
+
+        /// <summary>
+        /// 491-Q4. 统计包含 K 个不同整数的子数组
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="k"></param>
+        /// <param name="m"></param>
+        /// <returns></returns>
+        public long CountSubarrays(int[] nums, int k, int m)
+        {
+            int n = nums.Length;
+            long result = 0;
+            int[] freq = new int[100001];
+            int distinctCount = 0;
+            int underM = 0;
+            int left = 0;
+
+            for (int right = 0; right < n; right++)
+            {
+                int num = nums[right];
+                if (freq[num] == 0)
+                {
+                    distinctCount++;
+                }
+                freq[num]++;
+                if (freq[num] == m)
+                {
+                    underM--;
+                }
+                else if (freq[num] == 1)
+                {
+                    underM++;
+                }
+
+                while (distinctCount > k || (distinctCount == k && underM > 0))
+                {
+                    int leftNum = nums[left];
+                    freq[leftNum]--;
+                    if (freq[leftNum] == m - 1)
+                    {
+                        underM++;
+                    }
+                    else if (freq[leftNum] == 0)
+                    {
+                        distinctCount--;
+                    }
+                    left++;
+                }
+
+                if (distinctCount == k && underM == 0)
+                {
+                    result++;
+                }
+            }
+            return result;
+        }
     }
 }

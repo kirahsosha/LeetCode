@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1680();
+                Test_491_Q4();
             }
             catch(Exception ex)
             {
@@ -1130,6 +1130,33 @@ namespace LeetCodeTester
         static void Test_1680()
         {
             var res = solution.ConcatenatedBinary(12);
+        }
+
+        static void Test_1689()
+        {
+            var res = solution.MinPartitions("27346209830709182346");
+        }
+
+        static void Test_491_Q1()
+        {
+            var res = solution.TrimTrailingVowels("idea");
+        }
+
+        static void Test_491_Q2()
+        {
+            var res = solution.MinCost(4);
+        }
+
+        static void Test_491_Q3()
+        {
+            var grid = JsonConvert.DeserializeObject<int[][]>("[[7,9,8]]");
+            var res = solution.MinimumOR(grid);
+        }
+
+        static void Test_491_Q4()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[1,2,1,2,2]");
+            var res = solution.CountSubarrays(nums, 2, 2);
         }
 
     }
