@@ -283,6 +283,12 @@ def Test_1404(self=None):
     res = Solution.numSteps(self, "100110110")
     print(f', {res}')
 
+
 def Test_1680(self=None):
     res = Solution.concatenatedBinary(self, 12)
+    print(f', {res}')
+
+
+def Test_1536(self=None):
+    res = Solution.minSwaps(self, [[0,0,1],[1,1,0],[1,0,0]])
     print(f', {res}')

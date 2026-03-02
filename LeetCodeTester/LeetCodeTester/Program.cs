@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_491_Q4();
+                Test_1536();
             }
             catch(Exception ex)
             {
@@ -1157,6 +1157,12 @@ namespace LeetCodeTester
         {
             var nums = JsonConvert.DeserializeObject<int[]>("[1,2,1,2,2]");
             var res = solution.CountSubarrays(nums, 2, 2);
+        }
+
+        static void Test_1536()
+        {
+            var grid = JsonConvert.DeserializeObject<int[][]>("[[0,0,1],[1,1,0],[1,0,0]]");
+            var res = solution.MinSwaps(grid);
         }
 
     }
