@@ -290,5 +290,12 @@ def Test_1680(self=None):
 
 
 def Test_1536(self=None):
-    res = Solution.minSwaps(self, [[0,0,1],[1,1,0],[1,0,0]])
+    res = Solution.minSwaps(self, [[0, 0, 1], [1, 1, 0], [1, 0, 0]])
+    print(f', {res}')
+
+
+def Test_1545(self=None):
+    n = 4
+    k = 11
+    res = Solution.findKthBit(self, n, k)
     print(f', {res}')

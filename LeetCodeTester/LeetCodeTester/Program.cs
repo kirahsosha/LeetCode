@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1536();
+                Test_1545();
             }
             catch(Exception ex)
             {
@@ -1163,6 +1163,13 @@ namespace LeetCodeTester
         {
             var grid = JsonConvert.DeserializeObject<int[][]>("[[0,0,1],[1,1,0],[1,0,0]]");
             var res = solution.MinSwaps(grid);
+        }
+
+        static void Test_1545()
+        {
+            var n = 4;
+            var k = 11;
+            var res = solution.FindKthBit(n, k);
         }
 
     }

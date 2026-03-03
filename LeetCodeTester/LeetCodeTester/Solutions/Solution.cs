@@ -5603,5 +5603,68 @@ namespace LeetCodeTester.Solutions
             }
             return ans;
         }
+
+        /// <summary>
+        /// [1545] 找出第 N 个二进制字符串中的第 K 位
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public char FindKthBit(int n, int k)
+        {
+            //模拟
+            //int[] Invert(int[] s)
+            //{
+            //    return s.Select(x => 1 - x).ToArray();
+            //}
+
+            //int[] Reverse(int[] s)
+            //{
+            //    return s.Reverse().ToArray();
+            //}
+
+            //var s = new int[] { 0 };
+            //for (var i = 1; i < n; i++)
+            //{
+            //    s = [.. s, .. new int[] { 1 }, .. Invert(Reverse(s))];
+            //    if (s.Length >= k)
+            //    {
+            //        break;
+            //    }
+            //}
+            //return (char)('0' + s[k - 1]);
+
+            //递归
+            //if (n == 1)
+            //{
+            //    return '0';
+            //}
+            //if (k == 1 << (n - 1))
+            //{
+            //    return '1';
+            //}
+            //if (k < 1 << (n - 1))
+            //{
+            //    return FindKthBit(n - 1, k);
+            //}
+            //else
+            //{
+            //    var c = FindKthBit(n - 1, (1 << n) - k);
+            //    return c == '0' ? '1' : '0';
+            //}
+
+            //数学
+            if (k % 2 > 0)
+            {
+                //奇数
+                return (char)('0' + k / 2 % 2);
+            }
+            else
+            {
+                //偶数
+                k /= k & -k; // 去掉 k 的尾零
+                return (char)('1' - k / 2 % 2);
+            }
+        }
     }
 }

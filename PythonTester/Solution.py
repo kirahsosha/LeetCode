@@ -1031,3 +1031,13 @@ def minSwaps(self, grid: List[List[int]]) -> int:
         for k in range(j, i - 1, -1):
             aim[k] = aim[k - 1]
     return ans
+
+# [1545] 找出第 N 个二进制字符串中的第 K 位
+def findKthBit(self, n: int, k: int) -> str:
+    if k % 2 > 0:
+        # 奇数
+        return str(k // 2 % 2)
+    else:
+        # 偶数
+        k //= k & -k; # 去掉 k 的尾零
+        return str(1 - k // 2 % 2)
