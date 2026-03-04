@@ -299,3 +299,7 @@ def Test_1545(self=None):
     k = 11
     res = Solution.findKthBit(self, n, k)
     print(f', {res}')
+
+def Test_1582(self=None):
+    res = Solution.numSpecial(self, [[0, 0, 1], [1, 1, 0], [1, 0, 0]])
+    print(f', {res}')
