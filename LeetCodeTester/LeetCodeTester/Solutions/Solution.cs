@@ -5716,5 +5716,28 @@ namespace LeetCodeTester.Solutions
             }
             return res;
         }
+
+        /// <summary>
+        /// [1758] 生成交替二进制字符串的最少操作数
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public int MinOperations(string s)
+        {
+            var res0 = 0;
+            var res1 = 0;
+            for (var i = 0; i < s.Length; i++)
+            {
+                if (s[i] - '0' != i % 2)
+                {
+                    res0++;
+                }
+                else
+                {
+                    res1++;
+                }
+            }
+            return Math.Min(res0, res1);
+        }
     }
 }

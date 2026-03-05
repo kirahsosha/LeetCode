@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1582();
+                Test_1758();
             }
             catch(Exception ex)
             {
@@ -1176,6 +1176,11 @@ namespace LeetCodeTester
         {
             var grid = JsonConvert.DeserializeObject<int[][]>("[[1,0,0],[0,0,1],[1,0,0]]");
             var res = solution.NumSpecial(grid);
+        }
+
+        static void Test_1758()
+        {
+            var res = solution.MinOperations("010101101010");
         }
 
     }

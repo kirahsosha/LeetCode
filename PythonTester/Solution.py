@@ -1032,6 +1032,7 @@ def minSwaps(self, grid: List[List[int]]) -> int:
             aim[k] = aim[k - 1]
     return ans
 
+
 # [1545] 找出第 N 个二进制字符串中的第 K 位
 def findKthBit(self, n: int, k: int) -> str:
     if k % 2 > 0:
@@ -1039,7 +1040,7 @@ def findKthBit(self, n: int, k: int) -> str:
         return str(k // 2 % 2)
     else:
         # 偶数
-        k //= k & -k; # 去掉 k 的尾零
+        k //= k & -k;  # 去掉 k 的尾零
         return str(1 - k // 2 % 2)
 
 
@@ -1049,9 +1050,9 @@ def numSpecial(self, mat: List[List[int]]) -> int:
     n = len(mat[0])
     rows = [0] * m
     res = 0
-    for i in range (0, m):
+    for i in range(0, m):
         first = -1
-        for j in range (0, n):
+        for j in range(0, n):
             if mat[i][j] == 1:
                 rows[i] = j
                 if first == -1:
@@ -1059,7 +1060,7 @@ def numSpecial(self, mat: List[List[int]]) -> int:
         if first == rows[i]:
             a = -1
             b = -1
-            for j in range( 0, m):
+            for j in range(0, m):
                 if mat[j][first] == 1:
                     if a == -1:
                         a = j
@@ -1067,5 +1068,15 @@ def numSpecial(self, mat: List[List[int]]) -> int:
                         b = j
                         break
             if a != -1 and b == -1:
-                res+=1
+                res += 1
     return res
+
+
+# [1758] 生成交替二进制字符串的最少操作数
+def minOperations(self, s: str) -> int:
+    res = 0
+    n = len(s)
+    for i, c in enumerate(s):
+        if ord(c) - ord('0') != i % 2:
+            res += 1
+    return min(res, n - res)
