@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Net.WebSockets;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -3877,9 +3878,9 @@ namespace LeetCodeTester.Solutions
         public int BestClosingTime(string customers)
         {
             var cost = 0;
-            foreach(var customer in customers)
+            foreach (var customer in customers)
             {
-                if(customer == 'Y')
+                if (customer == 'Y')
                 {
                     cost++;
                 }
@@ -3896,7 +3897,7 @@ namespace LeetCodeTester.Solutions
                 {
                     cost++;
                 }
-                if(cost < min)
+                if (cost < min)
                 {
                     min = cost;
                     res = i + 1;
@@ -4180,7 +4181,7 @@ namespace LeetCodeTester.Solutions
             foreach (var n in nums)
             {
                 var di = Common.AllDivisors(n);
-                if(di.Length == 4)
+                if (di.Length == 4)
                 {
                     res += di.Sum();
                 }
@@ -4225,7 +4226,7 @@ namespace LeetCodeTester.Solutions
             {
                 return sumPos + sumNeg;
             }
-            else if(countPos == 0)
+            else if (countPos == 0)
             {
                 return sumPos + sumNeg + 2 * maxNeg;
             }
@@ -4245,7 +4246,7 @@ namespace LeetCodeTester.Solutions
             var max = 0;
             var sum = new List<int>();
             Dfs(root, 0);
-            for(int i = 0; i < sum.Count; i++)
+            for (int i = 0; i < sum.Count; i++)
             {
                 if (sum[i] > sum[max])
                 {
@@ -4256,9 +4257,9 @@ namespace LeetCodeTester.Solutions
 
             void Dfs(TreeNode root, int level)
             {
-                if(root != null)
+                if (root != null)
                 {
-                    if(sum.Count > level)
+                    if (sum.Count > level)
                     {
                         sum[level] += root.val;
                     }
@@ -4285,7 +4286,7 @@ namespace LeetCodeTester.Solutions
             long res = 0;
             foreach (var item in sums)
             {
-                if(Math.Abs(total - item - item) < mi)
+                if (Math.Abs(total - item - item) < mi)
                 {
                     res = item;
                     mi = Math.Abs(total - item - item);
@@ -4323,19 +4324,19 @@ namespace LeetCodeTester.Solutions
 
             (TreeNode, int) Dfs(TreeNode node, int depth)
             {
-                if(node == null)
+                if (node == null)
                 {
                     return (null, depth);
                 }
                 var left = Dfs(node.left, depth + 1);
                 var right = Dfs(node.right, depth + 1);
-                if(left.Item1 != null && right.Item1 != null)
+                if (left.Item1 != null && right.Item1 != null)
                 {
-                    if(left.Item2 > right.Item2)
+                    if (left.Item2 > right.Item2)
                     {
                         return left;
                     }
-                    else if(left.Item2 < right.Item2)
+                    else if (left.Item2 < right.Item2)
                     {
                         return right;
                     }
@@ -4344,7 +4345,7 @@ namespace LeetCodeTester.Solutions
                         return (node, left.Item2);
                     }
                 }
-                else if(left.Item1 != null)
+                else if (left.Item1 != null)
                 {
                     return left;
                 }
@@ -4423,7 +4424,7 @@ namespace LeetCodeTester.Solutions
             var res = 0;
             var x1 = points[0][0];
             var y1 = points[0][1];
-            for(int i = 1; i < n; i++)
+            for (int i = 1; i < n; i++)
             {
                 var x = points[i][0];
                 var y = points[i][1];
@@ -4688,7 +4689,7 @@ namespace LeetCodeTester.Solutions
                     res = Math.Max(res, len);
                 }
             }
-            if(res == 0)
+            if (res == 0)
             {
                 return -1;
             }
@@ -4790,7 +4791,7 @@ namespace LeetCodeTester.Solutions
             for (int i = 0; i < n; i++)
             {
                 var value = nums[i];
-                if(value == 2)
+                if (value == 2)
                 {
                     ans[i] = -1;
                 }
@@ -4812,7 +4813,7 @@ namespace LeetCodeTester.Solutions
         public int MinimumPairRemoval(int[] nums)
         {
             var times = 0;
-            while(!Check())
+            while (!Check())
             {
                 var index = GetMin();
                 nums = Replace(index);
@@ -4824,9 +4825,9 @@ namespace LeetCodeTester.Solutions
             {
                 var res = nums[0] + nums[1];
                 var index = 0;
-                for(int i = 1; i < nums.Length - 1; i++)
+                for (int i = 1; i < nums.Length - 1; i++)
                 {
-                    if(nums[i] + nums[i+1] < res)
+                    if (nums[i] + nums[i + 1] < res)
                     {
                         res = nums[i] + nums[i + 1];
                         index = i;
@@ -4838,7 +4839,7 @@ namespace LeetCodeTester.Solutions
             int[] Replace(int index)
             {
                 var newNums = new int[nums.Length - 1];
-                for(int i = 0; i < index; i++)
+                for (int i = 0; i < index; i++)
                 {
                     newNums[i] = nums[i];
                 }
@@ -4852,14 +4853,14 @@ namespace LeetCodeTester.Solutions
 
             bool Check()
             {
-                if(nums.Length <= 1)
+                if (nums.Length <= 1)
                 {
                     return true;
                 }
 
-                for(int i = 0; i < nums.Length - 1; i++)
+                for (int i = 0; i < nums.Length - 1; i++)
                 {
-                    if(nums[i] > nums[i + 1])
+                    if (nums[i] > nums[i + 1])
                     {
                         return false;
                     }
@@ -4897,7 +4898,7 @@ namespace LeetCodeTester.Solutions
             int ans = nums[k - 1] - nums[0];
             for (int i = 1; i <= nums.Length - k; i++)
             {
-                ans = Math.Min(ans, nums[i + k - 1] - nums[i]); 
+                ans = Math.Min(ans, nums[i + k - 1] - nums[i]);
             }
             return ans;
         }
@@ -4940,7 +4941,7 @@ namespace LeetCodeTester.Solutions
         {
             //邻接表
             var g = new List<int[]>[n];
-            for(int i = 0;i < n; i++)
+            for (int i = 0; i < n; i++)
             {
                 g[i] = new List<int[]>();
             }
@@ -4961,7 +4962,7 @@ namespace LeetCodeTester.Solutions
             dis[0] = 0;
             pq.Enqueue([0, 0], 0);
 
-            while (pq.Count>0)
+            while (pq.Count > 0)
             {
                 int[] p = pq.Dequeue();
                 int disX = p[0];
@@ -5004,9 +5005,9 @@ namespace LeetCodeTester.Solutions
         public char NextGreatestLetter(char[] letters, char target)
         {
             var index = 0;
-            for(int i = 0; i < letters.Length; i++)
+            for (int i = 0; i < letters.Length; i++)
             {
-                if(letters[i] > target)
+                if (letters[i] > target)
                 {
                     index = i;
                     break;
@@ -5211,15 +5212,15 @@ namespace LeetCodeTester.Solutions
         {
             List<int> ConbineNumber(int number, int digit, int last)
             {
-                if(last == 0)
+                if (last == 0)
                 {
                     return new List<int> { number };
                 }
-                else if(digit == last)
+                else if (digit == last)
                 {
                     return ConbineNumber((number << 1) + 1, digit - 1, last - 1);
                 }
-                else if(digit == 0)
+                else if (digit == 0)
                 {
                     return ConbineNumber(number << 1, digit, last - 1);
                 }
@@ -5268,9 +5269,9 @@ namespace LeetCodeTester.Solutions
             var count = 0;
             var old = 0;
             var res = 0;
-            foreach(var c in s)
+            foreach (var c in s)
             {
-                if(c == a)
+                if (c == a)
                 {
                     count++;
                 }
@@ -5369,7 +5370,7 @@ namespace LeetCodeTester.Solutions
                 right++;
                 if (n % 2 == 1)
                 {
-                    if(left == 0)
+                    if (left == 0)
                     {
                         left = right;
                     }
@@ -5554,7 +5555,7 @@ namespace LeetCodeTester.Solutions
         public int MinPartitions(string n)
         {
             var res = 0;
-            foreach(var c in n)
+            foreach (var c in n)
             {
                 res = Math.Max(res, c - '0');
             }
@@ -5766,6 +5767,47 @@ namespace LeetCodeTester.Solutions
                 }
             }
             return res;
+        }
+
+
+        /// <summary>
+        /// [1888] 使二进制字符串字符交替的最少反转次数
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public int MinFlips(string s)
+        {
+            // 示性函数
+            Func<char, int, int> I = (ch, x) => ch - '0' == x ? 1 : 0;
+            int n = s.Length;
+            int[,] pre = new int[n, 2];
+
+            // 注意 i=0 的边界情况
+            for (int i = 0; i < n; ++i)
+            {
+                pre[i, 0] = (i == 0 ? 0 : pre[i - 1, 1]) + I(s[i], 1);
+                pre[i, 1] = (i == 0 ? 0 : pre[i - 1, 0]) + I(s[i], 0);
+            }
+
+            int ans = Math.Min(pre[n - 1, 0], pre[n - 1, 1]);
+            if (n % 2 == 1)
+            {
+                // 如果 n 是奇数，还需要求出 suf
+                int[,] suf = new int[n, 2];
+                // 注意 i=n-1 的边界情况
+                for (int i = n - 1; i >= 0; --i)
+                {
+                    suf[i, 0] = (i == n - 1 ? 0 : suf[i + 1, 1]) + I(s[i], 1);
+                    suf[i, 1] = (i == n - 1 ? 0 : suf[i + 1, 0]) + I(s[i], 0);
+                }
+                for (int i = 0; i + 1 < n; ++i)
+                {
+                    ans = Math.Min(ans, pre[i, 0] + suf[i + 1, 0]);
+                    ans = Math.Min(ans, pre[i, 1] + suf[i + 1, 1]);
+                }
+            }
+
+            return ans;
         }
     }
 }
