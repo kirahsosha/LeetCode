@@ -5739,5 +5739,33 @@ namespace LeetCodeTester.Solutions
             }
             return Math.Min(res0, res1);
         }
+
+
+        /// <summary>
+        /// [1784] 检查二进制字符串字段
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public bool CheckOnesSegment(string s)
+        {
+            var res = false;
+            var hasZero = false;
+            for (var i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '1' && !res)
+                {
+                    res = true;
+                }
+                else if (s[i] == '0' && res)
+                {
+                    hasZero = true;
+                }
+                else if (s[i] == '1' && hasZero)
+                {
+                    return false;
+                }
+            }
+            return res;
+        }
     }
 }

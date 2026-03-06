@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1758();
+                Test_1784();
             }
             catch(Exception ex)
             {
@@ -1181,6 +1181,11 @@ namespace LeetCodeTester
         static void Test_1758()
         {
             var res = solution.MinOperations("010101101010");
+        }
+
+        static void Test_1784()
+        {
+            var res = solution.CheckOnesSegment("10101101010");
         }
 
     }

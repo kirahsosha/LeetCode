@@ -1080,3 +1080,17 @@ def minOperations(self, s: str) -> int:
         if ord(c) - ord('0') != i % 2:
             res += 1
     return min(res, n - res)
+
+
+# [1784] 检查二进制字符串字段
+def checkOnesSegment(self, s: str) -> bool:
+    res = False
+    hasZero = False
+    for c in s:
+        if c == '1' and not res:
+            res = True
+        elif c == '0' and res:
+            hasZero = True
+        elif c == '1' and hasZero:
+            return False
+    return res
