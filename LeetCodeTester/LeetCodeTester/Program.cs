@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1888();
+                Test_1980();
             }
             catch(Exception ex)
             {
@@ -1191,6 +1191,12 @@ namespace LeetCodeTester
         static void Test_1888()
         {
             var res = solution.MinFlips("10001100101000000");
+        }
+
+        static void Test_1980()
+        {
+            var nums = JsonConvert.DeserializeObject<string[]>("[\"111\",\"011\",\"001\"]");
+            var res = solution.FindDifferentBinaryString(nums);
         }
 
     }

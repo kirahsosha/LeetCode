@@ -314,3 +314,8 @@ def Test_1758(self=None):
 def Test_1784(self=None):
     res = Solution.checkOnesSegment(self, "10101101010")
     print(f', {res}')
+
+
+def Test_1980(self=None):
+    res = Solution.findDifferentBinaryString(self, ["111", "011", "001"])
+    print(f', {res}')

@@ -1094,3 +1094,12 @@ def checkOnesSegment(self, s: str) -> bool:
         elif c == '1' and hasZero:
             return False
     return res
+
+
+# [1980] 找出不同的二进制字符串
+def findDifferentBinaryString(self, nums: List[str]) -> str:
+    n = len(nums)
+    res = [''] * n
+    for i in range(0, n):
+        res[i] = '1' if nums[i][i] == '0' else '0'
+    return ''.join(res)

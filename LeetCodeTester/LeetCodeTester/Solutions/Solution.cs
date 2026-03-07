@@ -5809,5 +5809,21 @@ namespace LeetCodeTester.Solutions
 
             return ans;
         }
+
+        /// <summary>
+        /// [1980] 找出不同的二进制字符串
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public string FindDifferentBinaryString(string[] nums)
+        {
+            var n = nums.Length;
+            var res = new char[n];
+            for(var i = 0; i < n; i++)
+            {
+                res[i] = nums[i][i] == '0' ? '1' : '0';
+            }
+            return new string(res);
+        }
     }
 }
