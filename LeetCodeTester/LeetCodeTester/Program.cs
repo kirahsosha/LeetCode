@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1980();
+                Test_3129();
             }
             catch(Exception ex)
             {
@@ -1197,6 +1197,11 @@ namespace LeetCodeTester
         {
             var nums = JsonConvert.DeserializeObject<string[]>("[\"111\",\"011\",\"001\"]");
             var res = solution.FindDifferentBinaryString(nums);
+        }
+
+        static void Test_3129()
+        {
+            var res = solution.NumberOfStableArrays(3, 3, 2);
         }
 
     }
