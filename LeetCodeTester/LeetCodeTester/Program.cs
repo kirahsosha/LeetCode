@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3129();
+                Test_3130();
             }
             catch(Exception ex)
             {
@@ -1202,6 +1202,11 @@ namespace LeetCodeTester
         static void Test_3129()
         {
             var res = solution.NumberOfStableArrays(3, 3, 2);
+        }
+
+        static void Test_3130()
+        {
+            var res = solution.NumberOfStableArrays_2(3, 3, 2);
         }
 
     }
