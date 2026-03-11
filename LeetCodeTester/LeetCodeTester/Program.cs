@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3130();
+                Test_1009();
             }
             catch(Exception ex)
             {
@@ -1207,6 +1207,11 @@ namespace LeetCodeTester
         static void Test_3130()
         {
             var res = solution.NumberOfStableArrays_2(3, 3, 2);
+        }
+
+        static void Test_1009()
+        {
+            var res = solution.BitwiseComplement(10);
         }
 
     }

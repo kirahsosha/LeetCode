@@ -5741,7 +5741,6 @@ namespace LeetCodeTester.Solutions
             return Math.Min(res0, res1);
         }
 
-
         /// <summary>
         /// [1784] 检查二进制字符串字段
         /// </summary>
@@ -5768,7 +5767,6 @@ namespace LeetCodeTester.Solutions
             }
             return res;
         }
-
 
         /// <summary>
         /// [1888] 使二进制字符串字符交替的最少反转次数
@@ -5824,6 +5822,26 @@ namespace LeetCodeTester.Solutions
                 res[i] = nums[i][i] == '0' ? '1' : '0';
             }
             return new string(res);
+        }
+
+        /// <summary>
+        /// [1009] 十进制整数的反码
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int BitwiseComplement(int n)
+        {
+            if (n == 0) return 1;
+            var num = (uint)n;
+            var bits = 0;
+            while (num > 0)
+            {
+                num >>= 1;
+                bits++;
+            }
+
+            var mask = (1 << bits) - 1;
+            return n ^ mask;
         }
     }
 }
