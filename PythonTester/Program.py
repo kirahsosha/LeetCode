@@ -319,3 +319,8 @@ def Test_1784(self=None):
 def Test_1980(self=None):
     res = Solution.findDifferentBinaryString(self, ["111", "011", "001"])
     print(f', {res}')
+
+
+def Test_3296(self=None):
+    res = Solution.minNumberOfSeconds(self, 100000, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1])
+    print(f', {res}')

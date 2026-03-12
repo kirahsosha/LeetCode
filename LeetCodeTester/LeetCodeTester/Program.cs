@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1009();
+                Test_3296();
             }
             catch(Exception ex)
             {
@@ -1212,6 +1212,13 @@ namespace LeetCodeTester
         static void Test_1009()
         {
             var res = solution.BitwiseComplement(10);
+        }
+
+        static void Test_3296()
+        {
+            var mountainHeight = 100000;
+            var workerTimes = JsonConvert.DeserializeObject<int[]>("[1000000]");
+            var res = solution.MinNumberOfSeconds(mountainHeight, workerTimes);
         }
 
     }

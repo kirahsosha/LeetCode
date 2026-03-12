@@ -1,6 +1,7 @@
 import array
 import heapq
 import math
+import queue
 from math import floor
 from queue import PriorityQueue
 from re import match
@@ -1103,3 +1104,23 @@ def findDifferentBinaryString(self, nums: List[str]) -> str:
     for i in range(0, n):
         res[i] = '1' if nums[i][i] == '0' else '0'
     return ''.join(res)
+
+
+# [3296] 移山所需的最少秒数
+def minNumberOfSeconds(self, mountainHeight: int, workerTimes: List[int]) -> int:
+    worker = len(workerTimes)
+    round_count = [0] * worker
+    times = [0] * worker
+    pq = []
+
+    # init pq
+    for i in range(0, worker):
+        heapq.heappush(pq, (workerTimes[i], i))
+
+    for _ in range(mountainHeight):
+        next_time, key = heapq.heappop(pq)
+        round_count[key] += 1
+        times[key] = next_time
+        heapq.heappush(pq, (times[key] + workerTimes[key] * (round_count[key] + 1), key))
+
+    return max(times)
