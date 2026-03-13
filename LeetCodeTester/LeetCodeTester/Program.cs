@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3296();
+                Test_1415();
             }
             catch(Exception ex)
             {
@@ -1219,6 +1219,11 @@ namespace LeetCodeTester
             var mountainHeight = 100000;
             var workerTimes = JsonConvert.DeserializeObject<int[]>("[1000000]");
             var res = solution.MinNumberOfSeconds(mountainHeight, workerTimes);
+        }
+
+        static void Test_1415()
+        {
+            var res = solution.GetHappyString(3, 13);
         }
 
     }
