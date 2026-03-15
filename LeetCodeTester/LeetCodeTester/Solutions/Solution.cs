@@ -10,7 +10,7 @@ namespace LeetCodeTester.Solutions
 {
     public partial class Solution
     {
-        const int MOD = 1000000007;
+        public const int MOD = 1000000007;
 
         public Solution() { }
 

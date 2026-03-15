@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1415();
+                Test_1622();
             }
             catch(Exception ex)
             {
@@ -1224,6 +1224,22 @@ namespace LeetCodeTester
         static void Test_1415()
         {
             var res = solution.GetHappyString(3, 13);
+        }
+
+        static void Test_1622()
+        {
+            Fancy fancy = new Fancy();
+            fancy.Append(2);   // 奇妙序列：[2]
+            fancy.AddAll(3);   // 奇妙序列：[2+3] -> [5]
+            fancy.Append(7);   // 奇妙序列：[5, 7]
+            fancy.MultAll(2);  // 奇妙序列：[5*2, 7*2] -> [10, 14]
+            fancy.GetIndex(0); // 返回 10
+            fancy.AddAll(3);   // 奇妙序列：[10+3, 14+3] -> [13, 17]
+            fancy.Append(10);  // 奇妙序列：[13, 17, 10]
+            fancy.MultAll(2);  // 奇妙序列：[13*2, 17*2, 10*2] -> [26, 34, 20]
+            fancy.GetIndex(0); // 返回 26
+            fancy.GetIndex(1); // 返回 34
+            fancy.GetIndex(2); // 返回 20
         }
 
     }
