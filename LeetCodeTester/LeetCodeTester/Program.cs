@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1622();
+                Test_1878();
             }
             catch(Exception ex)
             {
@@ -1240,6 +1240,12 @@ namespace LeetCodeTester
             fancy.GetIndex(0); // 返回 26
             fancy.GetIndex(1); // 返回 34
             fancy.GetIndex(2); // 返回 20
+        }
+
+        static void Test_1878()
+        {
+            var grid = JsonConvert.DeserializeObject<int[][]>("[[3,3,4,2,3],[20,30,200,40,10],[1,5,5,4,1],[4,3,2,2,5]]");
+            var res = solution.GetBiggestThree(grid);
         }
 
     }
