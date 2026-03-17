@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1878();
+                Test_1727();
             }
             catch(Exception ex)
             {
@@ -1246,6 +1246,12 @@ namespace LeetCodeTester
         {
             var grid = JsonConvert.DeserializeObject<int[][]>("[[3,3,4,2,3],[20,30,200,40,10],[1,5,5,4,1],[4,3,2,2,5]]");
             var res = solution.GetBiggestThree(grid);
+        }
+
+        static void Test_1727()
+        {
+            var matrix = JsonConvert.DeserializeObject<int[][]>("[[0,0,1],[1,1,1],[1,0,1]]");
+            var res = solution.LargestSubmatrix(matrix);
         }
 
     }
