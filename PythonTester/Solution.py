@@ -1142,3 +1142,22 @@ def getHappyString(self, n: int, k: int) -> str:
                 break
             k -= count
     return res
+
+
+# [3070] 元素和小于等于 k 的子矩阵的数目
+def countSubmatrices(self, grid: List[List[int]], k: int) -> int:
+    m = len(grid)
+    n = len(grid[0])
+    pre = [0] * n
+    res = 0
+    for i in range(0, m):
+        sum = 0
+        for j in range(0, n):
+            pre[j] += grid[i][j]
+            sum += pre[j]
+            if sum <= k:
+                res += 1
+            else:
+                n = j
+                break
+    return res

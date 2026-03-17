@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1727();
+                Test_3070();
             }
             catch(Exception ex)
             {
@@ -1252,6 +1252,12 @@ namespace LeetCodeTester
         {
             var matrix = JsonConvert.DeserializeObject<int[][]>("[[0,0,1],[1,1,1],[1,0,1]]");
             var res = solution.LargestSubmatrix(matrix);
+        }
+
+        static void Test_3070()
+        {
+            var grid = JsonConvert.DeserializeObject<int[][]>("[[7,2,9],[1,5,0],[2,6,6]]");
+            var res = solution.CountSubmatrices(grid, 20);
         }
 
     }

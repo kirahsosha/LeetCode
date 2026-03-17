@@ -329,3 +329,9 @@ def Test_3296(self=None):
 def Test_1415(self=None):
     res = Solution.getHappyString(self, 3, 9)
     print(f', {res}')
+
+
+def Test_3070(self=None):
+    grid = [[7, 2, 9], [1, 5, 0], [2, 6, 6]]
+    res = Solution.countSubmatrices(self, grid, 20)
+    print(f', {res}')
