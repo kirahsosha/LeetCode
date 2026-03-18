@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3070();
+                Test_3212();
             }
             catch(Exception ex)
             {
@@ -1258,6 +1258,12 @@ namespace LeetCodeTester
         {
             var grid = JsonConvert.DeserializeObject<int[][]>("[[7,2,9],[1,5,0],[2,6,6]]");
             var res = solution.CountSubmatrices(grid, 20);
+        }
+
+        static void Test_3212()
+        {
+            var grid = JsonConvert.DeserializeObject<char[][]>("[[\"X\",\"Y\",\".\"],[\"Y\",\".\",\".\"]]");
+            var res = solution.NumberOfSubmatrices(grid);
         }
 
     }

@@ -335,3 +335,9 @@ def Test_3070(self=None):
     grid = [[7, 2, 9], [1, 5, 0], [2, 6, 6]]
     res = Solution.countSubmatrices(self, grid, 20)
     print(f', {res}')
+
+
+def Test_3212(self=None):
+    grid = [["X", "Y", "."], ["Y", ".", "."]]
+    res = Solution.numberOfSubmatrices(self, grid)
+    print(f', {res}')
