@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3212();
+                Test_3643();
             }
             catch(Exception ex)
             {
@@ -1264,6 +1264,31 @@ namespace LeetCodeTester
         {
             var grid = JsonConvert.DeserializeObject<char[][]>("[[\"X\",\"Y\",\".\"],[\"Y\",\".\",\".\"]]");
             var res = solution.NumberOfSubmatrices(grid);
+        }
+
+        static void Test_3643()
+        {
+            var grid = JsonConvert.DeserializeObject<int[][]>("[[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]");
+            var res = solution.ReverseSubmatrix(grid, 1, 0, 3);
+        }
+
+        static void Test_1886()
+        {
+            var mat = JsonConvert.DeserializeObject<int[][]>("[[0,0,0],[0,1,0],[1,1,1]]");
+            var target = JsonConvert.DeserializeObject<int[][]>("[[1,1,1],[0,1,0],[0,0,0]]");
+            var res = solution.FindRotation(mat, target);
+        }
+
+        static void Test_1594()
+        {
+            var grid = JsonConvert.DeserializeObject<int[][]>("[[-1,-2,-3],[-2,-3,-3],[-3,-3,-2]]");
+            var res = solution.MaxProductPath(grid);
+        }
+
+        static void Test_2906()
+        {
+            var grid = JsonConvert.DeserializeObject<int[][]>("[[414750857],[449145368],[767292749]]");
+            var res = solution.ConstructProductMatrix(grid);
         }
 
     }

@@ -6089,5 +6089,121 @@ namespace LeetCodeTester.Solutions
             }
             return res;
         }
+
+        /// <summary>
+        /// [3643] 垂直翻转子矩阵
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int[][] ReverseSubmatrix(int[][] grid, int x, int y, int k)
+        {
+            for (var i = x; i < x + k / 2; i++)
+            {
+                var t = 2 * x + k - i - 1;
+                for (var j = y; j < y + k; j++)
+                {
+                    var temp = grid[i][j];
+                    grid[i][j] = grid[t][j];
+                    grid[t][j] = temp;
+                }
+            }
+            return grid;
+        }
+
+        /// <summary>
+        /// [1886] 判断矩阵经轮转后是否一致
+        /// </summary>
+        /// <param name="mat"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public bool FindRotation(int[][] mat, int[][] target)
+        {
+            var n = mat.Length;
+            var res1 = true;
+            var res2 = true;
+            var res3 = true;
+            var res4 = true;
+            for (var i = 0; i < n; i++)
+            {
+                for (var j = 0; j < n; j++)
+                {
+                    if (res1)
+                    {
+                        if (mat[i][j] != target[i][j])
+                        {
+                            res1 = false;
+                        }
+                    }
+                    if (res2)
+                    {
+                        if (mat[i][j] != target[j][n - i - 1])
+                        {
+                            res2 = false;
+                        }
+                    }
+                    if (res3)
+                    {
+                        if (mat[i][j] != target[n - i - 1][n - j - 1])
+                        {
+                            res3 = false;
+                        }
+                    }
+                    if (res4)
+                    {
+                        if (mat[i][j] != target[n - j - 1][i])
+                        {
+                            res4 = false;
+                        }
+                    }
+                }
+            }
+            return res1 || res2 || res3 || res4;
+        }
+
+        /// <summary>
+        /// [2906] 构造乘积矩阵
+        /// </summary>
+        /// <param name="grid"></param>
+        /// <returns></returns>
+        public int[][] ConstructProductMatrix(int[][] grid)
+        {
+            var mod = 12345;
+            var n = grid.Length;
+            var m = grid[0].Length;
+            var left = new long[n * m + 1];
+            var right = new long[n * m + 1];
+            left[0] = 1;
+            right[^1] = 1;
+            for (var i = 0; i < n; i++)
+            {
+                for (var j = 0; j < m; j++)
+                {
+                    left[i * m + j + 1] = left[i * m + j] * grid[i][j] % mod;
+                }
+            }
+
+            for (var i = n-1; i >=0; i--)
+            {
+                for (var j = m-1; j >=0; j--)
+                {
+                    right[i * m + j] = right[i * m + j + 1] * grid[i][j] % mod;
+                }
+            }
+
+            var p = new int[n][];
+            for (var i = 0; i < n; i++)
+            {
+                p[i] = new int[m];
+                for (var j = 0; j < m; j++)
+                {
+                    p[i][j] = (int)(left[i * m + j] * right[i * m + j + 1] % mod);
+                }
+            }
+
+            return p;
+        }
     }
 }

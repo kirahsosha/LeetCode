@@ -341,3 +341,28 @@ def Test_3212(self=None):
     grid = [["X", "Y", "."], ["Y", ".", "."]]
     res = Solution.numberOfSubmatrices(self, grid)
     print(f', {res}')
+
+
+def Test_3643(self=None):
+    grid = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
+    res = Solution.reverseSubmatrix(self, grid, 1, 0, 3)
+    print(f', {res}')
+
+
+def Test_1886(self=None):
+    met = [[0, 0, 0], [0, 1, 0], [1, 1, 1]]
+    target = [[1, 1, 1], [0, 1, 0], [0, 0, 0]]
+    res = Solution.findRotation(self, met, target)
+    print(f', {res}')
+
+
+def Test_1594(self=None):
+    grid = [[-1, -2, -3], [-2, -3, -3], [-3, -3, -2]]
+    res = Solution.maxProductPath(self, grid)
+    print(f', {res}')
+
+
+def Test_2906(self=None):
+    grid = [[1, 2], [3, 4]]
+    res = Solution.constructProductMatrix(self, grid)
+    print(f', {res}')

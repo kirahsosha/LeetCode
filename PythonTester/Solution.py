@@ -1181,3 +1181,93 @@ def numberOfSubmatrices(self, grid: List[List[str]]) -> int:
             if sumX == sumY and sumX > 0:
                 res += 1
     return res
+
+
+# [3643] 垂直翻转子矩阵
+def reverseSubmatrix(self, grid: List[List[int]], x: int, y: int, k: int) -> List[List[int]]:
+    for i in range(x, x + k // 2):
+        t = 2 * x + k - i - 1
+        for j in range(y, y + k):
+            temp = grid[i][j]
+            grid[i][j] = grid[t][j]
+            grid[t][j] = temp
+    return grid
+
+
+# [1886] 判断矩阵经轮转后是否一致
+def findRotation(self, mat: List[List[int]], target: List[List[int]]) -> bool:
+    n = len(mat)
+    r1 = r2 = r3 = r4 = True
+    for i in range(n):
+        for j in range(n):
+            if r1 and mat[i][j] != target[i][j]:
+                r1 = False
+            if r2 and mat[i][j] != target[j][n - i - 1]:
+                r2 = False
+            if r3 and mat[i][j] != target[n - i - 1][n - j - 1]:
+                r3 = False
+            if r4 and mat[i][j] != target[n - j - 1][i]:
+                r4 = False
+    return r1 or r2 or r3 or r4
+
+
+# [1594] 矩阵的最大非负积
+def maxProductPath(self, grid: List[List[int]]) -> int:
+    MOD = 1000000007
+    m = len(grid)
+    n = len(grid[0])
+    dp = [[[0, 0] for _ in range(n)] for _ in range(m)]
+    for i in range(m):
+        for j in range(n):
+            if i == 0 and j == 0:
+                dp[i][j][0] = grid[i][j]
+                dp[i][j][1] = grid[i][j]
+            elif i == 0:
+                maxVal = dp[i][j - 1][0] * grid[i][j]
+                minVal = dp[i][j - 1][1] * grid[i][j]
+                dp[i][j][0] = max(maxVal, minVal)
+                dp[i][j][1] = min(maxVal, minVal)
+            elif j == 0:
+                maxVal = dp[i - 1][j][0] * grid[i][j]
+                minVal = dp[i - 1][j][1] * grid[i][j]
+                dp[i][j][0] = max(maxVal, minVal)
+                dp[i][j][1] = min(maxVal, minVal)
+            elif grid[i][j] > 0:
+                maxVal = max(dp[i - 1][j][0], dp[i][j - 1][0]) * grid[i][j]
+                minVal = min(dp[i - 1][j][1], dp[i][j - 1][1]) * grid[i][j]
+                dp[i][j][0] = max(maxVal, minVal)
+                dp[i][j][1] = min(maxVal, minVal)
+            elif grid[i][j] < 0:
+                maxVal = min(dp[i - 1][j][1], dp[i][j - 1][1]) * grid[i][j]
+                minVal = max(dp[i - 1][j][0], dp[i][j - 1][0]) * grid[i][j]
+                dp[i][j][0] = max(maxVal, minVal)
+                dp[i][j][1] = min(maxVal, minVal)
+            else:
+                dp[i][j][0] = 0
+                dp[i][j][1] = 0
+    val = max(dp[m - 1][n - 1][0], dp[m - 1][n - 1][1])
+    return -1 if val < 0 else val % MOD
+
+
+# [2906] 构造乘积矩阵
+def constructProductMatrix(self, grid: List[List[int]]) -> List[List[int]]:
+    mod = 12345
+    n = len(grid)
+    m = len(grid[0])
+    left = [0] * (n * m + 1)
+    right = [0] * (n * m + 1)
+    left[0] = 1
+    right[-1] = 1
+    for i in range(n):
+        for j in range(m):
+            left[i * m + j + 1] = left[i * m + j] * grid[i][j] % mod
+
+    for i in range(n - 1, -1, -1):
+        for j in range(m - 1, -1, -1):
+            right[i * m + j] = right[i * m + j + 1] * grid[i][j] % mod
+
+    p = [[0] * m for _ in range(n)]
+    for i in range(n):
+        for j in range(m):
+            p[i][j] = (left[i * m + j] * right[i * m + j + 1]) % mod
+    return p
