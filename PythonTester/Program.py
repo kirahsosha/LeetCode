@@ -366,3 +366,9 @@ def Test_2906(self=None):
     grid = [[1, 2], [3, 4]]
     res = Solution.constructProductMatrix(self, grid)
     print(f', {res}')
+
+
+def Test_3546(self=None):
+    grid = [[1,4],[2,3]]
+    res = Solution.canPartitionGrid(self, grid)
+    print(f', {res}')

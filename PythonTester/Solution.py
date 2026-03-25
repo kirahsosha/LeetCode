@@ -1271,3 +1271,31 @@ def constructProductMatrix(self, grid: List[List[int]]) -> List[List[int]]:
         for j in range(m):
             p[i][j] = (left[i * m + j] * right[i * m + j + 1]) % mod
     return p
+
+
+# [3546] 等和矩阵分割 I
+def canPartitionGrid(self, grid: List[List[int]]) -> bool:
+    m = len(grid)
+    n = len(grid[0])
+    if m == 1 and n == 1:
+        return False
+    ver = [0] * m
+    hor = [0] * n
+    total = 0
+    for i in range(m):
+        if i > 0:
+            ver[i] = ver[i - 1]
+        for j in range(n):
+            ver[i] += grid[i][j]
+            hor[j] += grid[i][j]
+            if i == m - 1 and j > 0:
+                hor[j] += hor[j - 1]
+            total += grid[i][j]
+    if total % 2 != 0:
+        return False
+    half = total // 2
+    if half in ver:
+        return True
+    if half in hor:
+        return True
+    return False
