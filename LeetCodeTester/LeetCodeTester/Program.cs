@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3546();
+                Test_2946();
             }
             catch(Exception ex)
             {
@@ -1295,6 +1295,12 @@ namespace LeetCodeTester
         {
             var grid = JsonConvert.DeserializeObject<int[][]>("[[1,4],[2,3]]");
             var res = solution.CanPartitionGrid(grid);
+        }
+
+        static void Test_2946()
+        {
+            var grid = JsonConvert.DeserializeObject<int[][]>("[[2,4],[9,8]]");
+            var res = solution.AreSimilar(grid, 9);
         }
 
     }

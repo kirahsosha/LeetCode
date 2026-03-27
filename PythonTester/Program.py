@@ -369,6 +369,12 @@ def Test_2906(self=None):
 
 
 def Test_3546(self=None):
-    grid = [[1,4],[2,3]]
+    grid = [[1, 4], [2, 3]]
     res = Solution.canPartitionGrid(self, grid)
+    print(f', {res}')
+
+
+def Test_2946(self=None):
+    grid = [[1, 2, 1, 2], [5, 5, 5, 5], [6, 3, 6, 3]]
+    res = Solution.areSimilar(self, grid, 2)
     print(f', {res}')

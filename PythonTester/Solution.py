@@ -1299,3 +1299,24 @@ def canPartitionGrid(self, grid: List[List[int]]) -> bool:
     if half in hor:
         return True
     return False
+
+
+# [2946] 循环移位后的矩阵相似检查
+def areSimilar(self, mat: List[List[int]], k: int) -> bool:
+    m = len(mat)
+    n = len(mat[0])
+    k %= n
+    if k == 0:
+        return True
+
+    for i in range(m):
+        row = mat[i]
+        if i & 1 == 0:
+            for j in range(n):
+                if row[j] != row[(j + k) % n]:
+                    return False
+        else:
+            for j in range(n):
+                if row[j] != row[(j - k + n) % n]:
+                    return False
+    return True
