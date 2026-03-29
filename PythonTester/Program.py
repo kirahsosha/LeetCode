@@ -381,6 +381,10 @@ def Test_2946(self=None):
 
 
 def Test_2839(self=None):
-    grid = [[1, 2, 1, 2], [5, 5, 5, 5], [6, 3, 6, 3]]
     res = Solution.canBeEqual(self, "abcd", "cdab")
+    print(f', {res}')
+
+
+def Test_2840(self=None):
+    res = Solution.checkStrings(self, "abcdba", "cdabab")
     print(f', {res}')

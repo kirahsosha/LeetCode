@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2839();
+                Test_2840();
             }
             catch(Exception ex)
             {
@@ -1308,6 +1308,13 @@ namespace LeetCodeTester
             var s1 = "abcd";
             var s2 = "cdab";
             var res = solution.CanBeEqual(s1, s2);
+        }
+
+        static void Test_2840()
+        {
+            var s1 = "abcdba";
+            var s2 = "cabdab";
+            var res = solution.CheckStrings(s1, s2);
         }
 
     }
