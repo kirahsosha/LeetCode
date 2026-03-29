@@ -378,3 +378,9 @@ def Test_2946(self=None):
     grid = [[1, 2, 1, 2], [5, 5, 5, 5], [6, 3, 6, 3]]
     res = Solution.areSimilar(self, grid, 2)
     print(f', {res}')
+
+
+def Test_2839(self=None):
+    grid = [[1, 2, 1, 2], [5, 5, 5, 5], [6, 3, 6, 3]]
+    res = Solution.canBeEqual(self, "abcd", "cdab")
+    print(f', {res}')

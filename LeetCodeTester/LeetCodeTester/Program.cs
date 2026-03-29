@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2946();
+                Test_2839();
             }
             catch(Exception ex)
             {
@@ -1301,6 +1301,13 @@ namespace LeetCodeTester
         {
             var grid = JsonConvert.DeserializeObject<int[][]>("[[2,4],[9,8]]");
             var res = solution.AreSimilar(grid, 9);
+        }
+
+        static void Test_2839()
+        {
+            var s1 = "abcd";
+            var s2 = "cdab";
+            var res = solution.CanBeEqual(s1, s2);
         }
 
     }
