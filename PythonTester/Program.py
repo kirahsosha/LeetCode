@@ -388,3 +388,11 @@ def Test_2839(self=None):
 def Test_2840(self=None):
     res = Solution.checkStrings(self, "abcdba", "cdabab")
     print(f', {res}')
+
+
+def Test_2751(self=None):
+    positions = [3, 5, 2, 6]
+    healths = [10, 10, 15, 12]
+    directions = "RLRL"
+    res = Solution.survivedRobotsHealths(self, positions, healths, directions)
+    print(f', {res}')

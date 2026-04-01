@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2840();
+                Test_2751();
             }
             catch(Exception ex)
             {
@@ -1315,6 +1315,14 @@ namespace LeetCodeTester
             var s1 = "abcdba";
             var s2 = "cabdab";
             var res = solution.CheckStrings(s1, s2);
+        }
+
+        static void Test_2751()
+        {
+            int[] positions = JsonConvert.DeserializeObject<int[]>("[3,5,2,6]");
+            int[] healths = JsonConvert.DeserializeObject<int[]>("[10,10,15,12]");
+            string directions = "RLRL";
+            var res = solution.SurvivedRobotsHealths(positions, healths, directions);
         }
 
     }

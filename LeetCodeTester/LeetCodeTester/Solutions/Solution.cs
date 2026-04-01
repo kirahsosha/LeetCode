@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Net.WebSockets;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -5817,7 +5819,7 @@ namespace LeetCodeTester.Solutions
         {
             var n = nums.Length;
             var res = new char[n];
-            for(var i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 res[i] = nums[i][i] == '0' ? '1' : '0';
             }
@@ -5998,11 +6000,11 @@ namespace LeetCodeTester.Solutions
             var nonZeros = new int[n]; // 避免在循环内反复申请内存
             var res = 0;
 
-            foreach(var row in matrix)
+            foreach (var row in matrix)
             {
                 int p = 0;
                 int q = 0;
-                foreach(var j in idx)
+                foreach (var j in idx)
                 {
                     if (row[j] == 0)
                     {
@@ -6185,9 +6187,9 @@ namespace LeetCodeTester.Solutions
                 }
             }
 
-            for (var i = n-1; i >=0; i--)
+            for (var i = n - 1; i >= 0; i--)
             {
-                for (var j = m-1; j >=0; j--)
+                for (var j = m - 1; j >= 0; j--)
                 {
                     right[i * m + j] = right[i * m + j + 1] * grid[i][j] % mod;
                 }
@@ -6327,6 +6329,68 @@ namespace LeetCodeTester.Solutions
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// [2751] 机器人碰撞
+        /// </summary>
+        /// <param name="positions"></param>
+        /// <param name="healths"></param>
+        /// <param name="directions"></param>
+        /// <returns></returns>
+        public IList<int> SurvivedRobotsHealths(int[] positions, int[] healths, string directions)
+        {
+            var n = positions.Length;
+            var order = new int[n];
+            for (var i = 0; i < n; i++)
+            {
+                order[i] = i;
+            }
+
+            Array.Sort(order, (a, b) => positions[a].CompareTo(positions[b]));
+
+            var rightStack = new Stack<int>();
+            foreach (var i in order)
+            {
+                if (directions[i] == 'R')
+                {
+                    rightStack.Push(i);
+                    continue;
+                }
+
+                while (rightStack.Count > 0 && healths[i] > 0)
+                {
+                    var j = rightStack.Peek();
+                    if (healths[j] < healths[i])
+                    {
+                        rightStack.Pop();
+                        healths[i]--;
+                        healths[j] = 0;
+                    }
+                    else if (healths[j] > healths[i])
+                    {
+                        healths[j]--;
+                        healths[i] = 0;
+                    }
+                    else
+                    {
+                        rightStack.Pop();
+                        healths[j] = 0;
+                        healths[i] = 0;
+                    }
+                }
+            }
+
+            var ans = new List<int>();
+            for (var i = 0; i < n; i++)
+            {
+                if (healths[i] > 0)
+                {
+                    ans.Add(healths[i]);
+                }
+            }
+
+            return ans;
         }
     }
 }
