@@ -28,9 +28,9 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2751();
+                Test_3418();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
@@ -43,15 +43,15 @@ namespace LeetCodeTester
 
         static void Test_443()
         {
-            string[] strings = new string[] { "1", "aabbccc", "abbccc", "abbbbbbbbbbbbbbbbsssssssssaaaaaaaa",".d,m012,-0f90f2,........" };
-            foreach(var s in strings)
+            string[] strings = new string[] { "1", "aabbccc", "abbccc", "abbbbbbbbbbbbbbbbsssssssssaaaaaaaa", ".d,m012,-0f90f2,........" };
+            foreach (var s in strings)
             {
                 var chars = s.ToArray();
                 var ans = solution.Compress(chars);
                 System.Console.WriteLine(ans.ToString());
                 System.Console.WriteLine(chars);
             }
-            
+
         }
 
         static void Test_457()
@@ -103,12 +103,12 @@ namespace LeetCodeTester
                 new int[]{ 2, 2, 2, 0, 0 },
                 new int[]{ 1, 3, 3, 0, 1 }
             };
-            for(int i = 0; i < nums.Length; i++)
+            for (int i = 0; i < nums.Length; i++)
             {
                 var ans = solution.FindPaths(nums[i][0], nums[i][1], nums[i][2], nums[i][3], nums[i][4]);
                 System.Console.WriteLine(ans.ToString());
             }
-            
+
         }
 
         static void Test_787()
@@ -272,7 +272,7 @@ namespace LeetCodeTester
 
         static void Test_Q2()
         {
-            var nums = new int[] {1,2,3,4,5};
+            var nums = new int[] { 1, 2, 3, 4, 5 };
             var ans = solution.SubsequenceSumAfterCapping(nums, 3);
         }
 
@@ -640,7 +640,7 @@ namespace LeetCodeTester
             //var values = new int[] { 1, 8, 1, 4, 4 };
             //var k = 6;
             var n = 1;
-            var edges = new int[][] {};
+            var edges = new int[][] { };
             var values = new int[] { 0 };
             var k = 1;
             var res = solution.MaxKDivisibleComponents(n, edges, values, k);
@@ -773,7 +773,7 @@ namespace LeetCodeTester
         {
             var prices = new int[] { 4, 2, 8 };
             var strategy = new int[] { -1, 0, 1 };
-            var res = solution.MaxProfit(prices, strategy,2);
+            var res = solution.MaxProfit(prices, strategy, 2);
         }
 
         static void Test_2092()
@@ -1319,10 +1319,17 @@ namespace LeetCodeTester
 
         static void Test_2751()
         {
-            int[] positions = JsonConvert.DeserializeObject<int[]>("[3,5,2,6]");
-            int[] healths = JsonConvert.DeserializeObject<int[]>("[10,10,15,12]");
-            string directions = "RLRL";
+            var positions = JsonConvert.DeserializeObject<int[]>("[3,5,2,6]");
+            var healths = JsonConvert.DeserializeObject<int[]>("[10,10,15,12]");
+            var directions = "RLRL";
             var res = solution.SurvivedRobotsHealths(positions, healths, directions);
+        }
+
+
+        static void Test_3418()
+        {
+            var coins = JsonConvert.DeserializeObject<int[][]>("[[6,-14,6],[-17,-16,17],[4,4,-6]]");
+            var res = solution.MaximumAmount(coins);
         }
 
     }
