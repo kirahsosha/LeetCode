@@ -998,7 +998,7 @@ namespace LeetCodeTester.Solutions
                         dp[i, j, 0] = Math.Max(maxVal, minVal);
                         dp[i, j, 1] = Math.Min(maxVal, minVal);
                     }
-                    else if(grid[i][j] > 0)
+                    else if (grid[i][j] > 0)
                     {
                         var maxVal = Math.Max(dp[i - 1, j, 0], dp[i, j - 1, 0]) * grid[i][j];
                         var minVal = Math.Min(dp[i - 1, j, 1], dp[i, j - 1, 1]) * grid[i][j];
@@ -1104,6 +1104,104 @@ namespace LeetCodeTester.Solutions
 
                 var last = cols - 1;
                 return Math.Max(dp0[last], Math.Max(dp1[last], dp2[last]));
+            }
+        }
+
+        /// <summary>
+        /// [3661] 可以被机器人摧毁的最大墙壁数目
+        /// </summary>
+        /// <param name="robots"></param>
+        /// <param name="distance"></param>
+        /// <param name="walls"></param>
+        /// <returns></returns>
+        public int MaxWalls(int[] robots, int[] distance, int[] walls)
+        {
+            Array.Sort(walls);
+            int n = robots.Length;
+            if (n == 0)
+            {
+                return 0;
+            }
+
+            int[] idx = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                idx[i] = i;
+            }
+            Array.Sort(idx, (a, b) => robots[a].CompareTo(robots[b]));
+
+            int[,] dp = new int[n, 2];
+
+            for (int i = 0; i < n; i++)
+            {
+                int pos = robots[idx[i]];
+                int dist = distance[idx[i]];
+                int origLeft = pos - dist;
+                int origRight = pos + dist;
+
+                if (i == 0)
+                {
+                    int rightBound = origRight;
+                    if (n > 1)
+                    {
+                        rightBound = Math.Min(origRight, robots[idx[i + 1]] - 1);
+                    }
+                    dp[i, 0] = CountWalls(walls, origLeft, pos);
+                    dp[i, 1] = CountWalls(walls, pos, rightBound);
+                }
+                else
+                {
+                    int prevPos = robots[idx[i - 1]];
+                    int prevDist = distance[idx[i - 1]];
+                    int prevOrigRight = prevPos + prevDist;
+
+                    int leftBound = Math.Max(origLeft, prevPos + 1);
+                    int rightBound = origRight;
+                    if (i < n - 1)
+                    {
+                        rightBound = Math.Min(origRight, robots[idx[i + 1]] - 1);
+                    }
+
+                    int breakLeftFromLeft = CountWalls(walls, leftBound, pos);
+                    int prevActualRight = Math.Min(prevOrigRight, pos - 1);
+                    int breakLeftFromRight = CountWalls(walls, Math.Max(leftBound, prevActualRight + 1), pos);
+                    dp[i, 0] = Math.Max(dp[i - 1, 0] + breakLeftFromLeft, dp[i - 1, 1] + breakLeftFromRight);
+
+                    int breakRightFromLeft = CountWalls(walls, pos, rightBound);
+                    int breakRightFromRight = CountWalls(walls, Math.Max(pos, prevActualRight + 1), rightBound);
+                    dp[i, 1] = Math.Max(dp[i - 1, 0] + breakRightFromLeft, dp[i - 1, 1] + breakRightFromRight);
+                }
+            }
+
+            return Math.Max(dp[n - 1, 0], dp[n - 1, 1]);
+
+            int CountWalls(int[] walls, int left, int right)
+            {
+                if (left > right)
+                {
+                    return 0;
+                }
+                int l = LowerBound(walls, left);
+                int r = LowerBound(walls, right + 1);
+                return r - l;
+            }
+
+            int LowerBound(int[] arr, int target)
+            {
+                int left = 0, right = arr.Length;
+                while (left < right)
+                {
+                    int mid = left + (right - left) / 2;
+                    if (arr[mid] < target)
+                    {
+                        left = mid + 1;
+                    }
+                    else
+                    {
+                        right = mid;
+                    }
+                }
+                return left;
             }
         }
     }

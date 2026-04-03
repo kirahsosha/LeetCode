@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3418();
+                Test_3661();
             }
             catch (Exception ex)
             {
@@ -1332,5 +1332,12 @@ namespace LeetCodeTester
             var res = solution.MaximumAmount(coins);
         }
 
+        static void Test_3661()
+        {
+            var robots = JsonConvert.DeserializeObject<int[]>("[10,2]");
+            var distance = JsonConvert.DeserializeObject<int[]>("[5,1]");
+            var walls = JsonConvert.DeserializeObject<int[]>("[5,2,7]");
+            var res = solution.MaxWalls(robots,distance, walls);
+        }
     }
 }

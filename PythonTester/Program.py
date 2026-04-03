@@ -402,3 +402,9 @@ def Test_3418(self=None):
     coins = [[6, -14, 6], [-17, -16, 17], [4, 4, -6]]
     res = Solution.maximumAmount(self, coins)
     print(f', {res}')
+
+
+def Test_3661(self=None):
+    coins = [[6, -14, 6], [-17, -16, 17], [4, 4, -6]]
+    res = Solution.maxWalls(self, coins)
+    print(f', {res}')
