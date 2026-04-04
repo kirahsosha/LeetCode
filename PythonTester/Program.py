@@ -408,3 +408,12 @@ def Test_3661(self=None):
     coins = [[6, -14, 6], [-17, -16, 17], [4, 4, -6]]
     res = Solution.maxWalls(self, coins)
     print(f', {res}')
+
+
+def Test_2087(self=None):
+    startPos = [1, 0]
+    homePos = [2, 3]
+    rowCosts = [5, 4, 3]
+    colCosts = [8, 2, 6, 7]
+    res = Solution.minCost(self, startPos, homePos, rowCosts, colCosts)
+    print(f', {res}')

@@ -28,7 +28,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3661();
+                Test_2087();
             }
             catch (Exception ex)
             {
@@ -1338,6 +1338,15 @@ namespace LeetCodeTester
             var distance = JsonConvert.DeserializeObject<int[]>("[5,1]");
             var walls = JsonConvert.DeserializeObject<int[]>("[5,2,7]");
             var res = solution.MaxWalls(robots,distance, walls);
+        }
+
+        static void Test_2087()
+        {
+            var startPos = JsonConvert.DeserializeObject<int[]>("[1,0]");
+            var homePos = JsonConvert.DeserializeObject<int[]>("[2,3]");
+            var rowCosts = JsonConvert.DeserializeObject<int[]>("[5,4,3]");
+            var colCosts = JsonConvert.DeserializeObject<int[]>("[8,2,6,7]");
+            var res = solution.MinCost(startPos, homePos, rowCosts, colCosts);
         }
     }
 }
