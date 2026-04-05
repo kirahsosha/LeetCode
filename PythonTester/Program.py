@@ -417,3 +417,9 @@ def Test_2087(self=None):
     colCosts = [8, 2, 6, 7]
     res = Solution.minCost(self, startPos, homePos, rowCosts, colCosts)
     print(f', {res}')
+
+
+def Test_657(self=None):
+    moves = "LRUD"
+    res = Solution.judgeCircle(self, moves)
+    print(f', {res}')

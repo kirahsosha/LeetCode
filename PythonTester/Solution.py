@@ -1497,3 +1497,19 @@ def minCost(self, startPos: List[int], homePos: List[int], rowCosts: List[int], 
         for j in range(sc - 1, hc - 1, -1):
             cost += colCosts[j]
     return cost
+
+
+# [657] 机器人能否返回原点
+def judgeCircle(self, moves: str) -> bool:
+    ver = 0
+    hor = 0
+    for move in moves:
+        if move == 'U':
+            ver += 1
+        elif move == 'D':
+            ver -= 1
+        elif move == 'L':
+            hor -= 1
+        else:
+            hor += 1
+    return ver == 0 and hor == 0

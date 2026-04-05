@@ -1,10 +1,11 @@
-﻿using LeetCodeTester.Solutions;
+﻿using Autofac;
+using LeetCodeTester.Solutions;
+using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.DependencyInjection;
-using Autofac;
+using static LeetCodeTester.Solutions.MovieRentingSystem;
 
 namespace LeetCodeTester
 {
@@ -28,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2087();
+                Test_657();
             }
             catch (Exception ex)
             {
@@ -1325,7 +1326,6 @@ namespace LeetCodeTester
             var res = solution.SurvivedRobotsHealths(positions, healths, directions);
         }
 
-
         static void Test_3418()
         {
             var coins = JsonConvert.DeserializeObject<int[][]>("[[6,-14,6],[-17,-16,17],[4,4,-6]]");
@@ -1348,5 +1348,12 @@ namespace LeetCodeTester
             var colCosts = JsonConvert.DeserializeObject<int[]>("[8,2,6,7]");
             var res = solution.MinCost(startPos, homePos, rowCosts, colCosts);
         }
+
+        static void Test_657()
+        {
+            var moves = "UDLR";
+            var res = solution.JudgeCircle(moves);
+        }
+
     }
 }

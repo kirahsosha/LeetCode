@@ -6423,5 +6423,35 @@ namespace LeetCodeTester.Solutions
             }
             return cost;
         }
+
+        /// <summary>
+        /// [657] 机器人能否返回原点
+        /// </summary>
+        /// <param name="moves"></param>
+        /// <returns></returns>
+        public bool JudgeCircle(string moves)
+        {
+            var ver = 0;
+            var hor = 0;
+            foreach (var move in moves)
+            {
+                switch (move)
+                {
+                    case 'U':
+                        ver++;
+                        break;
+                    case 'D':
+                        ver--;
+                        break;
+                    case 'L':
+                        hor--;
+                        break;
+                    case 'R':
+                        hor++;
+                        break;
+                }
+            }
+            return ver == 0 && hor == 0;
+        }
     }
 }
