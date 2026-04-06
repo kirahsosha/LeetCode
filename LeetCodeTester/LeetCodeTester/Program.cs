@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_657();
+                Test_874();
             }
             catch (Exception ex)
             {
@@ -1353,6 +1353,13 @@ namespace LeetCodeTester
         {
             var moves = "UDLR";
             var res = solution.JudgeCircle(moves);
+        }
+
+        static void Test_874()
+        {
+            var commands = JsonConvert.DeserializeObject<int[]>("[4,-1,4,-2,4]");
+            var obstacles = JsonConvert.DeserializeObject<int[][]>("[[2,4]]");
+            var res = solution.RobotSim(commands, obstacles);
         }
 
     }

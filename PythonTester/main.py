@@ -2,7 +2,7 @@ import Program
 
 
 def runTest():
-    Program.Test_657()
+    Program.Test_874()
 
 
 # 按装订区域中的绿色按钮以运行脚本。

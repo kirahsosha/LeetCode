@@ -423,3 +423,10 @@ def Test_657(self=None):
     moves = "LRUD"
     res = Solution.judgeCircle(self, moves)
     print(f', {res}')
+
+
+def Test_874(self=None):
+    commands = [4, -1, 4, -2, 4]
+    obstacles = [[2, 4]]
+    res = Solution.robotSim(self, commands, obstacles)
+    print(f', {res}')
