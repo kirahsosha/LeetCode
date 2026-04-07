@@ -1,4 +1,4 @@
-["Robot","getDir","step","step","getPos","getDir","step","step","getDir","step","getPos","getDir","step","getPos","getDir"]
-[[6,3],[],[2],[2],[],[],[2],[1],[],[4],[],[],[3],[],[]]
-["Robot","step","step","getPos","getDir","step","getPos","getDir","getPos","getDir"]
-[[20,13],[12],[21],[],[],[17],[],[],[],[]]
+[1,1,1]
+[[0,2,1,4]]
+[2,3,1,5,4]
+[[1,4,2,3],[0,2,1,2]]
