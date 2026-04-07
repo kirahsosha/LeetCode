@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_874();
+                Test_2069();
             }
             catch (Exception ex)
             {
@@ -1360,6 +1360,24 @@ namespace LeetCodeTester
             var commands = JsonConvert.DeserializeObject<int[]>("[4,-1,4,-2,4]");
             var obstacles = JsonConvert.DeserializeObject<int[][]>("[[2,4]]");
             var res = solution.RobotSim(commands, obstacles);
+        }
+
+
+        static void Test_2069()
+        {
+            Robot robot = new Robot(6, 3); // 初始化网格图，机器人在 (0, 0) ，朝东。
+            robot.Step(2);  // 机器人朝东移动 2 步，到达 (2, 0) ，并朝东。
+            robot.Step(2);  // 机器人朝东移动 2 步，到达 (4, 0) ，并朝东。
+            robot.GetPos(); // 返回 [4, 0]
+            robot.GetDir(); // 返回 "East"
+            robot.Step(2);  // 朝东移动 1 步到达 (5, 0) ，并朝东。
+                            // 下一步继续往东移动将出界，所以逆时针转变方向朝北。
+                            // 然后，往北移动 1 步到达 (5, 1) ，并朝北。
+            robot.Step(1);  // 朝北移动 1 步到达 (5, 2) ，并朝 北 （不是朝西）。
+            robot.Step(4);  // 下一步继续往北移动将出界，所以逆时针转变方向朝西。
+                            // 然后，移动 4 步到 (1, 2) ，并朝西。
+            robot.GetPos(); // 返回 [1, 2]
+            robot.GetDir(); // 返回 "West"
         }
 
     }

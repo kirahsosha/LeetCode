@@ -1,4 +1,5 @@
 import Solution
+import TestClasses
 from Model import TreeNode
 
 
@@ -430,3 +431,16 @@ def Test_874(self=None):
     obstacles = [[2, 4]]
     res = Solution.robotSim(self, commands, obstacles)
     print(f', {res}')
+
+
+def Test_2069(self=None):
+    robot = TestClasses.Robot(6, 3)  # 初始化网格图，机器人在(0, 0)，朝东。
+    robot.step(2)  # 机器人朝东移动2步，到达(2, 0)，并朝东。
+    robot.step(2)  # 机器人朝东移动2步，到达(4, 0)，并朝东。
+    robot.getPos()  # 返回[4, 0]
+    robot.getDir()  # 返回"East"
+    robot.step(2)  # 朝东移动1步到达(5, 0)，并朝东。下一步继续往东移动将出界，所以逆时针转变方向朝北。然后，往北移动1步到达(5, 1)，并朝北。
+    robot.step(1)  # 朝北移动1步到达(5, 2)，并朝北（不是朝西）。
+    robot.step(4)  # 下一步继续往北移动将出界，所以逆时针转变方向朝西。然后，移动4步到(1, 2)，并朝西。
+    robot.getPos()  # 返回[1, 2]
+    robot.getDir()  # 返回"West"
