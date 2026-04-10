@@ -444,3 +444,9 @@ def Test_2069(self=None):
     robot.step(4)  # 下一步继续往北移动将出界，所以逆时针转变方向朝西。然后，移动4步到(1, 2)，并朝西。
     robot.getPos()  # 返回[1, 2]
     robot.getDir()  # 返回"West"
+
+
+def Test_3740(self=None):
+    nums = [4, 1, 4, 2, 4]
+    res = Solution.minimumDistance(self, nums)
+    print(f', {res}')

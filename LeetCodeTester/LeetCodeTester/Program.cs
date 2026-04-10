@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2069();
+                Test_3740();
             }
             catch (Exception ex)
             {
@@ -1362,7 +1362,6 @@ namespace LeetCodeTester
             var res = solution.RobotSim(commands, obstacles);
         }
 
-
         static void Test_2069()
         {
             Robot robot = new Robot(6, 3); // 初始化网格图，机器人在 (0, 0) ，朝东。
@@ -1378,6 +1377,12 @@ namespace LeetCodeTester
                             // 然后，移动 4 步到 (1, 2) ，并朝西。
             robot.GetPos(); // 返回 [1, 2]
             robot.GetDir(); // 返回 "West"
+        }
+
+        static void Test_3740()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[4,1,4,2,4]");
+            var res = solution.MinimumDistance(nums);
         }
 
     }
