@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
@@ -345,7 +346,7 @@ namespace LeetCodeTester.Solutions
             var dic = new Dictionary<string, int>();
             foreach (var word in words)
             {
-                if(word.Length < k)
+                if (word.Length < k)
                 {
                     continue;
                 }
@@ -384,8 +385,8 @@ namespace LeetCodeTester.Solutions
 
             for (var i = 1; i < n; i++)
             {
-                dp[i,0] = Math.Max(dp[i - 1, 0], dp[i - 1, 1]);
-                if (colors[i-1] == colors[i])
+                dp[i, 0] = Math.Max(dp[i - 1, 0], dp[i - 1, 1]);
+                if (colors[i - 1] == colors[i])
                 {
                     dp[i, 1] = dp[i - 1, 0] + nums[i];
                 }
@@ -572,7 +573,7 @@ namespace LeetCodeTester.Solutions
         public int MinCost(int n)
         {
             var res = 0;
-            if(n == 1)
+            if (n == 1)
             {
                 return res;
             }
@@ -685,6 +686,184 @@ namespace LeetCodeTester.Solutions
                 }
             }
             return result;
+        }
+
+        /// <summary>
+        /// B180-Q1. 交通信号灯的颜色
+        /// </summary>
+        /// <param name="timer"></param>
+        /// <returns></returns> <summary>
+        public string TrafficSignal(int timer)
+        {
+            if (timer == 0)
+            {
+                return "Green";
+            }
+            else if (timer == 30)
+            {
+                return "Orange";
+            }
+            else if (30 < timer && timer <= 90)
+            {
+                return "Red";
+            }
+            else
+            {
+                return "Invalid";
+            }
+        }
+
+        /// <summary>
+        /// B180-Q2. 统计数字出现总次数©leetcode
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="digit"></param>
+        /// <returns></returns> <summary>
+        public int CountDigitOccurrences(int[] nums, int digit)
+        {
+            var ans = 0;
+            foreach (var num in nums)
+            {
+                int n = num;
+                while (n > 0)
+                {
+                    if (n % 10 == digit)
+                    {
+                        ans++;
+                    }
+                    n /= 10;
+                }
+            }
+            return ans;
+        }
+
+        /// <summary>
+        /// B180-Q3. 将数组转变为交替素数数组的最少操作次数©leetcode
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int MinOperationsPrime(int[] nums)
+        {
+            var maxInNums = nums.Max();
+            var sieveSize = Math.Min(maxInNums + 100, 100100);
+
+            var isPrime = new BitArray(sieveSize + 1);
+            isPrime.Set(0, false);
+            isPrime.Set(1, false);
+            for (int i = 2; i <= sieveSize; i++)
+            {
+                isPrime.Set(i, true);
+            }
+
+            for (int i = 2; i * i <= sieveSize; i++)
+            {
+                if (isPrime.Get(i))
+                {
+                    for (int j = i * i; j <= sieveSize; j += i)
+                    {
+                        isPrime.Set(j, false);
+                    }
+                }
+            }
+
+            var nextPrime = new int[sieveSize + 1];
+            var lastPrime = -1;
+            for (int i = sieveSize; i >= 0; i--)
+            {
+                if (isPrime.Get(i))
+                {
+                    lastPrime = i;
+                }
+                nextPrime[i] = lastPrime;
+            }
+
+            var ans = 0;
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    ans += nextPrime[nums[i]] - nums[i];
+                }
+                else
+                {
+                    if (isPrime.Get(nums[i]))
+                    {
+                        if (nums[i] == 2)
+                        {
+                            ans += 2;
+                        }
+                        else
+                        {
+                            ans += 1;
+                        }
+                    }
+                }
+            }
+
+            return ans;
+        }
+
+        /// <summary>
+        /// Q4. 连接二进制片段得到的最大值©leetcode
+        /// </summary>
+        /// <param name="nums1"></param>
+        /// <param name="nums0"></param>
+        /// <returns></returns>
+        public int MaxValue(int[] nums1, int[] nums0)
+        {
+            var n = nums1.Length;
+            //const int MOD = 1000000007;
+
+            var pieces = new (int ones, int zeros)[n];
+            for (int i = 0; i < n; i++)
+            {
+                pieces[i] = (nums1[i], nums0[i]);
+            }
+
+            // 按 1 的数量降序，1 的数量相同时按 0 的数量升序排序
+            Array.Sort(pieces, (a, b) =>
+            {
+                if (a.ones != b.ones) return b.ones.CompareTo(a.ones);
+                return a.zeros.CompareTo(b.zeros);
+            });
+
+            // 计算总位数
+            long totalBits = 0;
+            foreach (var item in pieces)
+            {
+                totalBits += item.ones + item.zeros;
+            }
+
+            // 预处理 2 的幂次 (mod MOD)
+            var maxBit = (int)totalBits;
+            var pow2 = new long[maxBit + 2];
+            pow2[0] = 1;
+            for (int i = 1; i <= maxBit + 1; i++)
+            {
+                pow2[i] = pow2[i - 1] * 2 % MOD;
+            }
+
+            // 计算结果
+            long result = 0;
+            long processed = 0; // 已经处理的位数（在当前片段右侧）
+
+            foreach (var item in pieces)
+            {
+                var ones = item.ones;
+                var zeros = item.zeros;
+
+                // 当前片段的 1 位于从 processed + zeros 到 processed + zeros + ones - 1 的位置（从右数，0-indexed）
+                long left = processed + zeros; // 最低位的 1 的位置
+                long right = processed + zeros + ones - 1; // 最高位的 1 的位置
+
+                // 连续 1 段的值: 2^left + 2^(left+1) + ... + 2^right = 2^(right+1) - 2^left
+                long contribution = (pow2[right + 1] - pow2[left] + MOD) % MOD;
+                result = (result + contribution) % MOD;
+
+                processed += ones + zeros;
+            }
+
+            return (int)result;
         }
     }
 }
