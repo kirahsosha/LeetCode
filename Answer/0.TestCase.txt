@@ -1,3 +1,7 @@
 ""aaAbcBC"
 "abc"
-"abBCab""
+"abBCab"
+"aaAbcBCabc"
+"abcABCabc"
+"AbBCabdD"
+"AbcbDBdD""
