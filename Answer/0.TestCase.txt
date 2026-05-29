@@ -1,7 +1,3 @@
-""aaAbcBC"
-"abc"
-"abBCab"
-"aaAbcBCabc"
-"abcABCabc"
-"AbBCabdD"
-"AbcbDBdD""
+[10,12,13,14]
+[1,2,3,4]
+[999,19,199]
