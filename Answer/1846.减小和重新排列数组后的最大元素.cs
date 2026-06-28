@@ -5,21 +5,17 @@
  */
 
 // @lc code=start
-public class Solution {
-    public int MaximumElementAfterDecrementingAndRearranging(int[] arr) {
-        if (arr.Length == 1) return 1;
-            int t = 0;
-            arr = arr.OrderBy(p => p).ToArray();
-            for(int i = 0; i < arr.Length; i++)
-            {
-                if(arr[i] > t + 1)
-                {
-                    arr[i] = t + 1;
-                }
-                t = arr[i];
-            }
-            return t;
+public class Solution
+{
+    public int MaximumElementAfterDecrementingAndRearranging(int[] arr)
+    {
+        Array.Sort(arr);
+        int prev = 0;
+        foreach (int x in arr)
+        {
+            prev = Math.Min(x, prev + 1);
+        }
+        return prev;
     }
 }
 // @lc code=end
-
