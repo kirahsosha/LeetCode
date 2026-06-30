@@ -1,6 +1,4 @@
-["a","abc","bc","d"]
+""abcabc"
+"aaacb"
 "abc"
-["a","b","c"]
-"aaaaabbbbb"
-["a","a","a"]
-"ab"
+"aabccbaabcc""
