@@ -714,7 +714,7 @@ namespace LeetCodeTester.Solutions
         }
 
         /// <summary>
-        /// B180-Q2. 统计数字出现总次数©leetcode
+        /// B180-Q2. 统计数字出现总次数
         /// </summary>
         /// <param name="nums"></param>
         /// <param name="digit"></param>
@@ -738,7 +738,7 @@ namespace LeetCodeTester.Solutions
         }
 
         /// <summary>
-        /// B180-Q3. 将数组转变为交替素数数组的最少操作次数©leetcode
+        /// B180-Q3. 将数组转变为交替素数数组的最少操作次数
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
@@ -804,7 +804,7 @@ namespace LeetCodeTester.Solutions
         }
 
         /// <summary>
-        /// Q4. 连接二进制片段得到的最大值©leetcode
+        /// B180-Q4. 连接二进制片段得到的最大值
         /// </summary>
         /// <param name="nums1"></param>
         /// <param name="nums0"></param>
@@ -865,5 +865,99 @@ namespace LeetCodeTester.Solutions
 
             return (int)result;
         }
+
+        /// <summary>
+        /// B186-Q1. 唯一中间元素
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public bool IsMiddleElementUnique(int[] nums)
+        {
+            var n = nums.Length;
+            var mid = n / 2;
+            for (int i = 1; i <= mid; i++)
+            {
+                if (nums[mid - i] == nums[mid] || nums[mid + i] == nums[mid])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Q2. 最大有效数对和
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int MaxValidPairSum(int[] nums, int k)
+        {
+            var n = nums.Length;
+            var ans = 0;
+            int max = 0;
+
+            for (int j = k; j < n; j++)
+            {
+                max = Math.Max(max, nums[j - k]);
+                ans = Math.Max(ans, max + nums[j]);
+            }
+            return ans;
+        }
+
+        /// <summary>
+        /// Q3. 变换二进制字符串的最少操作次数
+        /// </summary>
+        /// <param name="s1"></param>
+        /// <param name="s2"></param>
+        /// <returns></returns>
+        public int MinOperations(string s1, string s2)
+        {
+            int n = s1.Length;
+            if (n == 1)
+            {
+                if (s1[0] == s2[0]) return 0;
+                if (s1[0] == '0' && s2[0] == '1') return 1;
+                return -1;
+            }
+
+            int ans = 0;
+            int i = 0;
+            while (i < n)
+            {
+                if (s1[i] == '0' && s2[i] == '1')
+                {
+                    ans++;
+                    i++;
+                }
+                else if (s1[i] == '1' && s2[i] == '0')
+                {
+                    int len = 0;
+                    while (i < n && s1[i] == '1' && s2[i] == '0')
+                    {
+                        len++;
+                        i++;
+                    }
+                    ans += len / 2 + 2 * (len % 2);
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            return ans;
+        }
+
+        /// <summary>
+        /// Q4. 统计从两个字符串形成目标字符串的不同方案数
+        /// </summary>
+        /// <param name="word1"></param>
+        /// <param name="word2"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        //public int InterleaveCharacters(string word1, string word2, string target)
+        //{
+
+        //}
     }
 }

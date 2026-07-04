@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3740();
+                Test_2492();
             }
             catch (Exception ex)
             {
@@ -1383,6 +1383,13 @@ namespace LeetCodeTester
         {
             var nums = JsonConvert.DeserializeObject<int[]>("[4,1,4,2,4]");
             var res = solution.MinimumDistance(nums);
+        }
+
+        static void Test_2492()
+        {
+            var n = 4;
+            var roads = JsonConvert.DeserializeObject<int[][]>("[[1,2,9],[2,3,1],[2,4,5],[1,4,7]]");
+            var res = solution.MinScore(n, roads);
         }
 
     }
