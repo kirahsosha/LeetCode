@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2492();
+                Test_1288();
             }
             catch (Exception ex)
             {
@@ -1390,6 +1390,12 @@ namespace LeetCodeTester
             var n = 4;
             var roads = JsonConvert.DeserializeObject<int[][]>("[[1,2,9],[2,3,1],[2,4,5],[1,4,7]]");
             var res = solution.MinScore(n, roads);
+        }
+
+        static void Test_1288()
+        {
+            var intervals = JsonConvert.DeserializeObject<int[][]>("[[1,4],[3,6],[2,8],[1,4],[1,5],[2,4],[2,5],[3,8],[3,9]]");
+            var res = solution.RemoveCoveredIntervals(intervals);
         }
 
     }

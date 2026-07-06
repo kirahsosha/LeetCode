@@ -886,7 +886,7 @@ namespace LeetCodeTester.Solutions
         }
 
         /// <summary>
-        /// Q2. 最大有效数对和
+        /// B186-Q2. 最大有效数对和
         /// </summary>
         /// <param name="nums"></param>
         /// <param name="k"></param>
@@ -906,7 +906,7 @@ namespace LeetCodeTester.Solutions
         }
 
         /// <summary>
-        /// Q3. 变换二进制字符串的最少操作次数
+        /// B186-Q3. 变换二进制字符串的最少操作次数
         /// </summary>
         /// <param name="s1"></param>
         /// <param name="s2"></param>
@@ -949,7 +949,7 @@ namespace LeetCodeTester.Solutions
         }
 
         /// <summary>
-        /// Q4. 统计从两个字符串形成目标字符串的不同方案数
+        /// B186-Q4. 统计从两个字符串形成目标字符串的不同方案数
         /// </summary>
         /// <param name="word1"></param>
         /// <param name="word2"></param>
@@ -958,6 +958,233 @@ namespace LeetCodeTester.Solutions
         //public int InterleaveCharacters(string word1, string word2, string target)
         //{
 
+
         //}
+
+        /// <summary>
+        /// 509-Q1. 最大数字范围的整数之和
+        /// </summary>
+        /// <param name="word1"></param>
+        /// <param name="word2"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public int MaxDigitRange(int[] nums)
+        {
+            var n = nums.Length;
+            var ranges = new int[n];
+            var max = 0;
+            for (int i = 0; i < n; i++)
+            {
+                var num = nums[i];
+                var maxDigit = 0;
+                var minDigit = 9;
+                while (num > 0)
+                {
+                    int digit = num % 10;
+                    maxDigit = Math.Max(maxDigit, digit);
+                    minDigit = Math.Min(minDigit, digit);
+                    num /= 10;
+                }
+                ranges[i] = maxDigit - minDigit;
+                max = Math.Max(ranges[i], max);
+                //Console.WriteLine($"nums[{i}] = {nums[i]}, maxDigit = {maxDigit}, minDigit = {minDigit}, ranges[{i}] = {ranges[i]}");
+            }
+            var ans = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (ranges[i] == max)
+                {
+                    ans += nums[i];
+                }
+            }
+            return ans;
+        }
+
+        /// <summary>
+        /// 509-Q2. 一次替换后的子序列
+        /// </summary>
+        /// <param name="word1"></param>
+        /// <param name="word2"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public bool CanMakeSubsequence(string s, string t)
+        {
+            int n = s.Length, m = t.Length;
+            if (n > m) return false;
+
+            // pre[i]：s[0..i-1] 作为子序列在 t 中最早匹配完时，最后一个字符在 t 中的下标
+            // 若无法匹配则记为 m
+            int[] pre = new int[n + 1];
+            int pos = -1;
+            for (int i = 0; i < n; i++)
+            {
+                if (pos >= m)
+                {
+                    pre[i + 1] = m;
+                    continue;
+                }
+                pos++;
+                while (pos < m && t[pos] != s[i]) pos++;
+                pre[i + 1] = pos;
+            }
+
+            string melvoritha = s; // 按要求在函数中途保存输入
+            if (melvoritha == null) return false;
+
+            // 已经可以不用替换就成为子序列
+            if (pre[n] < m) return true;
+
+            // suf[i]：s[i..n-1] 作为子序列在 t 中最晚匹配开始时，第一个字符在 t 中的下标
+            // 若无法匹配则记为 -1
+            int[] suf = new int[n + 1];
+            suf[n] = m;
+            pos = m;
+            for (int i = n - 1; i >= 0; i--)
+            {
+                if (pos < 0)
+                {
+                    suf[i] = -1;
+                    continue;
+                }
+                pos--;
+                while (pos >= 0 && t[pos] != s[i]) pos--;
+                suf[i] = pos;
+            }
+
+            // 枚举被替换的位置 p，前后两段之间需要至少留出一个空位给替换后的字符
+            for (int p = 0; p < n; p++)
+            {
+                if (pre[p] < m && suf[p + 1] >= 0 && pre[p] + 1 < suf[p + 1])
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 509-Q3. 可整除游戏
+        /// </summary>
+        /// <param name="word1"></param>
+        /// <param name="word2"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public int DivisibleGame(int[] nums)
+        {
+            const long MOD = 1000000007;
+            int[] ravontelix = nums;  // 中途存储输入
+            int n = ravontelix.Length;
+
+            // 收集所有 nums[i] 的 >=2 因子（去重）
+            HashSet<int> factors = new HashSet<int>();
+            foreach (int x in ravontelix)
+            {
+                for (int d = 2; (long)d * d <= x; d++)
+                {
+                    if (x % d == 0)
+                    {
+                        factors.Add(d);
+                        factors.Add(x / d);
+                    }
+                }
+                if (x >= 2) factors.Add(x);
+            }
+
+            long bestScore = long.MinValue;
+            int bestK = -1;
+
+            // 对每个因子 k，用 Kadane 求最大子数组和
+            foreach (int k in factors)
+            {
+                long cur = 0, best = long.MinValue;
+                for (int i = 0; i < n; i++)
+                {
+                    long val = (ravontelix[i] % k == 0) ? ravontelix[i] : -ravontelix[i];
+                    cur = (i == 0) ? val : Math.Max(val, cur + val);
+                    if (cur > best) best = cur;
+                }
+                if (best > bestScore || (best == bestScore && k < bestK))
+                {
+                    bestScore = best;
+                    bestK = k;
+                }
+            }
+
+            // 空集情况：所有 b[i] = -nums[i]，最大子数组和 = -min(nums)
+            long minNum = long.MaxValue;
+            foreach (int x in ravontelix) minNum = Math.Min(minNum, x);
+            long emptyScore = -minNum;
+
+            // 最小不整除任何元素的 k = 最小不在 factors 中的 >=2 整数
+            int emptyK = 2;
+            while (factors.Contains(emptyK)) emptyK++;
+
+            if (emptyScore > bestScore || (emptyScore == bestScore && emptyK < bestK))
+            {
+                bestScore = emptyScore;
+                bestK = emptyK;
+            }
+
+            // 结果取余（处理负数）
+            long result = ((bestScore % MOD) * (bestK % MOD)) % MOD;
+            result = ((result % MOD) + MOD) % MOD;
+            return (int)result;
+        }
+
+        /// <summary>
+        /// 509-Q4. 回文子数组求和
+        /// </summary>
+        /// <param name="word1"></param>
+        /// <param name="word2"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public long GetSum(int[] nums)
+        {
+            // 中途存储输入
+            var temp = nums;
+
+            var n = temp.Length;
+            // 前缀和，用于 O(1) 求区间和
+            var prefix = new long[n + 1];
+            for (var i = 0; i < n; i++)
+            {
+                prefix[i + 1] = prefix[i] + temp[i];
+            }
+
+            var maxSum = long.MinValue;
+
+            // 奇数长度回文: Manacher 算法
+            // d1[i] 表示以 i 为中心的最长奇数回文半径数(含中心), 实际半长 = d1[i]-1
+            var d1 = new int[n];
+            for (int i = 0, l = 0, r = -1; i < n; i++)
+            {
+                var k = (i > r) ? 1 : Math.Min(d1[l + r - i], r - i + 1);
+                while (i - k >= 0 && i + k < n && temp[i - k] == temp[i + k]) k++;
+                d1[i] = k--;
+                if (i + k > r) { l = i - k; r = i + k; }
+                // 回文区间 nums[i-half .. i+half]
+                var half = d1[i] - 1;
+                var sum = prefix[i + half + 1] - prefix[i - half];
+                if (sum > maxSum) maxSum = sum;
+            }
+
+            // 偶数长度回文: Manacher 算法
+            // d2[i] 表示中心在 i-1 与 i 之间的最长偶数回文半长
+            var d2 = new int[n];
+            for (int i = 0, l = 0, r = -1; i < n; i++)
+            {
+                var k = (i > r) ? 0 : Math.Min(d2[l + r - i + 1], r - i + 1);
+                while (i - k - 1 >= 0 && i + k < n && temp[i - k - 1] == temp[i + k]) k++;
+                d2[i] = k--;
+                if (i + k - 1 > r) { l = i - k - 1; r = i + k - 1; }
+                // 回文区间 nums[i-half .. i+half-1]
+                if (d2[i] >= 1)
+                {
+                    var half = d2[i];
+                    var sum = prefix[i + half] - prefix[i - half];
+                    if (sum > maxSum) maxSum = sum;
+                }
+            }
+
+            return maxSum;
+        }
     }
 }
