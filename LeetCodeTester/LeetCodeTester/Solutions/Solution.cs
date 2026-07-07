@@ -6614,5 +6614,29 @@ namespace LeetCodeTester.Solutions
 
             return count;
         }
+
+        /// <summary>
+        /// [3754] 连接非零数字并乘以其数字和 I
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public long SumAndMultiply(int n)
+        {
+            var x = 0;
+            var sum = 0;
+            var digits = 0;
+            while (n > 0)
+            {
+                var d = n % 10;
+                if (d != 0)
+                {
+                    sum += d;
+                    x = d * (int)Math.Pow(10, digits) + x;
+                    digits++;
+                }
+                n /= 10;
+            }
+            return (long)x * sum;
+        }
     }
 }

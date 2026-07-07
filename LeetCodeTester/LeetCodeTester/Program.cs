@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1288();
+                Test_3754();
             }
             catch (Exception ex)
             {
@@ -1396,6 +1396,12 @@ namespace LeetCodeTester
         {
             var intervals = JsonConvert.DeserializeObject<int[][]>("[[1,4],[3,6],[2,8],[1,4],[1,5],[2,4],[2,5],[3,8],[3,9]]");
             var res = solution.RemoveCoveredIntervals(intervals);
+        }
+
+        static void Test_3754()
+        {
+            var n = 10203004;
+            var res = solution.SumAndMultiply(n);
         }
 
     }
