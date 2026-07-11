@@ -6622,21 +6622,174 @@ namespace LeetCodeTester.Solutions
         /// <returns></returns>
         public long SumAndMultiply(int n)
         {
-            var x = 0;
-            var sum = 0;
-            var digits = 0;
+            int x = 0;
+            int pow = 1;
+            int sum = 0;
             while (n > 0)
             {
-                var d = n % 10;
+                int d = n % 10;
                 if (d != 0)
                 {
+                    x += d * pow;
+                    pow *= 10;
                     sum += d;
-                    x = d * (int)Math.Pow(10, digits) + x;
-                    digits++;
                 }
                 n /= 10;
             }
             return (long)x * sum;
+        }
+
+        /// <summary>
+        /// [3756] 连接非零数字并乘以其数字和 II
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="queries"></param>
+        /// <returns></returns>
+        public int[] SumAndMultiply(string s, int[][] queries)
+        {
+            //var n = queries.Length;
+            //var nums = new int[s.Length];
+            //for (int i = 0; i < s.Length; i++)
+            //{
+            //    nums[i] = s[i] - '0';
+            //}
+            //var ans = new int[n];
+            //for (int i = 0; i < n; i++)
+            //{
+            //    var l = queries[i][0];
+            //    var r = queries[i][1];
+            //    long x = 0;
+            //    long sum = 0;
+            //    for (int j = l; j <= r; j++)
+            //    {
+            //        if (nums[j] == 0) continue;
+            //        x = (x * 10 + nums[j]) % MOD;
+            //        sum = (sum + nums[j]) % MOD;
+            //    }
+            //    ans[i] = (int)(x * sum % MOD);
+            //}
+            //return ans;
+
+            int n = s.Length;
+            int[] digits = new int[n];
+            int[] compIndex = new int[n];
+            int k = 0;
+            for (int i = 0; i < n; i++)
+            {
+                int d = s[i] - '0';
+                digits[i] = d;
+                compIndex[i] = d != 0 ? k++ : -1;
+            }
+
+            long[] pHash = new long[k + 1];
+            int[] pSum = new int[k + 1];
+            long[] pow10 = new long[k + 1];
+            pow10[0] = 1;
+            int idx = 0;
+            for (int i = 0; i < n; i++)
+            {
+                int d = digits[i];
+                if (d != 0)
+                {
+                    idx++;
+                    pHash[idx] = (pHash[idx - 1] * 10 + d) % MOD;
+                    pSum[idx] = pSum[idx - 1] + d;
+                    pow10[idx] = (pow10[idx - 1] * 10) % MOD;
+                }
+            }
+
+            int[] next = new int[n];
+            int last = -1;
+            for (int i = n - 1; i >= 0; i--)
+            {
+                if (digits[i] != 0) last = i;
+                next[i] = last;
+            }
+
+            int[] prev = new int[n];
+            last = -1;
+            for (int i = 0; i < n; i++)
+            {
+                if (digits[i] != 0) last = i;
+                prev[i] = last;
+            }
+
+            int q = queries.Length;
+            int[] ans = new int[q];
+            for (int i = 0; i < q; i++)
+            {
+                int l = queries[i][0];
+                int r = queries[i][1];
+                int L = next[l];
+                int R = prev[r];
+                if (L == -1 || R == -1 || L > R)
+                {
+                    ans[i] = 0;
+                    continue;
+                }
+
+                int li = compIndex[L] + 1;
+                int ri = compIndex[R] + 1;
+                int len = ri - li + 1;
+                long x = pHash[ri] - pHash[li - 1] * pow10[len] % MOD;
+                if (x < 0) x += MOD;
+                int sum = pSum[ri] - pSum[li - 1];
+                ans[i] = (int)(x * sum % MOD);
+            }
+            return ans;
+        }
+
+        /// <summary>
+        /// [2685] 统计完全连通分量的数量
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="edges"></param>
+        /// <returns></returns>
+        public int CountCompleteComponents(int n, int[][] edges)
+        {
+            var graph = new List<int>[n];
+            for (int i = 0; i < n; i++)
+            {
+                graph[i] = new List<int>();
+            }
+            foreach (var e in edges)
+            {
+                int u = e[0], v = e[1];
+                graph[u].Add(v);
+                graph[v].Add(u);
+            }
+
+            var visited = new bool[n];
+            int ans = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                if (!visited[i])
+                {
+                    int vCount = 0, eCount = 0;
+                    Dfs(i, graph, visited, ref vCount, ref eCount);
+                    if (eCount == vCount * (vCount - 1))
+                    {
+                        ans++;
+                    }
+                }
+            }
+
+            return ans;
+
+            void Dfs(int u, List<int>[] graph, bool[] visited, ref int vCount, ref int eCount)
+            {
+                visited[u] = true;
+                vCount++;
+                eCount += graph[u].Count;
+                foreach (int v in graph[u])
+                {
+                    if (!visited[v])
+                    {
+                        Dfs(v, graph, visited, ref vCount, ref eCount);
+                    }
+                }
+            }
         }
     }
 }

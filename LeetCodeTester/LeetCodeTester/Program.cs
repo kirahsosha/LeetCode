@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3754();
+                Test_2685();
             }
             catch (Exception ex)
             {
@@ -1404,5 +1404,18 @@ namespace LeetCodeTester
             var res = solution.SumAndMultiply(n);
         }
 
+        static void Test_3756()
+        {
+            var s = "10203004";
+            var queries = JsonConvert.DeserializeObject<int[][]>("[[0,7],[1,3],[4,6]]");
+            var res = solution.SumAndMultiply(s, queries);
+        }
+
+        static void Test_2685()
+        {
+            var n = 6;
+            var edges = JsonConvert.DeserializeObject<int[][]>("[[0,1],[0,2],[1,2],[3,4],[3,5]]");
+            var res = solution.CountCompleteComponents(n, edges);
+        }
     }
 }
