@@ -6791,5 +6791,36 @@ namespace LeetCodeTester.Solutions
                 }
             }
         }
+
+        /// <summary>
+        /// [1331] 数组序号转换
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public int[] ArrayRankTransform(int[] arr)
+        {
+            int n = arr.Length;
+            int[] sorted = new int[n];
+            int[] idx = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                sorted[i] = arr[i];
+                idx[i] = i;
+            }
+
+            Array.Sort(sorted, idx);
+
+            int[] result = new int[n];
+            int rank = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (i == 0 || sorted[i] != sorted[i - 1])
+                {
+                    rank++;
+                }
+                result[idx[i]] = rank;
+            }
+            return result;
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2685();
+                Test_1331();
             }
             catch (Exception ex)
             {
@@ -1416,6 +1416,12 @@ namespace LeetCodeTester
             var n = 6;
             var edges = JsonConvert.DeserializeObject<int[][]>("[[0,1],[0,2],[1,2],[3,4],[3,5]]");
             var res = solution.CountCompleteComponents(n, edges);
+        }
+
+        static void Test_1331()
+        {
+            var arr = JsonConvert.DeserializeObject<int[]>("[40,10,20,30]");
+            var res = solution.ArrayRankTransform(arr);
         }
     }
 }
