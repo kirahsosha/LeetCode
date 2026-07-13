@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1331();
+                Test_1291();
             }
             catch (Exception ex)
             {
@@ -1422,6 +1422,13 @@ namespace LeetCodeTester
         {
             var arr = JsonConvert.DeserializeObject<int[]>("[40,10,20,30]");
             var res = solution.ArrayRankTransform(arr);
+        }
+
+        static void Test_1291()
+        {
+            var low = 200;
+            var high = 3000;
+            var res = solution.SequentialDigits(low, high);
         }
     }
 }

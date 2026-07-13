@@ -6822,5 +6822,60 @@ namespace LeetCodeTester.Solutions
             }
             return result;
         }
+
+        /// <summary>
+        /// [1291] 顺次数
+        /// </summary>
+        /// <param name="low"></param>
+        /// <param name="high"></param>
+        /// <returns></returns>
+        public IList<int> SequentialDigits(int low, int high)
+        {
+            //int[] seq = { 12, 23, 34, 45, 56, 67, 78, 89, 123, 234, 345, 456, 567, 678, 789, 1234, 2345, 3456, 4567, 5678, 6789, 12345, 23456, 34567, 45678, 56789, 123456, 234567, 345678, 456789, 1234567, 2345678, 3456789, 12345678, 23456789, 123456789 };
+            //var res = new List<int>();
+            //foreach (var num in seq)
+            //{
+            //    if (num >= low && num <= high)
+            //    {
+            //        res.Add(num);
+            //    }
+            //}
+            //return res;
+
+            var min = GetDigits(low);
+            var max = GetDigits(high);
+            var res = new List<int>();
+            for (int i = min; i <= max; i++)
+            {
+                for (int j = 0; j <= 9 - i; j++)
+                {
+                    int num = 0;
+                    for (int k = 0; k < i; k++)
+                    {
+                        num = num * 10 + (j + k + 1);
+                    }
+                    if (num >= low && num <= high)
+                    {
+                        res.Add(num);
+                    }
+                    else if (num > high)
+                    {
+                        break;
+                    }
+                }
+            }
+            return res;
+
+            int GetDigits(int num)
+            {
+                var d = 0;
+                while (num > 0)
+                {
+                    d++;
+                    num /= 10;
+                }
+                return d;
+            }
+        }
     }
 }
