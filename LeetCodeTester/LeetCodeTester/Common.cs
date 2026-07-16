@@ -14,7 +14,24 @@ namespace LeetCodeTester
         /// <returns></returns>
         public static int GCD(int a, int b)
         {
-            return b == 0 ? a : GCD(b, a % b);
+            while (b != 0)
+            {
+                int t = a % b;
+                a = b;
+                b = t;
+            }
+            return a;
+        }
+
+        public static long GCD(long a, long b)
+        {
+            while (b != 0)
+            {
+                long t = a % b;
+                a = b;
+                b = t;
+            }
+            return a;
         }
 
         /// <summary>

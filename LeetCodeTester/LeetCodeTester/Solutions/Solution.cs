@@ -6877,5 +6877,39 @@ namespace LeetCodeTester.Solutions
                 return d;
             }
         }
+
+        /// <summary>
+        /// [3658] 奇数和与偶数和的最大公约数
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public int GcdOfOddEvenSums(int n)
+        {
+            return n;
+        }
+
+        /// <summary>
+        /// [3867] 数对的最大公约数之和
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public long GcdSum(int[] nums)
+        {
+            var n = nums.Length;
+            var gcds = new long[n];
+            var max = 0;
+            for (var i = 0; i < n; i++)
+            {
+                max = Math.Max(max, nums[i]);
+                gcds[i] = Common.GCD(nums[i], max);
+            }
+            Array.Sort(gcds);
+            long ans = 0;
+            for (var i = 0; i < n / 2; i++)
+            {
+                ans += Common.GCD(gcds[i], gcds[n - 1 - i]);
+            }
+            return ans;
+        }
     }
 }

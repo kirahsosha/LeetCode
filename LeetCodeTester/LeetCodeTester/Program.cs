@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1291();
+                Test_3867();
             }
             catch (Exception ex)
             {
@@ -1429,6 +1429,18 @@ namespace LeetCodeTester
             var low = 200;
             var high = 3000;
             var res = solution.SequentialDigits(low, high);
+        }
+
+        static void Test_3658()
+        {
+            var n = 1000;
+            var res = solution.GcdOfOddEvenSums(n);
+        }
+
+        static void Test_3867()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[3,6,2,8]");
+            var res = solution.GcdSum(nums);
         }
     }
 }
