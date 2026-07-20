@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3867();
+                Test_1260();
             }
             catch (Exception ex)
             {
@@ -1441,6 +1441,13 @@ namespace LeetCodeTester
         {
             var nums = JsonConvert.DeserializeObject<int[]>("[3,6,2,8]");
             var res = solution.GcdSum(nums);
+        }
+
+        static void Test_1260()
+        {
+            var grid = JsonConvert.DeserializeObject<int[][]>("[[1,2,3],[4,5,6],[7,8,9]]");
+            var k = 1;
+            var res = solution.ShiftGrid(grid, k);
         }
     }
 }
