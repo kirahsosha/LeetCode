@@ -6948,5 +6948,38 @@ namespace LeetCodeTester.Solutions
 
             return vertex;
         }
+
+        /// <summary>
+        /// [3513] 不同 XOR 三元组的数目 I
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int UniqueXorTriplets(int[] nums)
+        {
+            //var set = new HashSet<int>();
+            //nums = nums.Distinct().ToArray();
+            //var n = nums.Length;
+            //for (var i = 0; i < n; i++)
+            //{
+            //    set.Add(nums[i]);
+            //    for (var j = i + 1; j < n; j++)
+            //    {
+            //        for (var k = j + 1; k < n; k++)
+            //        {
+            //            set.Add(nums[i] ^ nums[j] ^ nums[k]);
+            //        }
+            //    }
+            //}
+            //return set.Count;
+
+            var n = nums.Length;
+            if (n <= 2) return n;
+            var ans = 1;
+            while (ans <= n)
+            {
+                ans <<= 1;
+            }
+            return ans;
+        }
     }
 }

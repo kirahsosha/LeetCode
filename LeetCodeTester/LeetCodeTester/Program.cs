@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1260();
+                Test_3513();
             }
             catch (Exception ex)
             {
@@ -1448,6 +1448,12 @@ namespace LeetCodeTester
             var grid = JsonConvert.DeserializeObject<int[][]>("[[1,2,3],[4,5,6],[7,8,9]]");
             var k = 1;
             var res = solution.ShiftGrid(grid, k);
+        }
+
+        static void Test_3513()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[1,2]");
+            var res = solution.UniqueXorTriplets(nums);
         }
     }
 }
