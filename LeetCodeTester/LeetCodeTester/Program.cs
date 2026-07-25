@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3514();
+                Test_3536();
             }
             catch (Exception ex)
             {
@@ -1460,6 +1460,12 @@ namespace LeetCodeTester
         {
             var nums = JsonConvert.DeserializeObject<int[]>("[1]");
             var res = solution.UniqueXorTriplets2(nums);
+        }
+
+        static void Test_3536()
+        {
+            var n = 20;
+            var res = solution.MaxProduct(n);
         }
     }
 }
