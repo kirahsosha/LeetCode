@@ -7012,5 +7012,29 @@ namespace LeetCodeTester.Solutions
             }
             return ans;
         }
+
+        /// <summary>
+        /// [628] 三个数的最大乘积
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int MaximumProduct(int[] nums)
+        {
+            Array.Sort(nums);
+            var n = nums.Length;
+            return Math.Max(nums[n - 1] * nums[n - 2] * nums[n - 3], nums[0] * nums[1] * nums[n - 1]);
+        }
+
+        /// <summary>
+        /// [1464] 数组中两元素的最大乘积
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <returns></returns>
+        public int MaxProduct(int[] nums)
+        {
+            Array.Sort(nums);
+            var n = nums.Length;
+            return (nums[n - 1] - 1) * (nums[n - 2] - 1);
+        }
     }
 }
