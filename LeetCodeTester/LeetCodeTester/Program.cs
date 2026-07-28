@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_1464();
+                Test_3517();
             }
             catch (Exception ex)
             {
@@ -1478,6 +1478,12 @@ namespace LeetCodeTester
         {
             var nums = JsonConvert.DeserializeObject<int[]>("[40,10,20,30]");
             var res = solution.MaxProduct(nums);
+        }
+
+        static void Test_3517()
+        {
+            var s = "dabcdcbad";
+            var res = solution.SmallestPalindrome(s);
         }
     }
 }
