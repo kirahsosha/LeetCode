@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3517();
+                Test_3014();
             }
             catch (Exception ex)
             {
@@ -1484,6 +1484,12 @@ namespace LeetCodeTester
         {
             var s = "dabcdcbad";
             var res = solution.SmallestPalindrome(s);
+        }
+
+        static void Test_3014()
+        {
+            var s = "abhrlngxyjkezwcm";
+            var res = solution.MinimumPushes(s);
         }
     }
 }
