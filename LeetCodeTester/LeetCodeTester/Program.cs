@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3014();
+                Test_3016();
             }
             catch (Exception ex)
             {
@@ -1490,6 +1490,12 @@ namespace LeetCodeTester
         {
             var s = "abhrlngxyjkezwcm";
             var res = solution.MinimumPushes(s);
+        }
+
+        static void Test_3016()
+        {
+            var s = "aabbccddeeffgghhiiiiii";
+            var res = solution.MinimumPushes2(s);
         }
     }
 }
