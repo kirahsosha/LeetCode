@@ -1,6 +1,2 @@
-""abcde"
-"xycdefghij"
-"abhrlngxyjkezwcm"
-"abcde"
-"xyzxyzxyzxyz"
-"aabbccddeeffgghhiiiiii""
+[1,5,2]
+[1,5,233,7]

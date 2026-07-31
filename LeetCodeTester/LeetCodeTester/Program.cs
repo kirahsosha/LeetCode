@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3016();
+                Test_486();
             }
             catch (Exception ex)
             {
@@ -1496,6 +1496,12 @@ namespace LeetCodeTester
         {
             var s = "aabbccddeeffgghhiiiiii";
             var res = solution.MinimumPushes2(s);
+        }
+
+        static void Test_486()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[1,5,233,7]");
+            var res = solution.PredictTheWinner(nums);
         }
     }
 }
