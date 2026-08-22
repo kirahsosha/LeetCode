@@ -7118,5 +7118,51 @@ namespace LeetCodeTester.Solutions
             }
             return ans;
         }
+
+        /// <summary>
+        /// [3345] 最小可整除数位乘积 I
+        /// </summary>
+        /// <param name="n"></param>
+        /// <param name="t"></param>
+        /// <returns></returns>
+        public int SmallestNumber(int n, int t)
+        {
+            while (n > 0)
+            {
+                var temp = n;
+                var ans = 1;
+                while(temp > 0)
+                {
+                    ans *= temp % 10;
+                    temp /= 10;
+                }
+                if (ans / t == 0)
+                {
+                    return n;
+                }
+                n++;
+            }
+            return n;
+        }
+
+        /// <summary>
+        /// [3622] 判断整除性
+        /// </summary>
+        /// <param name="n"></param>
+        /// <returns></returns>
+        public bool CheckDivisibility(int n)
+        {
+            var sum = 0;
+            var pro = 1;
+            var temp = n;
+            while (temp > 0)
+            {
+                var d = temp % 10;
+                sum += d;
+                pro *= d;
+                temp /= 10;
+            }
+            return n % (sum + pro) == 0;
+        }
     }
 }

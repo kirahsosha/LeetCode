@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_486();
+                Test_3622();
             }
             catch (Exception ex)
             {
@@ -1502,6 +1502,19 @@ namespace LeetCodeTester
         {
             var nums = JsonConvert.DeserializeObject<int[]>("[1,5,233,7]");
             var res = solution.PredictTheWinner(nums);
+        }
+
+        static void Test_3345()
+        {
+            var n = 11;
+            var t = 2;
+            var res = solution.SmallestNumber(n, t);
+        }
+
+        static void Test_3622()
+        {
+            var n = 11;
+            var res = solution.CheckDivisibility(n);
         }
     }
 }
