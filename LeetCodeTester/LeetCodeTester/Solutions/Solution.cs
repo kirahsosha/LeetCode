@@ -7164,5 +7164,22 @@ namespace LeetCodeTester.Solutions
             }
             return n % (sum + pro) == 0;
         }
+
+        /// <summary>
+        /// [3718] 缺失的最小倍数
+        /// </summary>
+        /// <param name="nums"></param>
+        /// <param name="k"></param>
+        /// <returns></returns>
+        public int MissingMultiple(int[] nums, int k)
+        {
+            var set = new HashSet<int>(nums);
+            var multiple = k;
+            while (set.Contains(multiple))
+            {
+                multiple += k;
+            }
+            return multiple;
+        }
     }
 }

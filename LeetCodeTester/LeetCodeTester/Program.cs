@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3622();
+                Test_3718();
             }
             catch (Exception ex)
             {
@@ -1515,6 +1515,13 @@ namespace LeetCodeTester
         {
             var n = 11;
             var res = solution.CheckDivisibility(n);
+        }
+
+        static void Test_3718()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[8,2,3,4,6,4]");
+            var k = 2;
+            var res = solution.MissingMultiple(nums, k);
         }
     }
 }
