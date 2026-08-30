@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_3718();
+                Test_2091();
             }
             catch (Exception ex)
             {
@@ -1522,6 +1522,12 @@ namespace LeetCodeTester
             var nums = JsonConvert.DeserializeObject<int[]>("[8,2,3,4,6,4]");
             var k = 2;
             var res = solution.MissingMultiple(nums, k);
+        }
+
+        static void Test_2091()
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>("[2,10,7,5,4,1,8,6]");
+            var res = solution.MinimumDeletions(nums);
         }
     }
 }
