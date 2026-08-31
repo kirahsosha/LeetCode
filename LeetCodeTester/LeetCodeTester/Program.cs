@@ -29,7 +29,7 @@ namespace LeetCodeTester
         {
             try
             {
-                Test_2091();
+                Test_2058();
             }
             catch (Exception ex)
             {
@@ -1528,6 +1528,12 @@ namespace LeetCodeTester
         {
             var nums = JsonConvert.DeserializeObject<int[]>("[2,10,7,5,4,1,8,6]");
             var res = solution.MinimumDeletions(nums);
+        }
+
+        static void Test_2058()
+        {
+            var head = ListNode.CreateListNode("[5,3,1,2,5,1,2]");
+            var res = solution.NodesBetweenCriticalPoints(head);
         }
     }
 }

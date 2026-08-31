@@ -15,6 +15,23 @@ namespace LeetCodeTester
             this.val = val;
             this.next = next;
         }
+
+        public static ListNode CreateListNode(string s)
+        {
+            var nums = JsonConvert.DeserializeObject<int[]>(s);
+            if (nums.Length == 0)
+            {
+                return null;
+            }
+            ListNode head = new ListNode(nums[0]);
+            ListNode current = head;
+            for (int i = 1; i < nums.Length; i++)
+            {
+                current.next = new ListNode(nums[i]);
+                current = current.next;
+            }
+            return head;
+        }
     }
 
     public class TreeNode

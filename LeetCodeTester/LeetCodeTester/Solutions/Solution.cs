@@ -7211,5 +7211,56 @@ namespace LeetCodeTester.Solutions
             int middle = Math.Abs(minIndex - maxIndex);
             return Math.Min(left + right, Math.Min(left + middle, right + middle));
         }
+
+        /// <summary>
+        /// [2058] 找出临界点之间的最小和最大距离
+        /// </summary>
+        /// <param name="head"></param>
+        /// <returns></returns>
+        public int[] NodesBetweenCriticalPoints(ListNode head)
+        {
+            var index = -1;
+            var min = -1;
+            var max = -1;
+            var temp = head.val;
+            var node = head.next;
+            while (node != null && node.next != null)
+            {
+                if((node.val < temp && node.val < node.next.val) || (node.val > temp && node.val > node.next.val))
+                {
+                    if(index == -1)
+                    {
+                        index = 1;
+                    }
+                    else
+                    {
+                        if (min == -1)
+                        {
+                            min = index;
+                        }
+                        else
+                        {
+                            min = Math.Min(min, index);
+                        }
+                        if(max == -1)
+                        {
+                            max = index;
+                        }
+                        else
+                        {
+                            max += index;
+                        }
+                        index = 1;
+                    }
+                }
+                else if (index > -1)
+                {
+                    index++;
+                }
+                temp = node.val;
+                node = node.next;
+            }
+            return [min, max];
+        }
     }
 }
